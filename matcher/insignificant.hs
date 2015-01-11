@@ -1,5 +1,6 @@
-module Insignificant
-  where
+module Match.Insignificant (
+  rank
+) where
 
 import Data.List
 import Data.Char
@@ -17,7 +18,10 @@ woolworths = [ "Fresh Apple Pink Lady each"
              , "Fresh Pear Packham Ripe & Ready each"
              , "Fresh Pear Corella each"]
 
-main = take 5 $ reverse $ sortLists $ frequency $ listToWords (mapDeep toLower woolworths)
+-- Computes and sorts the words based on their frequency.
+-- This list would still need to be checked by a human.
+rank list = reverse $ sortLists $ frequency $ listToWords lowercaseList
+    where lowercaseList = (mapDeep toLower list)
 
 -- Map a function over the non-list elements in a list of lists
 -- (i.e. applies a function at one level deep)

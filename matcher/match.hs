@@ -1,5 +1,6 @@
-module Match
-  where 
+module Match (
+  match
+) where 
 
 import Data.Char
 import Data.List
@@ -24,7 +25,7 @@ woolworths = [ "Fresh Apple Pink Lady each"
              , "Fresh Pear Packham Ripe & Ready each"
              , "Fresh Pear Corella each"]
 
-main = reverse $ sortLists $ compareLists coles woolworths
+match = reverse $ sortLists $ compareLists coles woolworths
 
 -- For each string in the first list, determine its matchiness 
 -- to the strings in the second list. Then sort by matchiness.
