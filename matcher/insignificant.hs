@@ -1,4 +1,4 @@
-module Match.Insignificant (
+module Insignificant (
   rank
 ) where
 
