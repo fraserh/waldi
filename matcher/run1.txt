@@ -1,0 +1,89 @@
+INPUT
+=====
+coles = [ "Strawberries Prepacked 250g"
+        , "Bananas 1 each"
+        , "Pink Lady Apples 1 each"
+        , "Packham Pears 1 each"
+        , "Carrots 1 each"
+        ]
+
+woolworths = [ "Fresh Apple Pink Lady each"
+             , "Fresh Apple Sundowner each"
+             , "Fresh Apricot each"
+             , "Fresh Banana each"
+             , "Fresh Banana Organic each"
+             , "Fresh Carrot Juicing 2kg bag"
+             , "Fresh Carrot each"
+             , "Fresh Carrot Prepacked 1kg bag"
+             , "Strongbow Pear Cider Pear 24x355ml"
+             , "Angas Park Pears Dried 200g"
+             , "Fresh Pear Packham Ripe & Ready each"
+             , "Fresh Pear Corella each"]
+
+
+OUTPUT
+======
+
+format: (colesTitle, wooliesTitle, matchRating)
+
+("Pink Lady Apples 1 each","Fresh Apple Pink Lady each",0.9032258064516129
+,("Carrots 1 each","Fresh Carrot each",0.7619047619047619
+,("Bananas 1 each","Fresh Banana each",0.7619047619047619
+,("Packham Pears 1 each","Fresh Pear Packham Ripe & Ready each",0.6666666666666666
+,("Bananas 1 each","Fresh Banana Organic each",0.5925925925925926
+,("Pink Lady Apples 1 each","Fresh Apple Sundowner each",0.48484848484848486
+,("Packham Pears 1 each","Fresh Pear Corella each",0.4827586206896552
+,("Packham Pears 1 each","Fresh Carrot each",0.48
+,("Strawberries Prepacked 250g","Fresh Carrot Prepacked 1kg bag",0.46511627906976744
+,("Carrots 1 each","Fresh Carrot Prepacked 1kg bag",0.4
+,("Packham Pears 1 each","Fresh Banana each",0.4
+,("Packham Pears 1 each","Angas Park Pears Dried 200g",0.3870967741935484
+,("Packham Pears 1 each","Fresh Apricot each",0.38461538461538464
+,("Pink Lady Apples 1 each","Fresh Apricot each",0.37037037037037035
+,("Carrots 1 each","Fresh Apricot each",0.36363636363636365
+,("Carrots 1 each","Fresh Carrot Juicing 2kg bag",0.35714285714285715
+,("Packham Pears 1 each","Fresh Apple Pink Lady each",0.3333333333333333
+,("Pink Lady Apples 1 each","Fresh Pear Corella each",0.3333333333333333
+,("Pink Lady Apples 1 each","Fresh Pear Packham Ripe & Ready each",0.32432432432432434
+,("Packham Pears 1 each","Fresh Banana Organic each",0.3225806451612903
+,("Carrots 1 each","Fresh Pear Corella each",0.32
+,("Packham Pears 1 each","Fresh Apple Sundowner each",0.3125
+,("Pink Lady Apples 1 each","Fresh Carrot each",0.3076923076923077
+,("Pink Lady Apples 1 each","Fresh Banana each",0.3076923076923077
+,("Bananas 1 each","Angas Park Pears Dried 200g",0.2962962962962963
+,("Packham Pears 1 each","Fresh Carrot Prepacked 1kg bag",0.29411764705882354
+,("Carrots 1 each","Fresh Banana each",0.2857142857142857
+,("Bananas 1 each","Fresh Carrot each",0.2857142857142857
+,("Strawberries Prepacked 250g","Fresh Apricot each",0.2857142857142857
+,("Bananas 1 each","Fresh Apricot each",0.2727272727272727
+,("Strawberries Prepacked 250g","Fresh Pear Packham Ripe & Ready each",0.26666666666666666
+,("Carrots 1 each","Fresh Pear Packham Ripe & Ready each",0.25
+,("Pink Lady Apples 1 each","Fresh Banana Organic each",0.25
+,("Strawberries Prepacked 250g","Angas Park Pears Dried 200g",0.25
+,("Bananas 1 each","Fresh Pear Corella each",0.24
+,("Strawberries Prepacked 250g","Fresh Carrot each",0.23529411764705882
+,("Carrots 1 each","Fresh Apple Pink Lady each",0.23076923076923078
+,("Bananas 1 each","Fresh Apple Pink Lady each",0.23076923076923078
+,("Carrots 1 each","Fresh Banana Organic each",0.2222222222222222
+,("Carrots 1 each","Fresh Apple Sundowner each",0.21428571428571427
+,("Bananas 1 each","Fresh Apple Sundowner each",0.21428571428571427
+,("Packham Pears 1 each","Strongbow Pear Cider Pear 24x355ml",0.21052631578947367
+,("Strawberries Prepacked 250g","Fresh Apple Sundowner each",0.1951219512195122
+,("Bananas 1 each","Fresh Pear Packham Ripe & Ready each",0.1875
+,("Carrots 1 each","Strongbow Pear Cider Pear 24x355ml",0.17647058823529413
+,("Strawberries Prepacked 250g","Fresh Banana each",0.17647058823529413
+,("Strawberries Prepacked 250g","Fresh Pear Corella each",0.15789473684210525
+,("Strawberries Prepacked 250g","Fresh Apple Pink Lady each",0.15384615384615385
+,("Strawberries Prepacked 250g","Fresh Banana Organic each",0.15
+,("Carrots 1 each","Angas Park Pears Dried 200g",0.14814814814814814
+,("Strawberries Prepacked 250g","Fresh Carrot Juicing 2kg bag",0.14634146341463414
+,("Bananas 1 each","Fresh Carrot Prepacked 1kg bag",0.13333333333333333
+,("Strawberries Prepacked 250g","Strongbow Pear Cider Pear 24x355ml",0.1276595744680851
+,("Pink Lady Apples 1 each","Fresh Carrot Juicing 2kg bag",0.12121212121212122
+,("Pink Lady Apples 1 each","Fresh Carrot Prepacked 1kg bag",0.11428571428571428
+,("Bananas 1 each","Fresh Carrot Juicing 2kg bag",7.142857142857142e-2
+,("Packham Pears 1 each","Fresh Carrot Juicing 2kg bag",6.25e-2
+,("Pink Lady Apples 1 each","Angas Park Pears Dried 200g",6.25e-2
+,("Bananas 1 each","Strongbow Pear Cider Pear 24x355ml",5.8823529411764705e-2
+,("Pink Lady Apples 1 each","Strongbow Pear Cider Pear 24x355ml",5.128205128205128e-2
+
