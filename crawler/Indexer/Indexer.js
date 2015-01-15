@@ -14,7 +14,7 @@ Indexer.prototype.index = function() {
     bounds = this.categoryBounds(category);
 
     var categoryURLs = this.categoryURLs(category, bounds[0], bounds[1]);
-    // push probably not right.
+
     allURLs.push(categoryURLs);
   }
 

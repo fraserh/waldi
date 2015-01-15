@@ -43,10 +43,11 @@ var categories = {
 /**
  * Instantiate a new Coles indexer
  * @param {Int} itemsPerPage optional. Defaults to 100.
+ * @param {Object} categories optional. If not specified, we provide the one above.
  */
-function Coles(itemsPerPage) {
+function Coles(itemsPerPage, someCategories) {
   var baseURL = 'http://shop.coles.com.au/online/national/';
-  Indexer.call(this, categories, baseURL, itemsPerPage);
+  Indexer.call(this, someCategories || categories, baseURL, itemsPerPage);
 }
 
 Coles.prototype = Object.create(Indexer.prototype);
