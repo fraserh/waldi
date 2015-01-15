@@ -1,9 +1,7 @@
-var url = 'http://shop.coles.com.au/online/national/pantry/pantry#pageNumber=5&currentPageSize=20';
-var page = require('webpage').create();
+var Coles = require('./Coles');
 
-page.open(url, function () {
-  setInterval(function() {
-    console.log(page.content); //page source
-    phantom.exit();
-  }, 5000);
-});
+var coles = new Coles();
+coles.basePath = 'coles';
+coles.urlsToCrawl = ['blah'];
+
+coles.crawl();
