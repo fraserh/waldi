@@ -1,4 +1,4 @@
-function Indexer (categories, baseURL, itemsPerPage) {
+function Indexer(categories, baseURL, itemsPerPage) {
   this.itemsPerPage = itemsPerPage || 100;
   this.categories = categories;
   this.baseURL = baseURL;
@@ -10,15 +10,15 @@ Indexer.prototype.index = function() {
   // For each category, get that category's bounds.
   // Then fill in the gaps.
   var bounds;
-  for (category in categories) {
+  for (var category in this.categories) {
     bounds = this.categoryBounds(category);
 
     var categoryURLs = this.categoryURLs(category, bounds[0], bounds[1]);
-    // push probably not right.
+
     allURLs.push(categoryURLs);
   }
 
-  return allURLs;
+  return [].concat.apply([], allURLs);
 };
 
 // Returns a pseudo-tuple.

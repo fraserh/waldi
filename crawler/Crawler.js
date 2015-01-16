@@ -42,6 +42,15 @@ Each store then subclasses `Crawler`.
 // TODO: Actually run this code.
 
 var fs = require('fs');
+var async = require('./async');
+
+// PhantomJS doesn't support bind yet
+Function.prototype.bind = Function.prototype.bind || function (thisp) {
+    var fn = this;
+    return function () {
+        return fn.apply(thisp, arguments);
+    };
+};
 
 /**
  * crawl loads each webpage in the urlsToCrawl list and saves them to a file
@@ -57,28 +66,25 @@ function Crawler(urlsToCrawl, basePath, waitTime) {
 }
 
 Crawler.prototype.crawl = function() {
-  var urls = this.urlsToCrawl;
+  // In development, we don't really want to crawl the whole list
+  var urls = this.urlsToCrawl.slice(1,3);
 
-  // Load each URL
-  // TODO: Fix so async doesn't break.
-  // TODO: Add monadic error handling
-  for (var i = 0, len = urls.length; i < len; i++) {
-    this.loadPage(urls[i], function(err, data) {
-      if (err) {
-        console.error(err);
-      } else {
-        // Save each URL
-        // TODO: Make file path valid
-        this.savePage(data, urls[i] + '.html', function(err, data) {
-          if (err) {
-            console.error(err);
-          } else {
-            console.log('Saved', urls[i]);
-          }
-        });
-      }
-    });
-  }
+  console.log(urls);
+
+  // Load the content at each URL
+  async.mapSeries(urls, this.loadPage, function(err, contentsOfEach) {
+    console.log('Finished.');
+    console.log(err, contentsOfEach);
+  });
+
+  // Eventually, do this.
+  // async.mapSeries(urls, this.loadPage, function(err, contentsOfEach) {
+  //   console.log(err, contentsOfEach);
+  //   async.mapSeries(contentsOfEach, this.savePage, function(err, statuses) {
+  //     console.log(err, statuses);
+  //     phantom.exit();
+  //   });
+  // });
 };
 
 /**
@@ -89,22 +95,56 @@ Crawler.prototype.crawl = function() {
 Crawler.prototype.loadPage = function(url, callback) {
   var page = require('webpage').create();
 
-  page.open(url, function (status) {
+  page.openPage(url, function (status) {
     if (status !== 'success') {
-      callback(new Error(url, 'could not be opened.'));
-      return phantom.exit();
+      return callback(new Error(url, 'could not be opened.'));
     }
 
-    setInterval(function() {
-      callback(null, page.content);
-      return phantom.exit();
-    }, Crawler.waitTime());
+    setTimeout(function() {
+      var content = page.content;
+      callback(null, content);
+    }, this.waitTime);
   });
 };
 
-Crawler.prototype.savePage = function(content, path, callback) {
-  fs.writeFile(content, path, callback);
+Crawler.prototype.savePage = function(content, callback) {
+  console.log('\n\n', path, '\n\n\n');
+  console.log(content);
+  callback(null, null);
+  // fs.writeFile(content, path, callback);
 };
+
+function asyncLoop(iterations, func, callback) {
+    var index = 0;
+    var done = false;
+    var loop = {
+        next: function() {
+            if (done) {
+                return;
+            }
+
+            if (index < iterations) {
+                index++;
+                func(loop);
+
+            } else {
+                done = true;
+                callback();
+            }
+        },
+
+        iteration: function() {
+            return index - 1;
+        },
+
+        break: function() {
+            done = true;
+            callback();
+        }
+    };
+    loop.next();
+    return loop;
+}
 
 /*
 Export Crawler

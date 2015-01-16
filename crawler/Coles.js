@@ -1,18 +1,15 @@
 var Crawler = require('./Crawler');
-var Indexer = require('./Indexer');
+var ColesIndexer = require('./Indexer/Coles');
 
-var colesIndexer = new Indexer();
+var colesIndexer = new ColesIndexer();
+console.log(colesIndexer);
+var colesURLs = colesIndexer.index();
 
-var colesCategories = {
-  'pantry': 6603,
-  // ...
-};
-
-var colesURLs = colesIndexer.index(colesCategories);
+// console.log(colesURLs);
 
 var someList = colesURLs;
 var someBasePath = 'basePath';
-var someWaitTime = 10000;
 
-var colesCrawler = new Crawler(someList, someBasePath, someWaitTime);
+var colesCrawler = new Crawler(someList, someBasePath);
+
 colesCrawler.crawl();
