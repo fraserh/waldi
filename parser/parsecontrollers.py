@@ -1,4 +1,4 @@
- #!/usr/bin/env python
+#!/usr/bin/env python
 
 """
 Collection of helper functions to help parse data
@@ -48,3 +48,10 @@ def regexBetweenTwoStrings(node, params):
   if not matchObj or not matchObj.group(1):
     return "INVALID_ENTRY"
   return matchObj.group(1)
+
+def each_or_kilo(node, params):
+  each = ("per 1Ea" in node)
+  if (each):
+    return -1
+  else:
+    return 1

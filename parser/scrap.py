@@ -7,7 +7,7 @@ import parsecontrollers
 import constants
 import re
 
-soup = BeautifulSoup(open("pantry.html"));
+soup = BeautifulSoup(open("fruit.html"));
 
 class pageParser(object):
   """New Page Parser """
@@ -23,6 +23,7 @@ class pageParser(object):
     all_data = self.get_all_container_nodes()
     prices = []
     titles = []
+    metrics = []
 
     # Extract titles from nodes.
     for node in all_data:
@@ -32,9 +33,12 @@ class pageParser(object):
     for node in all_data:
       prices.append(self.parse_from_containers(constants.COLES_PARAMS[1], node))
       prices.append(self.extract_data(prices.pop(),constants.COLES_PARAMS[1]))
+    for node in all_data:
+      metrics.append(self.parse_from_containers(constants.COLES_PARAMS[2], node))
+      metrics.append(self.extract_data(metrics.pop(),constants.COLES_PARAMS[2]))
 
-    for title, price in zip(titles,prices):
-      print(("%s,%s")% (title,price))
+    for title, price, metric in zip(titles,prices, metrics):
+      print(("%s, %s, %s")% (title,price, metric))
     
   def get_all_container_nodes(self):
     return self.html_doc.find_all(constants.COLES_CONTAINER_DIV["tag"],constants.COLES_CONTAINER_DIV["class"])
@@ -45,7 +49,7 @@ class pageParser(object):
       if result:
         node = node.find_all(searchtag, searchclass)[0]
       else:
-        node = self.parse_edge_container(node, params)
+        node = ""#self.parse_edge_container(node, params)
     return node
 
   def parse_edge_container(self, node, params):
@@ -56,7 +60,6 @@ class pageParser(object):
       return "INVALID_ENTRY"
 
   def extract_data(self, node, params):
-    #node = "<a aria-hidden='true' class='product-url' href='http://shop.coles.com.au/online/national/coles-pork-easy-carve-shoulder-roast' role='presentation'>Easy Carve Pork Shoulder Roastapprox. 2.1kg</a>"
     for task in params["extract_data"]:
       if node:
         node  = task["func"](node, task["params"])
