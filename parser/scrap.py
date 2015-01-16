@@ -5,6 +5,7 @@ Generalised Web Scraper
 from bs4 import BeautifulSoup
 import parsecontrollers
 import constants
+import re
 
 soup = BeautifulSoup(open("pantry.html"));
 
@@ -20,47 +21,51 @@ class pageParser(object):
     """
 
     all_data = self.get_all_container_nodes()
-    # TODO: Use get requests on ALL dictionary calls (fail safe) 
-
-    # Hacky attempt to fix the edge case by using if statements.
-    # This loops through the nested classes that we must search to find the actual data
     prices = []
     titles = []
-    # Parse title nodes
+
+    # Extract titles from nodes.
     for node in all_data:
       titles.append(self.parse_from_containers(constants.COLES_PARAMS[0], node))
-      titles.append(self.extract_data(constants.COLES_PARAMS[0],titles.pop()))
-    # for data_set in self.COLES_PARAMS:
-    #   results = None
-    #   for searchtag,searchclass in zip(data_set["elements_to_search"]["tag"],data_set["elements_to_search"]["class"]):
-    #     if results is None:
-    #       results = self.html_doc.find_all(searchtag, searchclass)
-    #     else:
-    #       results[:] = [entry.find_all(searchtag, searchclass)[0] for entry in results]
-      
-    #   # Loops through the functions to process the data once it has been found.
-    #   for extracter in data_set["extract_data"]:
-    #     if (extracter==parsecontrollers.regexBetweenTwoStrings):
-    #       results[:] = [extracter(entry, data_set["regex_strings"][0], data_set["regex_strings"][1]) for entry in results]
-    #     else:
-    #       results[:] = [extracter(entry, data_set["split_params"][0], data_set["split_params"][1]) for entry in results]
-    #   all_data.append(results)
-    
-    
+      titles.append(self.extract_data(titles.pop(),constants.COLES_PARAMS[0]))
+    # Loop through nodes and extract price per kilo.
+    for node in all_data:
+      prices.append(self.parse_from_containers(constants.COLES_PARAMS[1], node))
+      prices.append(self.extract_data(prices.pop(),constants.COLES_PARAMS[1]))
+
+    for title, price in zip(titles,prices):
+      print(("%s,%s")% (title,price))
     
   def get_all_container_nodes(self):
     return self.html_doc.find_all(constants.COLES_CONTAINER_DIV["tag"],constants.COLES_CONTAINER_DIV["class"])
 
   def parse_from_containers(self, params, node):
     for searchtag, searchclass in zip(params["elements_to_search"]["tag"],params["elements_to_search"]["class"]):
-      node = node.find_all(searchtag, searchclass)[0]
+      result = node.find_all(searchtag, searchclass)
+      if result:
+        node = node.find_all(searchtag, searchclass)[0]
+      else:
+        node = self.parse_edge_container(node, params)
     return node
 
-  def extract_data(self, params, node):
-    for task in params:
-      task["func"](task["params"])
+  def parse_edge_container(self, node, params):
+    result = node.find_all(params["backup_elements"]["tag"],params["backup_elements"]["class"])
+    if result:
+      return result[0]
+    else:
+      return "INVALID_ENTRY"
 
-# Testing purposes.
+  def extract_data(self, node, params):
+    #node = "<a aria-hidden='true' class='product-url' href='http://shop.coles.com.au/online/national/coles-pork-easy-carve-shoulder-roast' role='presentation'>Easy Carve Pork Shoulder Roastapprox. 2.1kg</a>"
+    for task in params["extract_data"]:
+      if node:
+        node  = task["func"](node, task["params"])
+    if node:
+      return node
+    else:
+      return "INVALID_ENTRY"
+
+
 foo = pageParser(soup)
 foo.get_data()
 
