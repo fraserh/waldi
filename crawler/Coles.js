@@ -5,11 +5,12 @@ var colesIndexer = new ColesIndexer();
 console.log(colesIndexer);
 var colesURLs = colesIndexer.index();
 
-// console.log(colesURLs);
-
-var someList = colesURLs;
 var someBasePath = 'basePath';
 
-var colesCrawler = new Crawler(someList, someBasePath);
+var colesCrawler = new Crawler(colesURLs, someBasePath);
 
 colesCrawler.crawl();
+
+colesCrawler.on(colesCrawler.Events.finished, function() {
+  console.log('Coles has finished.');
+});
