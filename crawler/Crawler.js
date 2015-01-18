@@ -85,17 +85,17 @@ Crawler.prototype.savePage = function(path, content) {
   // TODO: Remove the uses of `that`—I think we can do away with them with `bind`.
   var that = this;
 
-  fs.writeFile('./' + sanitize(path), content, function(err) {
-      if (err) {
-          console.log(err);
-      } else {
-          console.log("Saved.");
-      }
+  fs.writeFile(path, content, function(err) {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log("Saved.");
+    }
 
-      that.emit(EventKeys.savedPage, {
-        path: path,
-        content: content
-      });
+    that.emit(EventKeys.savedPage, {
+      path: path,
+      content: content
+    });
   });
 };
 
@@ -115,7 +115,14 @@ Crawler.prototype.crawl = function() {
 };
 
 Crawler.prototype.on(EventKeys.loadedURL, function(page) {
-  this.savePage(page.URL, page.content);
+  var that = this;
+  fs.exists('./' + this.basePath, function(exists) {
+    if (exists) {
+      that.savePage('./' + that.basePath + '/' + sanitize(page.URL), page.content);
+    } else {
+      throw new Error('Directory does not exist.');
+    }
+  });
 });
 
 Crawler.prototype.on(EventKeys.savedPage, function(page) {

@@ -5,7 +5,7 @@ var colesIndexer = new ColesIndexer();
 console.log(colesIndexer);
 var colesURLs = colesIndexer.index();
 
-var someBasePath = 'basePath';
+var someBasePath = 'coles';
 
 var colesCrawler = new Crawler(colesURLs, someBasePath);
 
