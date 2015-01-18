@@ -11,7 +11,8 @@ def getInnerHTML(node, foo):
   """Get InnerHTML
   Return the inside of a node (i.e. remove tags)
   """
-  print node
+  if type(node) is str:
+    return "INVALID_ENTRY"
   return node.decode_contents(formatter="html")
 
 def prettifyString(node, foo):
@@ -22,11 +23,21 @@ def prettifyString(node, foo):
   # And finally html space
   return re.sub('\s+',' ', node).lower().strip().replace("&nbsp;","").replace("&amp;","and")
 
-def ignore_words(node, foo):
-  for statement in COLES_IGNORE_LIST:
+def ignore_words(node, params):
+  for statement in params:
     node = node.replace(statement, "").strip()
   return node
   
+def get_unit(node, params):
+  s1 = params[0]
+  s2 = params[1]
+  regex_string = r""+re.escape(s1)+r"(.*)"+re.escape(s2)
+  matchObj = re.search(regex_string, node)
+  if not matchObj or not matchObj.group(1):
+    return "ea"
+  if "100g" in node:
+    return "0.1kg"
+  return matchObj.group(1)
 
 def splitSplice(node, params):
   """
@@ -47,6 +58,8 @@ def regexBetweenTwoStrings(node, params):
   matchObj = re.search(regex_string, node)
   if not matchObj or not matchObj.group(1):
     return "INVALID_ENTRY"
+  if "100g" in node:
+    return float(matchObj.group(1))*10 
   return matchObj.group(1)
 
 def each_or_kilo(node, params):

@@ -9,7 +9,7 @@ import re
 
 soup = BeautifulSoup(open("fruit.html"));
 
-class pageParser(object):
+class ColesPageParser(object):
   """New Page Parser """
 
   def __init__(self, html_doc):
@@ -49,7 +49,7 @@ class pageParser(object):
       if result:
         node = node.find_all(searchtag, searchclass)[0]
       else:
-        node = ""#self.parse_edge_container(node, params)
+        node = self.parse_edge_container(node, params)
     return node
 
   def parse_edge_container(self, node, params):
@@ -69,7 +69,7 @@ class pageParser(object):
       return "INVALID_ENTRY"
 
 
-foo = pageParser(soup)
+foo = ColesPageParser(soup)
 foo.get_data()
 
 
