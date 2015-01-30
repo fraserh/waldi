@@ -10,7 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "phantom": "^0.7.2",
-    "phantomjs": "^1.9.13",
     "sanitize-filename": "^1.1.1"
   }
 }

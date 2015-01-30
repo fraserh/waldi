@@ -58,8 +58,8 @@ Coles.prototype.categoryURLs = function(categoryName, start, end) {
   // Possibly not <=. Not sure how the page numbering will turn out.
   var urls = [];
   for (var i = start; i <= end; i++) {
-    urls.push(this.baseURL + categoryName + '/' + categoryName + '#pageNumber=' +
-              i + '&currentPageSize' + this.itemsPerPage);
+    urls.push(this.baseURL + categoryName + '/' + categoryName + '/#pageNumber=' +
+              i + '&currentPageSize=' + this.itemsPerPage);
   }
   return urls;
 };

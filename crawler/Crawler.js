@@ -16,6 +16,13 @@ var sanitize = require("sanitize-filename");
 var phantom = require('phantom'); // N.B. non-standard Phantom JS
 var phantomInstance;
 
+phantom.cookiesEnabled = true;
+// phantom.addCookie({
+//   'name': 'ColesSearchPageSizeCookie',
+//   'value': '100',
+//   'domain': 'shop.coles.com.au'
+// });
+
 var events = require('events');
 
 // Global event names because of scope issues.
@@ -118,7 +125,7 @@ Crawler.prototype.on(EventKeys.loadedURL, function(page) {
   var that = this;
   fs.exists('./' + this.basePath, function(exists) {
     if (exists) {
-      that.savePage('./' + that.basePath + '/' + sanitize(page.URL), page.content);
+      that.savePage('./' + that.basePath + '/' + sanitize(page.URL) + '.html', page.content);
     } else {
       throw new Error('Directory does not exist.');
     }
