@@ -16,13 +16,6 @@ var sanitize = require("sanitize-filename");
 var phantom = require('phantom'); // N.B. non-standard Phantom JS
 var phantomInstance;
 
-phantom.cookiesEnabled = true;
-// phantom.addCookie({
-//   'name': 'ColesSearchPageSizeCookie',
-//   'value': '100',
-//   'domain': 'shop.coles.com.au'
-// });
-
 var events = require('events');
 
 // Global event names because of scope issues.
