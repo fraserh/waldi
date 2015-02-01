@@ -11,5 +11,9 @@
   "dependencies": {
     "phantom": "^0.7.2",
     "sanitize-filename": "^1.1.1"
+  },
+  "devDependencies": {
+    "memwatch": "^0.2.2",
+    "v8-profiler": "^5.2.3"
   }
 }
