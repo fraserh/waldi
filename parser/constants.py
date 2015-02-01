@@ -21,6 +21,10 @@ COLES_PARAMS = [
         "func":parsecontrollers.prettifyString,
         "params":[]
       },
+      {
+        "func": parsecontrollers.ignore_words,
+        "params": [parsecontrollers.COLES_IGNORE_LIST]
+      }
     ],
   },
   {
@@ -96,6 +100,39 @@ COLES_PARAMS = [
       }
     ],
   },
+  {
+    "elements_to_search":
+      {
+        "tag":["div"],
+        "class": ["price"]
+      },
+    "extract_data": [
+      {
+        "func":parsecontrollers.getInnerHTML,
+        "params":[]
+      },
+      {
+        "func": parsecontrollers.splitSplice,
+        "params": ["</small>",1]
+      }
+    ],
+    "backup_elements":
+    {
+      "tag": ["div"],
+      "class": ["offer-detail"]
+    },
+    "backup_processing": {
+      "extract_data" :[
+      {
+        "func": parsecontrollers.getInnerHTML,
+        "params":[]
+      },
+      {
+        "func": parsecontrollers.coles_special_prices,
+        "params":[]
+      },
+    ],}
+  },
 ]
 
 """
@@ -124,6 +161,10 @@ WOOLIES_PARAMS = [
         "func":parsecontrollers.prettifyString,
         "params":[]
       },
+      {
+        "func": parsecontrollers.ignore_words,
+        "params": [parsecontrollers.WOOLIES_IGNORE_LIST]
+      }
     ],
   },
   {

@@ -7,14 +7,23 @@ from bs4 import BeautifulSoup
 import parsecontrollers
 import constants
 import re
+import sys
 
-soup = BeautifulSoup(open("bread-woolies.html"));
+soup = BeautifulSoup(open("hersb-woolies.html"));
 
 class WooliesPageParser(object):
   """New Page Parser """
 
   def __init__(self, html_doc):
     self.html_doc = html_doc
+
+  def write_to_db(self, item_list):
+    """Write Items to DB.
+    Takes a list of items to be written to the db.
+    """
+    with open("woolies_db.csv", "wt") as f:
+      for item in item_list:
+        f.write(item+'\n')
 
   def get_data(self):
     """Get Container Class Names.
@@ -26,36 +35,41 @@ class WooliesPageParser(object):
     """
 
     all_data = self.get_all_container_nodes()
-    prices = []
-    single_prices = []
-    item_sizes = []
+    prices_per_kilo = []
+    prices_per_unit = []
+    unit_sizes = []
     titles = []
     metrics = []
-    metric_units = []
+    kilo_litre_each = []
+    item_list = []
 
     # Extract titles from nodes.
     for node in all_data:
       titles.append(self.parse_from_containers(constants.WOOLIES_PARAMS[0], node))
       titles.append(self.extract_data(titles.pop(),constants.WOOLIES_PARAMS[0]))
-    # Loop through nodes and extract price per kilo.
-    for node in all_data:
-      prices.append(self.parse_from_containers(constants.WOOLIES_PARAMS[1], node))
-      single_prices.append(self.parse_from_containers(constants.WOOLIES_PARAMS[2], node))
-      single_prices.append(self.extract_data(single_prices.pop(),constants.WOOLIES_PARAMS[2]))
-      prices.append(self.extract_data(prices.pop(),constants.WOOLIES_PARAMS[1]))
-      item_sizes.append(self.parse_from_containers(constants.WOOLIES_PARAMS[3], node))
-      item_sizes.append(self.extract_data(item_sizes.pop(),constants.WOOLIES_PARAMS[3]))
-      metric_units.append(self.parse_from_containers(constants.WOOLIES_PARAMS[4], node))
-      metric_units.append(self.extract_data(metric_units.pop(),constants.WOOLIES_PARAMS[4]))
+      prices_per_kilo.append(self.parse_from_containers(constants.WOOLIES_PARAMS[1], node))
+      prices_per_kilo.append(self.extract_data(prices_per_kilo.pop(),constants.WOOLIES_PARAMS[1]))
+      prices_per_unit.append(self.parse_from_containers(constants.WOOLIES_PARAMS[2], node))
+      prices_per_unit.append(self.extract_data(prices_per_unit.pop(),constants.WOOLIES_PARAMS[2]))
+      unit_sizes.append(self.parse_from_containers(constants.WOOLIES_PARAMS[3], node))
+      unit_sizes.append(self.extract_data(unit_sizes.pop(),constants.WOOLIES_PARAMS[3]))
+
+      kilo_litre_each.append(self.parse_from_containers(constants.WOOLIES_PARAMS[4], node))
+      kilo_litre_each.append(self.extract_data(kilo_litre_each.pop(),constants.WOOLIES_PARAMS[4]))
 
     # Fix edge cases where parser cannot find any unit (assume product is sold as each)
-    metric_units = ["1ea" if unit=="INVALID_ENTRY" else unit for unit in metric_units]
-    item_sizes = ["each" if unit=="INVALID_ENTRY" else unit for unit in item_sizes]
+    # metric_units = ["1ea" if unit=="INVALID_ENTRY" else unit for unit in metric_units]
+    # size_per_each = ["each" if unit=="INVALID_ENTRY" else unit for unit in size_per_each]
 
-    for title, price, metric_unit, metric_price, item_size in zip(titles,prices, metric_units, single_prices, item_sizes):
-      print(("%s, %s, %s, %s, %s")% (title, metric_price, metric_unit, price, item_size))
+    for title,price_per_kle, kle, unit_size,price_per_unit in zip(titles,prices_per_kilo,kilo_litre_each, unit_sizes, prices_per_unit):
+      item_list.append(("%s, %s, %s, %s, %s, 1") % (title,price_per_kle,kle,price_per_unit,unit_size))
+
+    self.write_to_db(item_list)
     
   def get_all_container_nodes(self):
+    """Get Container Nodes.
+    Helper function which grabs all nodes which contain data we want to extract (title, price, size etc) 
+    """
     return self.html_doc.find_all(constants.WOOLIES_CONTAINER_DIV["tag"],constants.WOOLIES_CONTAINER_DIV["class"])
 
   def parse_from_containers(self, params, node):
