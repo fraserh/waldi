@@ -61,7 +61,7 @@ Crawler.prototype.loadPage = function(url) {
 
       page.open(url, function (status) {
         if (status !== 'success') {
-          return callback(new Error(url, 'could not be opened.'));
+          throw(new Error(url, 'could not be opened.'));
         }
 
         setTimeout(function() {
