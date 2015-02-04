@@ -1,7 +1,8 @@
 var Crawler = require('./Crawler');
 var WoolworthsIndexer = require('./Indexer/Woolworths');
 
-var woolworthsIndexer = new WoolworthsIndexer(15);
+// The Woolies site says 15 per page, but they actually display 18. Weirdos.
+var woolworthsIndexer = new WoolworthsIndexer(18);
 console.log(woolworthsIndexer);
 var woolworthsURLs = woolworthsIndexer.index();
 console.log(woolworthsURLs);
