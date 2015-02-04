@@ -1,5 +1,18 @@
 #!/usr/bin/perl -w
 
+# # #
+#  Usage: ./storage.pl (-c | -w) directory/
+#  
+#  Note : * -c or -w (for Coles or Woolworths) are exclusive.
+#         * `directory/` is tested working with the trailing slash.
+#           It might work without (I tried to handle this), but I just
+#           haven't tested yet.
+# 
+# # #
+
+
+
+
 use File::Copy;
 use File::Basename;
 
@@ -14,13 +27,23 @@ use File::Basename;
 #   fruit-1.html
 # and so on
 
-my $flag = $ARGV[0] or &usage_error();
-my $directory = $ARGV[1] or &usage_error();
+print "begin\n";
+
+my $flag = $ARGV[0] or usage_error();
+my $directory = $ARGV[1] or usage_error();
+
+if ($directory !~ /\/$/) {
+  $directory =~ s!/*$!/!; # Add a trailing slash
+}
 
 if ($flag eq "-c") {
   # Coles
-  # print matching_files($directory);
   organise_coles($directory, matching_files($directory));
+} elsif ($flag eq "-w") {
+  # Woolworths
+  organise_woolworths($directory, matching_files($directory));
+} else {
+  usage_error();
 }
 
 # Display a usage message and then exit with an error.
@@ -54,40 +77,89 @@ sub matching_files {
   return @files;
 }
 
-# Organise a collection of files with the Coles method
-sub organise_coles {
-  my $current_dir = shift or die "organise_coles currentDir filenames", "\n";
+# Moves the files into the correct folder
+sub organise {
+  my $current_dir = shift;
+  my $intended_dir = shift;
   my @filepaths = @_;
-  my $coles_dirname = "./${current_dir}coles";
+  my $full_dirname = "./${current_dir}${intended_dir}";
 
-  # Create the coles directory
-  if (-e $coles_dirname) {
-    die "Directory '$coles_dirname' already exists", "\n";
+  # Create the directory
+  if (-e $full_dirname) {
+    die "Directory '$full_dirname' already exists", "\n";
   }
 
-  mkdir $coles_dirname or die $!;
+  mkdir $full_dirname or die $!;
 
   # Now move the files into the directory
   foreach my $file (@filepaths) {
     my $basename = basename $file;
-    print "Moving $file to ${coles_dirname}/${basename}", "\n";
-    move $file, "${coles_dirname}/${basename}" or die $!;
-
+    print "Moving $file to ${full_dirname}/${basename}", "\n";
+    move $file, "${full_dirname}/${basename}" or die $!;
   }
+}
 
-  foreach my $file (matching_files "$coles_dirname/") {
-    # Extract the page number
-    $file =~ /pageNumber=([0-9]+)/;
-    my $pageNumber = $1 or die "Unable to extract page number", "\n";
+# Organise a collection of files with the Coles method
+sub organise_coles {
+  my $current_dir = shift;
+  my $intended_dir = "coles";
+  my @filepaths = @_;
+  my $full_dirname = "./${current_dir}${intended_dir}";
 
-    # We want the words between 'national' and '#pageNumber'.
-    # (This is actually the same word repeated twice.)
-    $file =~ /national([^\#]+)/;
-    my $category = $1 or die "Unable to extract category", "\n";
-    $category = substr $category, 0, length($category) / 2;
+  organise($current_dir, $intended_dir, @filepaths);
 
-    # Now move the file to 'coles/category-pageNumber.html'
-    move "$file", "$coles_dirname/$category-$pageNumber.html" 
-      or die $!;
+  # And neatly categorise each file within the coles directory
+  foreach my $file (matching_files "$full_dirname/") {
+    my ($category, $pageNumber) = coles_path_to_neat($file);
+    move "$file", "$full_dirname/$category-" . "$pageNumber.html" or die $!;
   }
+}
+
+# Organise a collection of files with the Woolworths method
+sub organise_woolworths {
+  my $current_dir = shift;
+  my $intended_dir = "woolworths";
+  my @filepaths = @_;
+  my $full_dirname = "./${current_dir}${intended_dir}";
+
+  organise($current_dir, $intended_dir, @filepaths);
+
+  # And categorise each file within the woolies directory
+  foreach my $file (matching_files "$full_dirname/") {
+    my ($category, $pageNumber) = woolworths_path_to_neat($file);
+    move "$file", "$full_dirname/$category-" . "$pageNumber.html" or die $!;
+  }
+}
+
+# Could have made this more DRY but I think we'll probably just end up changing
+# these separately anyway.
+
+# Takes a long coles path and turns it into a tuple of (category, page no.)
+sub coles_path_to_neat {
+  my $file = shift;
+  # Extract the page number
+  $file =~ /pageNumber=([0-9]+)/;
+  my $pageNumber = $1 or die "Unable to extract page number", "\n";
+
+  # We want the words between 'national' and '#pageNumber'.
+  # (This is actually the same word repeated twice.)
+  $file =~ /national([^\#]+)/;
+  my $category = $1 or die "Unable to extract category", "\n";
+  $category = substr $category, 0, length($category) / 2;
+
+  return ($category, $pageNumber);
+}
+
+# Takes a long woolies path and turns it into a tuple of (category, page no.)
+sub woolworths_path_to_neat {
+  my $file = shift;
+  # Extract page number
+  $file =~ /page=([0-9]+)/;
+  my $pageNumber = $1 or die "Unable to extract page number", "\n";
+
+  # We want the words between 'Browse' and 'page='.
+  $file =~ /Browse(.*)page\=/;
+  my $category = $1 or die "Unable to extract category", "\n";
+
+  return ($category, $pageNumber);
 }
