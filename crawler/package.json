@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "nodestalker": "^0.1.14",
     "phantom": "^0.7.2",
     "sanitize-filename": "^1.1.1"
   },

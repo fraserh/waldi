@@ -139,7 +139,7 @@ sub coles_path_to_neat {
   my $file = shift;
   # Extract the page number
   $file =~ /pageNumber=([0-9]+)/;
-  my $pageNumber = $1 or die "Unable to extract page number", "\n";
+  my $pageNumber = $1 // 1;
 
   # We want the words between 'national' and '#pageNumber'.
   # (This is actually the same word repeated twice.)
@@ -155,7 +155,7 @@ sub woolworths_path_to_neat {
   my $file = shift;
   # Extract page number
   $file =~ /page=([0-9]+)/;
-  my $pageNumber = $1 or die "Unable to extract page number", "\n";
+  my $pageNumber = $1 // 1;
 
   # We want the words between 'Browse' and 'page='.
   $file =~ /Browse(.*)page\=/;
