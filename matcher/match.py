@@ -37,7 +37,7 @@ def match_ratings(first_list, second_list):
 
   for anchor in first_list:
     for tail in second_list:
-      similarity = string_similarity(anchor[0], tail[0])
+      similarity = string_similarity(anchor, tail)
       ratings.append((anchor, tail, similarity))
 
   return ratings
@@ -47,34 +47,36 @@ def match_ratings(first_list, second_list):
 def rating_key(item):
   return item[2]
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
 
-  coles_items = []
-  woolies_items = []
+#   coles_items = []
+#   woolies_items = []
 
-  for f in open("coles_db.csv", "rt"):
-    items = f.split('\n')
-    for item in items:
-      coles_items.append(item.split(','))
-  for f in open("woolies_db.csv", "rt"):
-    items = f.split('\n')
-    for item in items:
-      woolies_items.append(item.split(','))
-      # Weird split bug - gross band-aid fix.
-      # TODO (Fraser): Fix the source of the bug.
-      if woolies_items[len(woolies_items)-1]==[""]:
-        woolies_items.pop()
 
-  ratings = match_ratings(coles_items, woolies_items)
-  ratings = sorted(ratings, key = rating_key)
-  i = 0
-  for rating in ratings:
-    if rating[2]>0.6:
-      i += 1
-      print i
-      print("%s vs %s\n\t\tcoles: $%s per %s\n\t\tWoolies: $%s per %s" % (rating[0][0],rating[1][0],rating[0][1],rating[0][2],rating[1][1], rating[1][2]))
 
-  print len(ratings)
+  # for f in open("coles_db.csv", "rt"):
+  #   items = f.split('\n')
+  #   for item in items:
+  #     coles_items.append(item.split(','))
+  # for f in open("woolies_db.csv", "rt"):
+  #   items = f.split('\n')
+  #   for item in items:
+  #     woolies_items.append(item.split(','))
+  #     # Weird split bug - gross band-aid fix.
+  #     # TODO (Fraser): Fix the source of the bug.
+  #     if woolies_items[len(woolies_items)-1]==[""]:
+  #       woolies_items.pop()
+
+  # ratings = match_ratings(coles_items, woolies_items)
+  # ratings = sorted(ratings, key = rating_key)
+  # i = 0
+  # for rating in ratings:
+  #   if rating[2]>0.6:
+  #     i += 1
+  #     print i
+  #     print("%s vs %s\n\t\tcoles: $%s per %s\n\t\tWoolies: $%s per %s" % (rating[0][0],rating[1][0],rating[0][1],rating[0][2],rating[1][1], rating[1][2]))
+
+  # print len(ratings)
 
 
 
