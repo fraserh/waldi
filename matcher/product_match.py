@@ -76,7 +76,9 @@ def match_products(list_one, list_two, ignore_list, required_list):
     print match
     original_phrase_one = lookup_one[match[0]]
     original_phrase_two = lookup_two[match[1]]
-    originalised_matches.append((original_phrase_one, original_phrase_two, match[2]))
+    originalised_matches.append((original_phrase_one.lstrip().rstrip(),
+                                 original_phrase_two.lstrip().rstrip(), 
+                                 match[2]))
 
   return originalised_matches
 
