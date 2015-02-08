@@ -47,6 +47,29 @@ def tuple_to_list(tuples, i):
 def swap_keys_and_values(my_dict):
   return dict (zip(my_dict.values(),my_dict.keys()))
 
+# Filter out any matches that do not satisfy the criteria of the 
+# 'required' list
+def filter_required(matches, required_list):
+  result = []
+  for match in matches:
+    title_one = match[0]
+    title_two = match[1]
+    if satisfies_required(title_one, title_two, required_list):
+      result.append(match)
+  return result
+
+# If a required word occurs in the first title, then it must also
+# occur in the second title and vice versa.
+# Note that it's okay for both titles to not contain the word
+def satisfies_required(a, b, required_list):
+  satisfies = False
+  for word in required_list:
+    if (word in a) and (word in b):
+      satisfies = True
+    elif (word not in a) and(word not in b):
+      satisfies = True
+  return satisfies
+
 def match_products(list_one, list_two, ignore_list, required_list):
   # We convert the original lists into lists stripped of anyting on the 
   # ignored list (however we must maintain memory of their original form).
@@ -79,6 +102,9 @@ def match_products(list_one, list_two, ignore_list, required_list):
     originalised_matches.append((original_phrase_one.lstrip().rstrip(),
                                  original_phrase_two.lstrip().rstrip(), 
                                  match[2]))
+
+  # If one title has a required word, then the other must contain that word
+  originalised_matches = filter_required(originalised_matches, required_list)
 
   return originalised_matches
 
