@@ -195,7 +195,7 @@ if __name__ == '__main__':
   # Optionally specify a cache list of old matches
   # The cached match file is of the form
   # coles_title, woolworths_title, match_rating
-  if sys.argv[5]:
+  if len(sys.argv) == 6:
     matches = match_products(first_list, 
                              second_list, 
                              ignored_words, 
