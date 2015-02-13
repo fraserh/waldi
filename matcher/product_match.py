@@ -10,6 +10,9 @@ def file_to_list(filename):
     lines = f.read().splitlines()
     return lines
 
+def make_standalone(words):
+  return [" " + elem + " " for elem in words]
+
 # Remove any word that's in the first list from the second list
 # (This function tends to produce weird whitespace.)
 def remove_words(ignored_words, input_list):
@@ -33,6 +36,33 @@ def remove_words(ignored_words, input_list):
   
   return output_list
 
+def remove_from_word(original, to_remove):
+  # Also strips leading and trailing whitespace
+  original = original.replace(to_remove, "")
+  original = original.lstrip().rstrip()
+  return original
+
+def removekey(d, key):
+  r = dict(d)
+  del r[key]
+  return r
+
+def clean_dict(ignored_words, d):
+  ignored_words = make_standalone(ignored_words)
+  newdict = {}
+
+  for key in d:
+    clean_key = key
+    clean_value = d[key]
+
+    for word in ignored_words:
+      clean_key = remove_from_word(clean_key, word)
+      clean_value = remove_from_word(clean_value, word)
+    
+    newdict[clean_key] = clean_value
+
+  return newdict
+
 def tuple_to_dict(tuples):
   d = {}
   for pair in tuples:
@@ -44,6 +74,14 @@ def tuple_to_list(tuples, i):
 
 def swap_keys_and_values(my_dict):
   return dict (zip(my_dict.values(),my_dict.keys()))
+
+def match_cache_to_dict(filename):
+  cache = {}
+  items = csv_to_tuple(filename)
+  for item in items:
+    key = cache_key(item[0], item[1])
+    cache[key] = item[2]
+  return cache
 
 # Filter out any matches that do not satisfy the criteria of the 
 # 'required' list
@@ -72,7 +110,11 @@ def key_value_from_line(line):
   line = line.split(",")
   return (line[0], line[1:])
 
-def match_products(list_one, list_two, ignore_list, required_list):
+def match_products(list_one, 
+                   list_two, 
+                   ignore_list, 
+                   required_list, 
+                   cache_file = None):
   # We convert the original lists into lists stripped of anyting on the 
   # ignored list (however we must maintain memory of their original form).
   # Then we compute the match rating for those cleaned up versions.
@@ -98,8 +140,13 @@ def match_products(list_one, list_two, ignore_list, required_list):
   lookup_one = swap_keys_and_values(tuple_to_dict(clean_titles_one))
   lookup_two = swap_keys_and_values(tuple_to_dict(clean_titles_two))
 
-  # Now get matches for the cleaned versions
-  matches = match_ratings(clean_1d_one, clean_1d_two)
+  # Also form the cache lookup dict from the cache file given
+  if cache_file:
+    cache_dict = clean_dict(ignore_list, match_cache_to_dict(cache_file))
+  else:
+    cache_dict = {}
+
+  matches = match_ratings(clean_1d_one, clean_1d_two, cache_dict)
 
   # And convert the cleaned strings back to their original forms
   originalised_matches = []
@@ -116,6 +163,14 @@ def match_products(list_one, list_two, ignore_list, required_list):
 
   return originalised_matches
 
+def csv_to_tuple(filename):
+  result = []
+  lines = file_to_list(filename)
+  for line in lines:
+    fields = line.split(",")
+    result.append((fields[0], fields[1], fields[2]))
+  return result
+
 def nth_entries(n, list):
   result = []
   for x in list:
@@ -123,8 +178,8 @@ def nth_entries(n, list):
   return result
 
 if __name__ == '__main__':
-  if (len(sys.argv) != 5):
-    print "usage: product_match list_one list_two ignore_list required_list"
+  if (len(sys.argv) < 5):
+    print "usage: product_match list_one list_two ignore_list required_list [cache_list]"
     sys.exit()
 
   # Input phrases
@@ -137,7 +192,20 @@ if __name__ == '__main__':
   ignored_words = file_to_list(sys.argv[3])
   required_words = file_to_list(sys.argv[4])
 
-  matches = match_products(first_list, second_list, ignored_words, required_words)
+  # Optionally specify a cache list of old matches
+  # The cached match file is of the form
+  # coles_title, woolworths_title, match_rating
+  if sys.argv[5]:
+    matches = match_products(first_list, 
+                             second_list, 
+                             ignored_words, 
+                             required_words,
+                             sys.argv[5])
+  else:
+    matches = match_products(first_list, 
+                             second_list, 
+                             ignored_words, 
+                             required_words)
 
   for match in matches:
     if match[2] > 0:

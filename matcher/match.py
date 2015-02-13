@@ -87,6 +87,8 @@ def string_similarity(str1, str2):
 # def string_similarity(str1, str2):
 #   return SequenceMatcher(None, str1, str2).ratio()
 
+def cache_key(a, b):
+  return a + ":" + b
 
 def load_file(filename):
   with open(filename) as f:
@@ -94,22 +96,39 @@ def load_file(filename):
 
   return lines
 
-def match_ratings(first_list, second_list):
+def strip_leading_trailing_whitespace(s):
+  return s.lstrip().rstrip()
+
+def match_ratings(first_list, second_list, cache_dict):
   ratings = []
 
   i = 0
   length = len(first_list)
-
-  sys.stderr.write("%d" % length)
+  cache_hits = 0
 
   for anchor in first_list:
-    sys.stderr.write("%d of %d\n" % (i, length))
+    if i % 10 == 0:
+      sys.stderr.write("%d of %d\n" % (i, length))
     i += 1
+    anchor_key = strip_leading_trailing_whitespace(anchor)
     for tail in second_list:
-      similarity = string_similarity(anchor, tail)
+      tail_key = strip_leading_trailing_whitespace(tail)
+
+      if cache_dict.get(cache_key(anchor_key, tail_key)):
+        cache_hits += 1
+        similarity = cache_dict[cache_key(anchor_key, tail_key)]
+      else:
+        similarity = string_similarity(anchor, tail)
+
       ratings.append((anchor, tail, similarity))
 
+  sys.stderr.write(stats(length, cache_hits))
+
   return ratings
+
+def stats(num_items, cache_hits):
+  s = str(num_items) + " items matched, " + str(cache_hits) + " cache hits.\n"
+  return s
 
 # Usage: ./match.py file_one file_two
 
