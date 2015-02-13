@@ -1,8 +1,6 @@
 #!/usr/bin/python
 
 import sys
-# import os
-# sys.path.append(os.getcwd())
 from match import *
 
 # usage: product_match list_one list_two ignore_list required_list
@@ -70,24 +68,35 @@ def satisfies_required(a, b, required_list):
       satisfies = True
   return satisfies
 
+def key_value_from_line(line):
+  line = line.split(",")
+  return (line[0], line[1:])
+
 def match_products(list_one, list_two, ignore_list, required_list):
   # We convert the original lists into lists stripped of anyting on the 
   # ignored list (however we must maintain memory of their original form).
   # Then we compute the match rating for those cleaned up versions.
   # Finally we convert the cleaned up versions back to their original form.
+  
+  # Split the csv lines into key-value tuples based on the title.
+  kv_one = map(key_value_from_line, list_one)
+  kv_two = map(key_value_from_line, list_two)
+  titles_one = [x[0] for x in kv_one]
+  titles_two = [x[0] for x in kv_two]
 
-  cleaned_pairs_one = remove_words(ignore_list, list_one)
-  cleaned_pairs_two = remove_words(ignore_list, list_two)
+  clean_titles_one = remove_words(ignore_list, titles_one)
+  clean_titles_two = remove_words(ignore_list, titles_two)
 
   # Get the cleaned strings from each pair
-  clean_1d_one = tuple_to_list(cleaned_pairs_one, 1)
-  clean_1d_two = tuple_to_list(cleaned_pairs_two, 1)
+  # (remove_words returns the dirty/cleaned strings as tuples)
+  clean_1d_one = tuple_to_list(clean_titles_one, 1)
+  clean_1d_two = tuple_to_list(clean_titles_two, 1)
 
   # We need to form dicts from the pairs for O(1) lookup.
   # The tuples are like (original, cleaned), but we want the dictionary
   # to be indexed by the cleaned version, hence we swap them.
-  lookup_one = swap_keys_and_values(tuple_to_dict(cleaned_pairs_one))
-  lookup_two = swap_keys_and_values(tuple_to_dict(cleaned_pairs_two))
+  lookup_one = swap_keys_and_values(tuple_to_dict(clean_titles_one))
+  lookup_two = swap_keys_and_values(tuple_to_dict(clean_titles_two))
 
   # Now get matches for the cleaned versions
   matches = match_ratings(clean_1d_one, clean_1d_two)
@@ -96,7 +105,6 @@ def match_products(list_one, list_two, ignore_list, required_list):
   originalised_matches = []
 
   for match in matches:
-    print match
     original_phrase_one = lookup_one[match[0]]
     original_phrase_two = lookup_two[match[1]]
     originalised_matches.append((original_phrase_one.lstrip().rstrip(),
@@ -108,12 +116,20 @@ def match_products(list_one, list_two, ignore_list, required_list):
 
   return originalised_matches
 
+def nth_entries(n, list):
+  result = []
+  for x in list:
+    result.append(x[n])
+  return result
+
 if __name__ == '__main__':
   if (len(sys.argv) != 5):
     print "usage: product_match list_one list_two ignore_list required_list"
     sys.exit()
 
   # Input phrases
+  # first_list = map(title_from_line, file_to_list(sys.argv[1]))
+  # second_list = map(title_from_line, file_to_list(sys.argv[2]))
   first_list = file_to_list(sys.argv[1])
   second_list = file_to_list(sys.argv[2])
 
@@ -121,4 +137,8 @@ if __name__ == '__main__':
   ignored_words = file_to_list(sys.argv[3])
   required_words = file_to_list(sys.argv[4])
 
-  print match_products(first_list, second_list, ignored_words, required_words)
+  matches = match_products(first_list, second_list, ignored_words, required_words)
+
+  for match in matches:
+    if match[2] > 0:
+      print match
