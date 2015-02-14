@@ -2,6 +2,14 @@
 
 import sys
 import re
+
+#
+# NOTE: This has mostly been obviated since I updated the output of the 
+# product match file. I don't know why I didn't just do that in
+# the first place.
+#
+
+
 # usage: match_output_to_cache_input output_file
 
 # ('3 melon mix fruit salad tub 300g', 'fresh salad leaf lettuce oakleaf combo', 1)
