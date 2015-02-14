@@ -16,22 +16,6 @@ def get_bigrams(string):
   s = string.lower()
   return [s[i:i+2] for i in xrange(len(s) - 1)]
 
-# def string_similarity(str1, str2):
-#   '''
-#   Perform bigram comparison between two strings
-#   and return a percentage match in decimal form
-#   '''
-#   pairs1 = get_bigrams(str1)
-#   pairs2 = get_bigrams(str2)
-#   union  = len(pairs1) + len(pairs2)
-#   hit_count = 0
-#   for x in pairs1:
-#       for y in pairs2:
-#           if x == y:
-#               hit_count += 1
-#               break
-#   return (2.0 * hit_count) / union
-
 def intersect(a, b):
   return list(set(a) & set(b))
 
@@ -53,12 +37,11 @@ def compare_words_pluralise(a, a_plural, b, b_plural):
 
   return False
 
-def string_similarity(str1, str2):
+def similarity_word_by_word(str1, str2):
+  # Word by word similarity comparison, accounting for plurals
   hit_count = 0
   words1 = str1.split()
   words2 = str2.split()
-
-  # print "string_start"
 
   # Clearly N*M where N, M, are the number of words
   # in each string.
@@ -68,24 +51,41 @@ def string_similarity(str1, str2):
 
     for b in words2:
       b_plural = p.plural_noun(b)
-      # if p.compare_nouns(a, b):
       if compare_words_pluralise(a, a_plural, b, b_plural):
         hit_count += 1
 
-  # print "string_end"
-
   return hit_count
-  # common = intersect(words1, words2)
+
+def similarity_bigram(str1, str2):
+  # Perform bigram comparison between two strings
+  # and return a percentage match in decimal form
+  pairs1 = get_bigrams(str1)
+  pairs2 = get_bigrams(str2)
+  union  = len(pairs1) + len(pairs2)
+  hit_count = 0
+  for x in pairs1:
+      for y in pairs2:
+          if x == y:
+              hit_count += 1
+              break
+  return (2.0 * hit_count) / union
+
+def similarity_dumb_intersect(str1, str2):
+  words1 = str1.split()
+  words2 = str2.split()
+  common = intersect(words1, words2)
 
   # The rating R is given by the size of the 
   # intersection of the two sets I, multiplied
   # by two, and divided by the number of words in both sets.
   # r = (len(common) * 2) / (len(union(words1, words2)))
-  # return len(common)
-  # return len(common)
+  return len(common)
 
-# def string_similarity(str1, str2):
-#   return SequenceMatcher(None, str1, str2).ratio()
+def string_similarity(str1, str2):
+  word = similarity_word_by_word(str1, str2)
+  bi = similarity_bigram(str1, str2)
+  # rating = similarity_bigram(str1, str2)
+  return bi * word
 
 def cache_key(a, b):
   return a + ":" + b
