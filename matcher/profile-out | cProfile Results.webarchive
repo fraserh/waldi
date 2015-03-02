@@ -1,0 +1,168 @@
+bplist00Ñ_WebMainResourceÕ	
+_WebResourceData_WebResourceMIMEType_WebResourceTextEncodingName_WebResourceFrameName^WebResourceURLOR’<html class=" evernoteSafari"><head>
+            <title>profile-out | cProfile Results</title>
+        <style>[touch-action="none"]{ -ms-touch-action: none; touch-action: none; }[touch-action="pan-x"]{ -ms-touch-action: pan-x; touch-action: pan-x; }[touch-action="pan-y"]{ -ms-touch-action: pan-y; touch-action: pan-y; }[touch-action="scroll"],[touch-action="pan-x pan-y"],[touch-action="pan-y pan-x"]{ -ms-touch-action: pan-x pan-y; touch-action: pan-x pan-y; }</style><style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -90px !important;
+    width: 180px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style><style type="text/css"></style></head>
+        <body>
+            <pre>Thu Feb 12 08:33:38 2015    profile-out
+
+         1489875342 function calls (1489874047 primitive calls) in 2226.265 seconds
+
+   Ordered by: cumulative time
+
+   <a href="?sort=calls">ncalls</a>  <a href="?sort=time">tottime</a>  percall  <a href="?sort=cumulative">cumtime</a>  percall <a href="?sort=module">filename</a>:<a href="?sort=nfl">lineno</a>(function)
+        1    3.145    3.145 2226.265 2226.265 product_match.py:3(<a href="?func_name=&lt;module&gt;">&lt;module&gt;</a>)
+        1    0.463    0.463 2223.087 2223.087 product_match.py:77(<a href="?func_name=match_products">match_products</a>)
+        1    0.494    0.494 2222.010 2222.010 match.py:77(<a href="?func_name=match_ratings">match_ratings</a>)
+   198300    2.814    0.000 2221.453    0.011 match.py:40(<a href="?func_name=string_similarity">string_similarity</a>)
+  2332900    8.143    0.000 2218.266    0.001 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:1654(<a href="?func_name=compare">compare</a>)
+  6981580   57.160    0.000 2210.123    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:1736(<a href="?func_name=_plequal">_plequal</a>)
+181175191  171.040    0.000  880.900    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/re.py:139(<a href="?func_name=search">search</a>)
+  9299299   45.312    0.000  737.750    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:1602(<a href="?func_name=plural_noun">plural_noun</a>)
+  9299299  430.735    0.000  595.485    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:1839(<a href="?func_name=_plnoun">_plnoun</a>)
+  4648680   89.222    0.000  559.037    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:1767(<a href="?func_name=_pl_check_plurals_N">_pl_check_plurals_N</a>)
+  9297360   34.192    0.000  536.072    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:1619(<a href="?func_name=plural_verb">plural_verb</a>)
+ 74378880  115.147    0.000  462.280    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:1762(<a href="?func_name=_pl_reg_plurals">_pl_reg_plurals</a>)
+181175192  268.782    0.000  372.664    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/re.py:226(<a href="?func_name=_compile">_compile</a>)
+181175191  337.197    0.000  337.197    0.000 {method 'search' of '_sre.SRE_Pattern' objects}
+  9297360  119.336    0.000  317.992    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:2123(<a href="?func_name=_pl_special_verb">_pl_special_verb</a>)
+  9297360   26.738    0.000  293.948    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:1637(<a href="?func_name=plural_adj">plural_adj</a>)
+ 27894019   48.641    0.000  212.928    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:1539(<a href="?func_name=partition_word">partition_word</a>)
+  9297360   41.279    0.000  178.764    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:2224(<a href="?func_name=_pl_special_adjective">_pl_special_adjective</a>)
+181175333  103.848    0.000  103.848    0.000 {method 'get' of 'dict' objects}
+  7129546   23.810    0.000   93.028    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:2202(<a href="?func_name=_pl_general_verb">_pl_general_verb</a>)
+ 27894019   43.421    0.000   63.331    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:1524(<a href="?func_name=postprocess">postprocess</a>)
+ 27894019   34.533    0.000   58.882    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:1295(<a href="?func_name=ud_match">ud_match</a>)
+ 53482734   25.920    0.000   25.920    0.000 {method 'items' of 'dict' objects}
+ 37482652   25.397    0.000   25.397    0.000 {method 'split' of 'str' objects}
+ 60298355   21.080    0.000   21.080    0.000 {method 'lower' of 'str' objects}
+ 27909201   20.462    0.000   20.462    0.000 {method 'copy' of 'dict' objects}
+ 58913206   20.133    0.000   20.133    0.000 {method 'upper' of 'str' objects}
+ 27894021   18.894    0.000   18.894    0.000 {range}
+ 85651541   17.697    0.000   17.697    0.000 {method 'group' of '_sre.SRE_Match' objects}
+ 32253120   16.994    0.000   16.994    0.000 {method 'endswith' of 'str' objects}
+ 35023565   16.909    0.000   16.909    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:1827(<a href="?func_name=get_count">get_count</a>)
+ 37080988   15.527    0.000   15.527    0.000 {method 'keys' of 'dict' objects}
+46888607/46888520    8.532    0.000    8.532    0.000 {len}
+ 13946043    7.535    0.000    7.535    0.000 {method 'values' of 'dict' objects}
+  2324340    2.915    0.000    5.693    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:1798(<a href="?func_name=_pl_check_plurals_adj">_pl_check_plurals_adj</a>)
+  9261242    2.078    0.000    2.078    0.000 {method 'join' of 'str' objects}
+        1    0.169    0.169    0.358    0.358 product_match.py:52(<a href="?func_name=filter_required">filter_required</a>)
+   198300    0.166    0.000    0.166    0.000 product_match.py:64(<a href="?func_name=satisfies_required">satisfies_required</a>)
+   603395    0.109    0.000    0.109    0.000 {method 'append' of 'list' objects}
+   396600    0.108    0.000    0.108    0.000 {method 'rstrip' of 'str' objects}
+   396600    0.105    0.000    0.105    0.000 {method 'lstrip' of 'str' objects}
+       27    0.000    0.000    0.034    0.001 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_compile.py:493(<a href="?func_name=compile">compile</a>)
+        1    0.008    0.008    0.030    0.030 match.py:4(<a href="?func_name=&lt;module&gt;">&lt;module&gt;</a>)
+        1    0.003    0.003    0.018    0.018 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/difflib.py:27(<a href="?func_name=&lt;module&gt;">&lt;module&gt;</a>)
+       27    0.000    0.000    0.017    0.001 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_parse.py:677(<a href="?func_name=parse">parse</a>)
+   105/27    0.001    0.000    0.017    0.001 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_parse.py:301(<a href="?func_name=_parse_sub">_parse_sub</a>)
+   364/27    0.006    0.000    0.017    0.001 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_parse.py:379(<a href="?func_name=_parse">_parse</a>)
+       27    0.000    0.000    0.016    0.001 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_compile.py:478(<a href="?func_name=_code">_code</a>)
+        2    0.007    0.003    0.013    0.006 product_match.py:17(<a href="?func_name=remove_words">remove_words</a>)
+   432/27    0.007    0.000    0.012    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_compile.py:32(<a href="?func_name=_compile">_compile</a>)
+        1    0.008    0.008    0.008    0.008 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/heapq.py:31(<a href="?func_name=&lt;module&gt;">&lt;module&gt;</a>)
+      301    0.007    0.000    0.007    0.000 {method 'write' of 'file' objects}
+     9612    0.005    0.000    0.005    0.000 {method 'replace' of 'str' objects}
+     1906    0.001    0.000    0.005    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_parse.py:201(<a href="?func_name=get">get</a>)
+     2329    0.004    0.000    0.004    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_parse.py:182(<a href="?func_name=__next">__next</a>)
+        1    0.004    0.004    0.004    0.004 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/collections.py:1(<a href="?func_name=&lt;module&gt;">&lt;module&gt;</a>)
+        1    0.001    0.001    0.004    0.004 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:62(<a href="?func_name=&lt;module&gt;">&lt;module&gt;</a>)
+        3    0.001    0.000    0.004    0.001 {map}
+       27    0.000    0.000    0.004    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_compile.py:359(<a href="?func_name=_compile_info">_compile_info</a>)
+     2448    0.002    0.000    0.004    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_parse.py:130(<a href="?func_name=__getitem__">__getitem__</a>)
+   447/59    0.003    0.000    0.003    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_parse.py:140(<a href="?func_name=getwidth">getwidth</a>)
+      961    0.002    0.000    0.003    0.000 product_match.py:73(<a href="?func_name=key_value_from_line">key_value_from_line</a>)
+        4    0.000    0.000    0.003    0.001 product_match.py:10(<a href="?func_name=file_to_list">file_to_list</a>)
+        4    0.002    0.001    0.002    0.001 {method 'read' of 'file' objects}
+       53    0.001    0.000    0.002    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:132(<a href="?func_name=bysize">bysize</a>)
+     1839    0.001    0.000    0.002    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_parse.py:138(<a href="?func_name=append">append</a>)
+       20    0.000    0.000    0.002    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:149(<a href="?func_name=make_pl_si_lists">make_pl_si_lists</a>)
+     2530    0.001    0.000    0.001    0.000 {isinstance}
+      705    0.001    0.000    0.001    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_parse.py:195(<a href="?func_name=match">match</a>)
+        1    0.001    0.001    0.001    0.001 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/collections.py:288(<a href="?func_name=namedtuple">namedtuple</a>)
+       19    0.000    0.000    0.001    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:117(<a href="?func_name=joinstem">joinstem</a>)
+     1122    0.001    0.000    0.001    0.000 {min}
+       15    0.000    0.000    0.000    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_compile.py:178(<a href="?func_name=_compile_charset">_compile_charset</a>)
+        1    0.000    0.000    0.000    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/re.py:188(<a href="?func_name=compile">compile</a>)
+        2    0.000    0.000    0.000    0.000 product_match.py:38(<a href="?func_name=tuple_to_dict">tuple_to_dict</a>)
+       76    0.000    0.000    0.000    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_parse.py:257(<a href="?func_name=_escape">_escape</a>)
+        1    0.000    0.000    0.000    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/difflib.py:1670(<a href="?func_name=HtmlDiff">HtmlDiff</a>)
+       15    0.000    0.000    0.000    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_compile.py:207(<a href="?func_name=_optimize_charset">_optimize_charset</a>)
+        4    0.000    0.000    0.000    0.000 {method 'splitlines' of 'str' objects}
+      432    0.000    0.000    0.000    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_parse.py:90(<a href="?func_name=__init__">__init__</a>)
+        2    0.000    0.000    0.000    0.000 product_match.py:47(<a href="?func_name=swap_keys_and_values">swap_keys_and_values</a>)
+     1646    0.000    0.000    0.000    0.000 {ord}
+      867    0.000    0.000    0.000    0.000 {method 'add' of 'set' objects}
+      287    0.000    0.000    0.000    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_parse.py:126(<a href="?func_name=__len__">__len__</a>)
+      265    0.000    0.000    0.000    0.000 {_sre.getlower}
+        1    0.000    0.000    0.000    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/difflib.py:44(<a href="?func_name=SequenceMatcher">SequenceMatcher</a>)
+        2    0.000    0.000    0.000    0.000 product_match.py:44(<a href="?func_name=tuple_to_list">tuple_to_list</a>)
+       32    0.000    0.000    0.000    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_compile.py:354(<a href="?func_name=_simple">_simple</a>)
+       27    0.000    0.000    0.000    0.000 {_sre.compile}
+        4    0.000    0.000    0.000    0.000 {open}
+       27    0.000    0.000    0.000    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_parse.py:178(<a href="?func_name=__init__">__init__</a>)
+        2    0.000    0.000    0.000    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_compile.py:258(<a href="?func_name=_mk_bitmap">_mk_bitmap</a>)
+       50    0.000    0.000    0.000    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_parse.py:72(<a href="?func_name=opengroup">opengroup</a>)
+      286    0.000    0.000    0.000    0.000 {max}
+       50    0.000    0.000    0.000    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_parse.py:83(<a href="?func_name=closegroup">closegroup</a>)
+        2    0.000    0.000    0.000    0.000 {zip}
+       54    0.000    0.000    0.000    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_compile.py:472(<a href="?func_name=isstring">isstring</a>)
+      174    0.000    0.000    0.000    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:129(<a href="?func_name=&lt;genexpr&gt;">&lt;genexpr&gt;</a>)
+        1    0.000    0.000    0.000    0.000 &lt;string&gt;:1(<a href="?func_name=&lt;module&gt;">&lt;module&gt;</a>)
+        1    0.000    0.000    0.000    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:1180(<a href="?func_name=engine">engine</a>)
+       36    0.000    0.000    0.000    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:113(<a href="?func_name=enclose">enclose</a>)
+        7    0.000    0.000    0.000    0.000 {method 'format' of 'str' objects}
+       27    0.000    0.000    0.000    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_parse.py:67(<a href="?func_name=__init__">__init__</a>)
+       50    0.000    0.000    0.000    0.000 {method 'remove' of 'list' objects}
+       32    0.000    0.000    0.000    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_parse.py:85(<a href="?func_name=checkgroup">checkgroup</a>)
+        4    0.000    0.000    0.000    0.000 {all}
+        1    0.000    0.000    0.000    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/collections.py:26(<a href="?func_name=OrderedDict">OrderedDict</a>)
+       15    0.000    0.000    0.000    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/collections.py:332(<a href="?func_name=&lt;genexpr&gt;">&lt;genexpr&gt;</a>)
+        1    0.000    0.000    0.000    0.000 &lt;string&gt;:1(<a href="?func_name=Match">Match</a>)
+       32    0.000    0.000    0.000    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_parse.py:134(<a href="?func_name=__setitem__">__setitem__</a>)
+        1    0.000    0.000    0.000    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/keyword.py:11(<a href="?func_name=&lt;module&gt;">&lt;module&gt;</a>)
+        4    0.000    0.000    0.000    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/collections.py:358(<a href="?func_name=&lt;genexpr&gt;">&lt;genexpr&gt;</a>)
+        4    0.000    0.000    0.000    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/collections.py:356(<a href="?func_name=&lt;genexpr&gt;">&lt;genexpr&gt;</a>)
+        1    0.000    0.000    0.000    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:1182(<a href="?func_name=__init__">__init__</a>)
+        1    0.000    0.000    0.000    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/collections.py:390(<a href="?func_name=Counter">Counter</a>)
+        1    0.000    0.000    0.000    0.000 {repr}
+        7    0.000    0.000    0.000    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:425(<a href="?func_name=&lt;genexpr&gt;">&lt;genexpr&gt;</a>)
+       11    0.000    0.000    0.000    0.000 {method 'isalnum' of 'str' objects}
+        6    0.000    0.000    0.000    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_parse.py:128(<a href="?func_name=__delitem__">__delitem__</a>)
+        1    0.000    0.000    0.000    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/difflib.py:764(<a href="?func_name=Differ">Differ</a>)
+        1    0.000    0.000    0.000    0.000 {sys._getframe}
+        7    0.000    0.000    0.000    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:1164(<a href="?func_name=&lt;genexpr&gt;">&lt;genexpr&gt;</a>)
+        1    0.000    0.000    0.000    0.000 {method 'update' of 'dict' objects}
+        7    0.000    0.000    0.000    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:1163(<a href="?func_name=&lt;genexpr&gt;">&lt;genexpr&gt;</a>)
+        3    0.000    0.000    0.000    0.000 {method 'startswith' of 'str' objects}
+        2    0.000    0.000    0.000    0.000 {method 'extend' of 'list' objects}
+        4    0.000    0.000    0.000    0.000 {method '__contains__' of 'frozenset' objects}
+       14    0.000    0.000    0.000    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_compile.py:24(<a href="?func_name=_identityfunction">_identityfunction</a>)
+        1    0.000    0.000    0.000    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:90(<a href="?func_name=BadRcFileError">BadRcFileError</a>)
+        1    0.000    0.000    0.000    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:70(<a href="?func_name=UnknownClassicalModeError">UnknownClassicalModeError</a>)
+        1    0.000    0.000    0.000    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:82(<a href="?func_name=NumOutOfRangeError">NumOutOfRangeError</a>)
+        1    0.000    0.000    0.000    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:94(<a href="?func_name=BadGenderError">BadGenderError</a>)
+        1    0.000    0.000    0.000    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:86(<a href="?func_name=BadUserDefinedPatternError">BadUserDefinedPatternError</a>)
+        1    0.000    0.000    0.000    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:78(<a href="?func_name=BadChunkingOptionError">BadChunkingOptionError</a>)
+        1    0.000    0.000    0.000    0.000 /Users/matthewpalmer/dev/waldi/matcher/src/inflect/inflect.py:74(<a href="?func_name=BadNumValueError">BadNumValueError</a>)
+        4    0.000    0.000    0.000    0.000 {method 'isdigit' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/sre_parse.py:205(<a href="?func_name=tell">tell</a>)
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+
+
+</pre>
+
+</body></html>Ytext/htmlUUTF-8P_http://localhost:4000/    ( : P n … ”S*S4S:S;                           ST
