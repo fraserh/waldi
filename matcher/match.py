@@ -42,21 +42,22 @@ def match_ratings(first_list, second_list):
 
   return ratings
 
-# Usage: ./match.py file_one file_two
-
 def rating_key(item):
   return item[2]
+
+def ppk_key(item):
+  return item[1][1]
 
 if __name__ == "__main__":
 
   coles_items = []
   woolies_items = []
 
-  for f in open("coles_db.csv", "rt"):
+  for f in open("data/fruit-veg_coles_db.csv", "rt"):
     items = f.split('\n')
     for item in items:
       coles_items.append(item.split(','))
-  for f in open("woolies_db.csv", "rt"):
+  for f in open("data/fruit-veg_woolies_db.csv", "rt"):
     items = f.split('\n')
     for item in items:
       woolies_items.append(item.split(','))
@@ -67,12 +68,25 @@ if __name__ == "__main__":
 
   ratings = match_ratings(coles_items, woolies_items)
   ratings = sorted(ratings, key = rating_key)
+
+
+
   i = 0
+  match_list = []
   for rating in ratings:
-    if rating[2]>0.6:
+    if rating[2]>0.65:
       i += 1
-      print i
-      print("%s vs %s\n\t\tcoles: $%s per %s\n\t\tWoolies: $%s per %s" % (rating[0][0],rating[1][0],rating[0][1],rating[0][2],rating[1][1], rating[1][2]))
+      match_list.append(("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s" % (rating[0][0],rating[0][1],rating[0][2],rating[0][3],rating[0][4],rating[1][1],rating[1][2],rating[1][3],rating[1][4], rating[1][0],rating[2])))
+      print("%s vs %s (%s)\n\t\tcoles: $%s per %s at $%s/%s\n\t\tWoolies: $%s per %s at $%s/%s" % 
+        (rating[0][0].strip(),rating[1][0].strip(),rating[2],rating[0][1].strip(),rating[0][2].strip(),
+         rating[0][3].strip(),rating[0][4],rating[1][1].strip(), rating[1][2].strip(), rating[1][3].strip(), rating[1][4]))
+  
+  # Remove duplicates.
+  match_list = set(match_list)
+  with open("match_db.csv", "at") as f:
+    for item in match_list:
+      f.write(item+'\n')
+
 
   print len(ratings)
 
