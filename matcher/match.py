@@ -165,20 +165,3 @@ def rating_key(item):
   #     print("%s vs %s\n\t\tcoles: $%s per %s\n\t\tWoolies: $%s per %s" % (rating[0][0],rating[1][0],rating[0][1],rating[0][2],rating[1][1], rating[1][2]))
 
   # print len(ratings)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

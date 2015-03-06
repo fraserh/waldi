@@ -8,8 +8,9 @@ import parsecontrollers
 import constants
 import re
 import sys
+import time
 
-soup = BeautifulSoup(open("hersb-woolies.html"));
+from parse_utils import timethis
 
 class WooliesPageParser(object):
   """New Page Parser """
@@ -43,7 +44,8 @@ class WooliesPageParser(object):
     kilo_litre_each = []
     item_list = []
 
-    # Extract titles from nodes.
+    # Extract data from nodes.
+    print "Parsing woolies data from nodes..."
     for node in all_data:
       titles.append(self.parse_from_containers(constants.WOOLIES_PARAMS[0], node))
       titles.append(self.extract_data(titles.pop(),constants.WOOLIES_PARAMS[0]))
@@ -53,18 +55,22 @@ class WooliesPageParser(object):
       prices_per_unit.append(self.extract_data(prices_per_unit.pop(),constants.WOOLIES_PARAMS[2]))
       unit_sizes.append(self.parse_from_containers(constants.WOOLIES_PARAMS[3], node))
       unit_sizes.append(self.extract_data(unit_sizes.pop(),constants.WOOLIES_PARAMS[3]))
-
       kilo_litre_each.append(self.parse_from_containers(constants.WOOLIES_PARAMS[4], node))
       kilo_litre_each.append(self.extract_data(kilo_litre_each.pop(),constants.WOOLIES_PARAMS[4]))
 
-    # Fix edge cases where parser cannot find any unit (assume product is sold as each)
-    # metric_units = ["1ea" if unit=="INVALID_ENTRY" else unit for unit in metric_units]
-    # size_per_each = ["each" if unit=="INVALID_ENTRY" else unit for unit in size_per_each]
-
+    print "Creating list of items..."
     for title,price_per_kle, kle, unit_size,price_per_unit in zip(titles,prices_per_kilo,kilo_litre_each, unit_sizes, prices_per_unit):
-      item_list.append(("%s, %s, %s, %s, %s, 1") % (title,price_per_kle,kle,price_per_unit,unit_size))
+      # Item row should include:
+      # id, store, title, ppu, unit, ppk, product_size, units_per_purchase, url, matchesWith (id), belongsTo, created, modified
+      item_list.append(("%s, %s, %s, %s, %s, 1") % (
+        title,
+        price_per_kle,
+        kle,
+        price_per_unit,
+        unit_size
+      ))
 
-    self.write_to_db(item_list)
+    return item_list
     
   def get_all_container_nodes(self):
     """Get Container Nodes.
@@ -86,7 +92,7 @@ class WooliesPageParser(object):
     if result:
       return result[0]
     else:
-      return "INVALID_ENTRY"
+      return constants.INVALID_ENTRY
 
   def extract_data(self, node, params):
     for task in params["extract_data"]:
@@ -95,10 +101,7 @@ class WooliesPageParser(object):
     if node:
       return node
     else:
-      return "INVALID_ENTRY"
-
-foo = WooliesPageParser(soup)
-foo.get_data()
+      return constants.INVALID_ENTRY
 
 
 

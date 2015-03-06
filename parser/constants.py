@@ -3,6 +3,8 @@ Parser Constants
 """
 import parsecontrollers
 
+INVALID_ENTRY = "NA"
+
 COLES_CONTAINER_DIV = {"tag":"div","class":"wrapper"}
 
 COLES_PARAMS = [
@@ -163,7 +165,7 @@ WOOLIES_PARAMS = [
       },
       {
         "func": parsecontrollers.ignore_words,
-        "params": [parsecontrollers.WOOLIES_IGNORE_LIST]
+        "params": [""]
       }
     ],
   },
@@ -184,7 +186,7 @@ WOOLIES_PARAMS = [
       },
       {
         "func":parsecontrollers.regexBetweenTwoStrings,
-        "params":["$"," / 1"]
+        "params":["$"," / "]
       }
     ],
     "backup_elements":
@@ -235,8 +237,8 @@ WOOLIES_PARAMS = [
         "params":[]
       },
       {
-        "func":parsecontrollers.ignore_words,
-        "params":["punnet", "cup", "bunch", "bag", "large tray", "per", "min."]
+        "func":parsecontrollers.get_unit_size_woolies,
+        "params": []
       }
     ],
     "backup_elements":
