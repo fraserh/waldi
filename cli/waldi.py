@@ -3,44 +3,70 @@
 import sys
 import csv
 
-# CSV format
-# coles_title, price_per_kle, kle, price_per_unit, unit_size, price_per_kle, kle, price_per_unit, unit_size, woolies_title, rating
+# usage: ./waldi.py match_file coles_data woolies_data input_file
 
-# usage: ./waldi.py [csv_file] [input_file]
-
-if len(sys.argv) != 3:
-  print "usage: ./waldi.py [csv_file] [input_file]"
-  sys.exit()
-
-def load_csv_file(filename):
-  items = {}
+# Returns a dict indexed by the first column
+def load_data(filename):
+  d = {}
   with open(filename, 'rb') as csvfile:
-    filereader = csv.reader(csvfile, delimiter = ',')
-    for row in filereader:
-      if items.get(row[0]):
-        match = items[row[0]]
-        # If the match is better
-        if (row[9] > match[9]):
-          items[row[0]] = row[1:]
-      else:
-        items[row[0]] = row[1:]
+    for row in csv.reader(csvfile, skipinitialspace=True):
+      d[row[0]] = row[1:]
+  return d
 
-        
-  return items
+# Returns a dict of matches indexed by coles title, i.e.
+# {
+#   coles_title: [(woolies_title, match_rating), ...],
+#   ...
+# }
+def load_matches(filename):
+  matches = {}
+  with open(filename, 'rb') as csvfile:    
+    for row in csv.reader(csvfile, skipinitialspace=True):
+      value = (row[1], row[2])
+
+      if matches.get(row[0]):
+        matches[row[0]].append(value)
+      else:
+        matches[row[0]] = [value]
+
+  return matches
+
+def validate_arguments():
+  if len(sys.argv) != 5:
+    print "usage: ./waldi.py match_file coles_data woolies_data input_file"
+    sys.exit()
+
+def match_second(item):
+  return item[1]
+
+def output_string(coles_item, woolies_item, match_rating):
+  return str(coles_item) + str(woolies_item) + str(match_rating)
+
+# Note that input_file only works with coles items
+def main(match_file, coles_data, woolies_data, input_file):
+  matches = load_matches(match_file)
+  coles_data = load_data(coles_data)
+  woolies_data = load_data(woolies_data)
+
+  with open(input_file, 'r') as items:
+    for item in items:
+      item = item.rstrip()
+      item_matches = sorted(matches[item], key=match_second, reverse=True)
+
+      print item
+      item_coles = coles_data[item]
+      print item_coles
+      print "Top 5 matches"
+
+      for i in range(0, 5):
+        best_match = item_matches[i]
+        print("\t%s\t%s" % (best_match[0], best_match[1]))
+        item_woolies = woolies_data[best_match[0]]
+        print item_woolies
+
+      print
+      print
 
 if __name__ == '__main__':
-  items = load_csv_file(sys.argv[1])
-  f = open(sys.argv[2])
-  for line in f:
-    item = items[line.rstrip()]
-    difference = float(item[0]) - float(item[4])
-    print("'%s' matches '%s' with rating %s" % (line.rstrip(), item[8], item[9]))
-    print("Coles\t%s\t%s\t%s\t%s" % (item[0], item[1], item[2], item[3]))
-    print("Woolw\t%s\t%s\t%s\t%s" % (item[4], item[5], item[6], item[7]))
-
-    if (difference > 0):
-      print("Coles by $%1.2f per kg" % (difference))
-    else:
-      print("Woolies by $%1.2f per kg" % (abs(difference)))
-
-    print
+  validate_arguments()
+  main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])

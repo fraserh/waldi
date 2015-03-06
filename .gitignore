@@ -2,3 +2,4 @@ vegies.txt
 crawler/log/*
 *.hi
 *.o
+matcher/data/*
