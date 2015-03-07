@@ -44,6 +44,16 @@ exports.autocomplete = function(req, res) {
   }
 };
 
+exports.match = function(req, res) {
+  if (req.query.title) {
+    item.matches(req.query.title, req.query.size || 10, function(err, data) {
+      respondWithErrorOrData(res, err, data);
+    });
+  } else {
+    genericUnfoundError(res);
+  }
+};
+
 function respondWithErrorOrData(res, err, data) {
   if (err || !data) {
     res.send({

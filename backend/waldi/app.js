@@ -48,6 +48,10 @@ app.get('/item', item.exactMatch);
 // GET localhost/autocomplete?title=pi
 app.get('/search/autocomplete', item.autocomplete);
 
+// Get the top matches for the title provided by the user
+// GET localhost/match?title=pink%20lady%20apples&size=20
+app.get('/match', item.match);
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
