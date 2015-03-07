@@ -6,7 +6,7 @@ exports.item = function(req, res) {
 };
 
 exports.common = function(req, res) {
-  item.mostCommon(100, function(err, data) {
+  item.mostCommon(req.query.size || 20, function(err, data) {
     res.send(err || data);
   });
 };
@@ -36,8 +36,7 @@ exports.exactMatch = function(req, res) {
 
 exports.autocomplete = function(req, res) {
   if (req.query.title) {
-    var itemsToReturn = 10;
-    item.autocomplete(req.query.title, 10, function(err, data) {
+    item.autocomplete(req.query.title, req.query.size || 10, function(err, data) {
       respondWithErrorOrData(res, err, data);
     });
   } else {

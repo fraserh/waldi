@@ -33,6 +33,7 @@ app.get('/', routes.index);
 // app.get('/users', user.list);
 
 // Most common items
+// GET localhost/commonItems?size=20
 app.get('/commonItems', item.common);
 
 // Search for an item
