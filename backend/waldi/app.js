@@ -35,8 +35,9 @@ app.get('/', routes.index);
 // Most common items
 app.get('/item', item.common);
 
-// A single item
-app.get('/item/:id', item.item);
+// Search for an item
+// GET localhost/item?title=pink%20lady%20apples
+app.get('/search/item', item.search);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

@@ -8,6 +8,16 @@ var async = require("async");
 
 var client = redis.createClient();
 
+exports.fullTitleSearch = function(title, callback) {
+  // Note that we probably shouldn't use client.keys in production
+  client.keys("item:*" + title + "*", function(err, keys) {
+    if (err) return callback(err);
+
+    keys = keys.map(parseRedisTitleKey);
+    callback(err, keys);
+  });
+};
+
 exports.mostCommon = function(n, callback) {
   // For now, just get n items from redis, whatever they are.
   client.keys("item*", function(err, keys) {
@@ -21,9 +31,7 @@ exports.mostCommon = function(n, callback) {
       if (err) return callback(err);
 
       // Remove the 'item:' from the start of the keys
-      keys = keys.map(function(k) {
-        return k.replace("item:", "");
-      });
+      keys = keys.map(parseRedisTitleKey);
 
       // Insert the cleaned up key as the title for the item
       results = mergeArrays(keys, results, function(x, y) {
@@ -36,6 +44,11 @@ exports.mostCommon = function(n, callback) {
     });
   });
 };
+
+// Remove the 'item:' from the start of the keys
+function parseRedisTitleKey(key) {
+  return key.replace("item:", "");
+}
 
 // Merge two arrays with the function f
 // 

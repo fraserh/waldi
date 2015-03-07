@@ -33,4 +33,10 @@ function mostCommon(n, callback) {
   externalStore.mostCommon(n, callback);
 }
 
+// Return a list of all titles similar to the one we have
+function fullTitleSearch(title, callback) {
+  externalStore.fullTitleSearch(title, callback);
+}
+
 exports.mostCommon = mostCommon;
+exports.fullTitleSearch = fullTitleSearch;
