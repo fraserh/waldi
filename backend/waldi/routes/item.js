@@ -56,8 +56,9 @@ exports.match = function(req, res) {
 
 function respondWithErrorOrData(res, err, data) {
   if (err || !data) {
-    res.send({
-      code: 404
+    res.send(404, {
+      code: 404,
+      message: "Item not found."
     });
   } else {
     res.send(data);
@@ -65,7 +66,7 @@ function respondWithErrorOrData(res, err, data) {
 }
 
 function genericUnfoundError(res) {
-  res.send({
+  res.send(400, {
     code: 400
   });
 }

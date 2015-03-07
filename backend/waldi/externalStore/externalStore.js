@@ -49,6 +49,8 @@ exports.mostCommon = function(n, callback) {
 
 exports.matchTitle = function(title, callback) {
   client.hgetall("item:" + title, function(err, result) {
+    if (err || !result) return callback(err, result);
+    
     result.title = title;
     callback(err, result);
   });
