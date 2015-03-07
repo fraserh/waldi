@@ -19,7 +19,7 @@ exports.search = function(req, res) {
       res.send(err || data);
     });
   } else {
-    genericUnfoundError(res);
+    invalidRequestError(res);
   }
 };
 
@@ -30,7 +30,7 @@ exports.exactMatch = function(req, res) {
       respondWithErrorOrData(res, err, data);
     });
   } else {
-    genericUnfoundError(res);
+    invalidRequestError(res);
   }
 };
 
@@ -40,7 +40,7 @@ exports.autocomplete = function(req, res) {
       respondWithErrorOrData(res, err, data);
     });
   } else {
-    genericUnfoundError(res);
+    invalidRequestError(res);
   }
 };
 
@@ -50,7 +50,7 @@ exports.match = function(req, res) {
       respondWithErrorOrData(res, err, data);
     });
   } else {
-    genericUnfoundError(res);
+    invalidRequestError(res);
   }
 };
 
@@ -65,8 +65,9 @@ function respondWithErrorOrData(res, err, data) {
   }
 }
 
-function genericUnfoundError(res) {
+function invalidRequestError(res) {
   res.send(400, {
-    code: 400
+    code: 400,
+    message: "Invalid request format."
   });
 }
