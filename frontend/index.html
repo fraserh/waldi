@@ -1,27 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+    <meta name="title" content="Waldi">
+    <meta name="description" content="Making compare grocery prices simple.">
+    <meta name="keywords" content="waldi shopping compare groceries">
+    <meta name="viewport" content="width=device-width">
+    
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div class="container">
-      <h1 class="title">examples</h1>
-      <div class="example" id="prefetch">
-        <h2 class="example-name">Prefetch</h2>
-        <p class="example-description">
-          Prefetched data is fetched and processed on initialization. If the 
-          browser supports local storage, the processed data will be cached 
-          there to prevent additional network requests on subsequent page loads.
-        </p>
+    <div class="top-bar">
+      <div class="logo">Waldi</div>
+      <div class="menu-button-container">
+        <div class="menu-button-solid-strip"></div>
+        <div class="menu-button-clear-strip"></div>
+        <div class="menu-button-solid-strip"></div>
+        <div class="menu-button-clear-strip"></div>
+        <div class="menu-button-solid-strip"></div>
+      </div>
+      <div class="search-container">
+      <div class="typeahead-wrapper" id="prefetch">
+        <input class="typeahead searchbar" type="text" placeholder="Enter a product">
+      </div>
+    </div>
+    </div>
 
-        <div class="demo">
-          <input class="typeahead" type="text" placeholder="Countries">
+<!--     <div class="intro-title">
+      Hungry?
+    </div> -->
+    
+    <div class="content-bg">
+      <div class="content-container">
+
+        <div class="total-cost-container">
+          <div class="shopping-list-total-cost" id="total-cost-coles"></div>
+          <div class="shopping-list-total-cost" id="total-cost-woolies"></div>
         </div>
       </div>
-
-    <!-- // <script src="../js/handlebars.js"></script> -->
+    </div>
+    <script id="entry-template" type="text/x-handlebars-template">
+      <div class="shopping-list-item-{{store}}-container">
+        <div class="shopping-list-logo {{store}}"></div>
+        <div class="shopping-list-name {{store}}">{{title}}</div>
+        <div class="shopping-list-price-container {{store}}">
+          <div class="shopping-list-price-item {{store}}">$<span class="ppu-{{store}}">{{ppu}}</span>/ea</div>
+          <div class="shopping-list-price-kle">${{price_per_kle}}/{{kle}}</div>
+        </div>
+      </div>
+    </script>
     <script src="jquery.js"></script>
+    <script src="hb.js"></script>
     <script src="typeahead.bundle.min.js"></script>
     <script src="examples.js"></script>
+    <script src="homepage.js"></script>
+    <script type="text/javascript">
+      var handler = new homepageHandler();
+    </script>
   </body>
 </html>
-
