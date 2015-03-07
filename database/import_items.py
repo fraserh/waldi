@@ -32,8 +32,25 @@ def line_to_redis(line):
     "unit_volume": unit_volume,
     "amount": amount
     })
+
+  # We also need to add the title to our autocomplete sorted set
+  add_to_autocomplete(title)
+
   return (redis_command + " \"item:%s\" price_per_kle \"%s\" kle \"%s\"" \
   " unit_price \"%s\" unit_volume \"%s\" amount \"%s\"" % (title, price_per_kle, kle, unit_price, unit_volume, amount))
+
+def add_to_autocomplete(title):
+  collectionName = "autocomplete"
+  # All items in this set have the same score
+  # http://oldblog.antirez.com/post/autocomplete-with-redis.html
+  # r.zadd("autocomplete", 0, title)
+
+  # We need to add all of the prefixes, and then the full word followed by a *
+  word = ""
+  for char in title:
+    word = word + char
+    r.zadd(collectionName, 0, word)
+  r.zadd(collectionName, 0, title + "*")
 
 def main():
   filename = sys.argv[1]
