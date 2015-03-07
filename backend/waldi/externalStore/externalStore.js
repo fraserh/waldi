@@ -1,6 +1,8 @@
 /* 
  * Abstracts away the implementation of the external store 
  * from the models.
+ * This is done so that we can change from Redis to MySQL—or similar—
+ * without having to touch code anywhere else.
  */
 
 var redis = require("redis");
@@ -42,6 +44,13 @@ exports.mostCommon = function(n, callback) {
       // And callback with the final list.
       return callback(err, results);
     });
+  });
+};
+
+exports.matchTitle = function(title, callback) {
+  client.hgetall("item:" + title, function(err, result) {
+    result.title = title;
+    callback(err, result);
   });
 };
 

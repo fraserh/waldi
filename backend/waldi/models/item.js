@@ -38,5 +38,9 @@ function fullTitleSearch(title, callback) {
   externalStore.fullTitleSearch(title, callback);
 }
 
+exports.matchTitle = function(title, callback) {
+  externalStore.matchTitle(title, callback);
+};
+
 exports.mostCommon = mostCommon;
 exports.fullTitleSearch = fullTitleSearch;

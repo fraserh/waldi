@@ -33,11 +33,15 @@ app.get('/', routes.index);
 // app.get('/users', user.list);
 
 // Most common items
-app.get('/item', item.common);
+app.get('/commonItems', item.common);
 
 // Search for an item
 // GET localhost/item?title=pink%20lady%20apples
 app.get('/search/item', item.search);
+
+// Request a specific item (exact match search)
+// GET localhost/item?title=pink%20lady%20apples
+app.get('/item', item.exactMatch);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
