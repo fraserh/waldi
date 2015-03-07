@@ -19,9 +19,7 @@ exports.search = function(req, res) {
       res.send(err || data);
     });
   } else {
-    res.send({
-      code: 400
-    });
+    genericUnfoundError(res);
   }
 };
 
@@ -29,17 +27,36 @@ exports.exactMatch = function(req, res) {
   if (req.query.title) {
     // Do an exact match lookup for the given title
     item.matchTitle(req.query.title, function(err, data) {
-      if (err || !data) {
-        res.send({
-          code: 404
-        });
-      } else {
-        res.send(data);
-      }
+      respondWithErrorOrData(res, err, data);
     });
   } else {
-    res.send({
-      code: 400
-    });
+    genericUnfoundError(res);
   }
 };
+
+exports.autocomplete = function(req, res) {
+  if (req.query.title) {
+    var itemsToReturn = 10;
+    item.autocomplete(req.query.title, 10, function(err, data) {
+      respondWithErrorOrData(res, err, data);
+    });
+  } else {
+    genericUnfoundError(res);
+  }
+};
+
+function respondWithErrorOrData(res, err, data) {
+  if (err || !data) {
+    res.send({
+      code: 404
+    });
+  } else {
+    res.send(data);
+  }
+}
+
+function genericUnfoundError(res) {
+  res.send({
+    code: 400
+  });
+}

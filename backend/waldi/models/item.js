@@ -29,18 +29,21 @@ function Item(title,
 }
 
 // Return a list of the n most common items
-function mostCommon(n, callback) {
+exports.mostCommon = function(n, callback) {
   externalStore.mostCommon(n, callback);
-}
+};
 
 // Return a list of all titles similar to the one we have
-function fullTitleSearch(title, callback) {
+exports.fullTitleSearch = function(title, callback) {
   externalStore.fullTitleSearch(title, callback);
-}
+};
 
+// Performs an exact match against a title
 exports.matchTitle = function(title, callback) {
   externalStore.matchTitle(title, callback);
 };
 
-exports.mostCommon = mostCommon;
-exports.fullTitleSearch = fullTitleSearch;
+// Provides autocomplete suggestions given a partial title
+exports.autocomplete = function(partialTitle, n, callback) {
+  externalStore.autocomplete(partialTitle, n, callback);
+};

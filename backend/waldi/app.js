@@ -43,6 +43,10 @@ app.get('/search/item', item.search);
 // GET localhost/item?title=pink%20lady%20apples
 app.get('/item', item.exactMatch);
 
+// Provide alphabetically ordered auto-complete
+// GET localhost/autocomplete?title=pi
+app.get('/search/autocomplete', item.autocomplete);
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

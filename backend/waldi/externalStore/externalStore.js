@@ -54,6 +54,36 @@ exports.matchTitle = function(title, callback) {
   });
 };
 
+// Autocomplete suggestions
+// http://oldblog.antirez.com/post/autocomplete-with-redis.html
+exports.autocomplete = function(partialTitle, n, callback) {
+  var collectionName = "autocomplete";
+  var trailingMarker = "*";
+  client.zrank(collectionName, partialTitle, function(err, index) {
+    if (err) return callback(err);
+
+    client.zrange(collectionName, index + 1, -1, function(err, items) {
+      if (err) return callback(err);
+
+      // Now grab out the items ending in *
+      items = items.filter(function(i) {
+        return (i.slice(-1) == trailingMarker);
+      });
+
+      // Get only the first n items
+      items = items.slice(0, n);
+
+      // Remove their trailing *s
+      items = items.map(function(i) {
+        return i.substr(0, i.length - 1);
+      });
+
+      callback(err, items);
+    });
+  });
+  
+};
+
 // Remove the 'item:' from the start of the keys
 function parseRedisTitleKey(key) {
   return key.replace("item:", "");
