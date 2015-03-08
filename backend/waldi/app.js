@@ -22,6 +22,13 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
+
+var bodyParser = require('body-parser');
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+}));
+
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -44,6 +51,11 @@ app.get('/search/item', item.search);
 // Request a specific item (exact match search)
 // GET localhost/item?title=pink%20lady%20apples
 app.get('/item', item.exactMatch);
+
+// Request a set of items (exact match search)
+// Breaks RESTfulness, but this API wasn't exactly RESTful to begin with
+// POST localhost/items
+app.post('/items', item.items);
 
 // Provide alphabetically ordered auto-complete
 // GET localhost/autocomplete?title=pi

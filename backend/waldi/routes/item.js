@@ -55,6 +55,18 @@ exports.match = function(req, res) {
   }
 };
 
+exports.items = function(req, res) {
+  console.log(req.body);
+  if (req.body.items) {
+    console.log(req.body.items);
+    item.items(req.body.items, function(err, data) {
+      respondWithErrorOrData(res, err, data);
+    });
+  } else {
+    invalidRequestError(res);
+  }
+};
+
 function respondWithErrorOrData(res, err, data) {
   if (err || !data) {
     res.send(404, {

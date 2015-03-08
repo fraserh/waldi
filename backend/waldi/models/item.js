@@ -8,6 +8,7 @@
  *  - amount
  */
 
+var async = require("async");
 var externalStore = require('../externalStore/externalStore');
 
 // Create a new Item
@@ -39,13 +40,22 @@ exports.fullTitleSearch = function(title, callback) {
 };
 
 // Performs an exact match against a title
-exports.matchTitle = function(title, callback) {
+exports.matchTitle = matchTitle = function(title, callback) {
   externalStore.matchTitle(title, callback);
 };
 
 // Get an item's matches
-exports.matches = function(title, n, callback) {
+exports.matches = matches = function(title, n, callback) {
   externalStore.matches(title, n, callback);
+};
+
+// Gets information about a group of items
+exports.items = function(items, callback) {
+  async.map(items, function(i, callback) {
+    matchTitle(i, callback);
+  }, function(err, results) {
+    callback(err, results);
+  });
 };
 
 // Provides autocomplete suggestions given a partial title

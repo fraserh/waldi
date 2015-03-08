@@ -21,7 +21,8 @@ homepageHandler.prototype.initSearchListeners = function() {
     }
     var title = $(".tt-cursor .dropdown-title").text();
     if (e.keyCode==13) {
-      that.appendShoppingItem({},{});
+      var title = $(".tt-input").val();
+      that.getProdMatch(title)
     }
     if (title) {
       that.getProductInfo(title);
@@ -29,14 +30,34 @@ homepageHandler.prototype.initSearchListeners = function() {
   });
 };
 
+homepageHandler.prototype.getProdMatch = function(prodTitle) {
+  var query = encodeURIComponent(prodTitle);
+  var that = this;
+  $.ajax({
+    url: "/match?title="+query,
+    success: function (data, addToList) {
+      that.handleMatchResponse(data)
+    }
+  });
+};
+
 homepageHandler.prototype.getProductInfo = function(prodTitle) {
   var query = encodeURIComponent(prodTitle);
-  $.ajax("/item?title="+query, {
-    success: this.handleItemResponse()
+  var that = this;
+  $.ajax({
+    url: "/item?title="+query,
+    success: function (data) {
+      that.handleItemResponse(data)
+    }
   });
 };
 
 homepageHandler.prototype.handleItemResponse = function(e) {
+  var selected = $(".tt-cursor .dropdown-price");
+  selected.text("$" + e.price_per_kle + "/" + e.kle);
+};
+
+homepageHandler.prototype.handleMatchResponse = function(e) {
   console.log(e);
 };
 
