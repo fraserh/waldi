@@ -19,7 +19,7 @@ exports.search = function(req, res) {
       res.send(err || data);
     });
   } else {
-    genericUnfoundError(res);
+    invalidRequestError(res);
   }
 };
 
@@ -31,7 +31,7 @@ exports.exactMatch = function(req, res) {
       respondWithErrorOrData(res, err, data);
     });
   } else {
-    genericUnfoundError(res);
+    invalidRequestError(res);
   }
 };
 
@@ -41,22 +41,34 @@ exports.autocomplete = function(req, res) {
       respondWithErrorOrData(res, err, data);
     });
   } else {
-    genericUnfoundError(res);
+    invalidRequestError(res);
+  }
+};
+
+exports.match = function(req, res) {
+  if (req.query.title) {
+    item.matches(req.query.title, req.query.size || 10, function(err, data) {
+      respondWithErrorOrData(res, err, data);
+    });
+  } else {
+    invalidRequestError(res);
   }
 };
 
 function respondWithErrorOrData(res, err, data) {
   if (err || !data) {
-    res.send({
-      code: 404
+    res.send(404, {
+      code: 404,
+      message: "Item not found."
     });
   } else {
     res.send(data);
   }
 }
 
-function genericUnfoundError(res) {
-  res.send({
-    code: 400
+function invalidRequestError(res) {
+  res.send(400, {
+    code: 400,
+    message: "Invalid request format."
   });
 }

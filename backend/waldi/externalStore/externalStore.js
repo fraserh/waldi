@@ -49,6 +49,8 @@ exports.mostCommon = function(n, callback) {
 
 exports.matchTitle = function(title, callback) {
   client.hgetall("item:" + title, function(err, result) {
+    if (err || !result) return callback(err, result);
+    
     result.title = title;
     callback(err, result);
   });
@@ -81,7 +83,13 @@ exports.autocomplete = function(partialTitle, n, callback) {
       callback(err, items);
     });
   });
-  
+};
+
+// Matches
+exports.matches = function(title, n, callback) {
+  client.zrevrange("match:" + title, 0, n, function(err, data) {
+    callback(err, data);
+  });
 };
 
 // Remove the 'item:' from the start of the keys

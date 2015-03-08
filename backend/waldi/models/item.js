@@ -43,6 +43,11 @@ exports.matchTitle = function(title, callback) {
   externalStore.matchTitle(title, callback);
 };
 
+// Get an item's matches
+exports.matches = function(title, n, callback) {
+  externalStore.matches(title, n, callback);
+};
+
 // Provides autocomplete suggestions given a partial title
 exports.autocomplete = function(partialTitle, n, callback) {
   externalStore.autocomplete(partialTitle, n, callback);
