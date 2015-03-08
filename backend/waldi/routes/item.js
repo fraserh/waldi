@@ -25,6 +25,7 @@ exports.search = function(req, res) {
 
 exports.exactMatch = function(req, res) {
   if (req.query.title) {
+    console.log(req.query);
     // Do an exact match lookup for the given title
     item.matchTitle(req.query.title, function(err, data) {
       respondWithErrorOrData(res, err, data);

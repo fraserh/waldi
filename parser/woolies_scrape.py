@@ -61,7 +61,7 @@ class WooliesPageParser(object):
     print "Creating list of items..."
     for title,price_per_kle, kle, unit_size,price_per_unit in zip(titles,prices_per_kilo,kilo_litre_each, unit_sizes, prices_per_unit):
       # Item row should include:
-      # id, store, title, ppu, unit, ppk, product_size, units_per_purchase, url, matchesWith (id), belongsTo, created, modified
+      # id, store, title, ppu, unit, ppk, product_size, units_per_purchase
       item_list.append(("%s, %s, %s, %s, %s, 1") % (
         title,
         price_per_kle,
