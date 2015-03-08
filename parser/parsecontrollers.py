@@ -46,10 +46,10 @@ def convert_to_SI(node, params):
   TODO: Rewrite this to be way more readable.
   """
   node = node.lower()
-  if "ml" in node:
-    return str(float(re.search(r"[0-9 ]{1,4}ml",node).group(0).split("ml")[0])/1000) + "L"
-  elif re.search(r"[0-9]g", node):
-    return str(float(re.search(r"[0-9 ]{1,4}g",node).group(0).split("g")[0])/1000) + "KG"
+  if re.search(r"[0-9][0-9 ]{0,3}ml", node):
+    return str(float(re.search(r"[0-9][0-9 ]{0,3}ml",node).group(0).split("ml")[0])/1000) + "L"
+  elif re.search(r"[0-9][0-9 ]{0,3}g", node):
+    return str(float(re.search(r"[0-9][0-9 ]{0,3}g",node).group(0).split("g")[0])/1000) + "KG"
   else:
     return node
   
@@ -64,22 +64,11 @@ def get_unit_woolies(node, params):
   return convert_to_SI(node, [])
 
 def get_unit_coles(node, params):
-  per_kilo = re.search(r"[ 0-9][0-9][0-9][g]", node)
-  if per_kilo:
-    per_kilo = per_kilo.group(0).split("g")[0]
-    return str(float(per_kilo)/1000)+"kg"
-  else:
-    if re.search(r"[ 0-9][0-9][0-9]m", node):
-      return str(float(re.search(r"[ 0-9][0-9][0-9]", node).group(0))/1000)+"L"
-    else:
-      if re.search(r"[0-9]kg", node):
-        return re.search(r"[0-9]kg", node).group(0)
-      else:
-        if re.search("1 each", node) or re.search("1 bunch", node) :
-          return "1Ea"
-        else:
-          if re.search(r"[1-9]"+" pack", node):
-            return re.search(r"[1-9]"+" pack", node).group(0).replace(' pack',"pk")
+  if "1Ea" in node or "1ea" in node:
+    return "1ea"
+  elif "1KG" in node or "1kg" in node:
+    return "1kg"
+  return convert_to_SI(node, [])
 
 def splitSplice(node, params):
   """

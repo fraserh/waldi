@@ -1,0 +1,271 @@
+body {
+  background-color: rgb(241, 241, 241);
+  margin: 0;
+  padding: 0;
+  color: #fff;
+}
+
+.menu-button-solid-strip {
+  background-color: #fff;
+  height: 2px;
+  width: 100%;
+}
+
+.menu-button-clear-strip {
+  height: 6px;
+  width: 100%;
+}
+
+.dropdown-more-results {
+  width: 103%;
+  margin-left: -2%;
+  margin-top: 20px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-family: 'myriad-thin';
+  font-size: 24px;
+  border: solid 2px;
+  border-color: #333;
+  background-color-color: rgba(3, 26, 48, 0.2);
+  cursor: pointer;
+}
+
+.menu-button-container {
+  width: 30px;
+  float: left;
+  margin-top: 32px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.dropdown-price {
+  right: 2%;
+  position: absolute;
+}
+
+.dropdown-title {
+  margin-left: 5%;
+}
+
+.content-bg {
+  background-color: rgb(241, 241, 241);
+  padding-top: 20px;
+  width:100%;
+  padding-bottom: 50px;
+  position: absolute;
+  margin-top: 100px;
+}
+
+.content-container {
+  max-width: 1000px;
+  margin: auto;
+  margin-bottom: 50px;
+}
+
+.shopping-list-item-container {
+  width: 100%;
+  height: 90px;
+  margin: 20px 0;
+  background-color: #fff;
+  border: 1px solid rgb(232, 232, 232);
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 1px 1px;
+  font-family: 'myriad-thin';
+  color: #000;
+}
+
+.total-cost-container {
+  z-index: 9999;
+  position: fixed;
+  bottom: 2px;
+  width: 800px;
+  margin-left: 100px;
+  height: 70px;
+  font-family: "myriad-thin";
+  font-size: 24px;
+}
+
+.shopping-list-total-cost {
+  width: 35%;
+  margin: 0 7.3%;
+  height: 100%;
+  line-height: 70px;
+  float: left;
+  text-align: center;
+  background-color: #fff;
+  border: 1px solid rgb(232, 232, 232);
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 1px 1px;
+  font-family: 'myriad-thin';
+  color: #000;
+}
+
+.shopping-list-item-coles-container {
+  width: 50%;
+  height: 100%;
+  float: left;
+  background-color: rgba(255, 0, 0, 0.1);
+  position: relative;
+}
+
+.shopping-list-item-woolies-container {
+  width: 50%;
+  height: 100%;
+  float: left;
+  background-color: rgba(20, 177, 42, 0.1);
+  position: relative;
+}
+
+.shopping-list-price-container {
+  width: 120px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+}
+
+.shopping-list-price-kle {
+  height: 40px;
+  line-height: 50px;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.shopping-list-price-item {
+  height: 20px;
+  padding-top: 15px;
+  font-size: 26px;
+}
+
+.shopping-list-price-container.coles {
+  right: 0;
+  margin-right: 25px;
+  text-align: right;
+}
+
+.shopping-list-price-container.woolies {
+  left: 0;
+  margin-left: 25px;
+  text-align: left;
+}
+
+.shopping-list-logo {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 0;
+}
+
+.shopping-list-name {
+  line-height: 90px;
+  font-size: 28px;
+}
+
+.shopping-list-name.coles {
+  text-align: center;
+  margin-left: 0px;
+}
+
+.shopping-list-name.woolies {
+  text-align: center;
+  margin-right: 0px;
+}
+
+.shopping-list-logo.coles {
+  left: 0;
+  background: url('assets/img/coles-logo.png');
+}
+
+.shopping-list-logo.woolies {
+  right: 0;
+  background: url('assets/img/woolies-logo.png');
+}
+
+.intro-title {
+  font-size: 54px;
+  width: 100%;
+  position: absolute;
+  top: 120px;
+  text-align: center;
+  font-family: "Helvetica Neue";
+  font-weight: bold;
+  color: #fff;
+}
+
+.top-bar .logo {
+  font-family:"MYRIADPRO-SEMIBOLD";
+  line-height: 90px;
+  font-size: 44px;
+  margin-left: 30px;
+  float: left;
+}
+
+.tt-suggestions {
+  color: #fff;
+  font-family: "Helvetica Neue";
+  font-weight: 200;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.top-bar {
+  height: 90px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background-color: #05284b;
+}
+
+.tt-cursor {
+  background-color: #4a4663;
+  height: 40px;
+  line-height: 40px;
+}
+
+.tt-dropdown-menu {
+  width: 96%;
+  padding: 0 2% 0 2%;
+  text-align: left;
+  color: #fff;
+  background-color: #031a30;
+}
+
+.search-container {
+  width: 100%;
+  position: relative;
+  margin-top: 20px;
+}
+
+.searchbar {
+  width: 500px;
+  height: 35px;
+  line-height: 35px;
+  background-color: #fff;
+  padding-left: 10px;
+  font-size: 16px;
+  border: 0;
+}
+
+.typeahead-wrapper {
+  width: 500px;
+  height: 35px;
+  line-height: 35px;
+  background-color: #fff;
+  font-size: 20px;
+  border: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+/* Font imports */
+
+@font-face {
+  font-family: 'myriad-thin';
+  src: url('font/MYRIADPRO-COND.otf');
+  font-weight: normal;
+  font-style: normal;
+}
