@@ -1,0 +1,21 @@
+CATEGORY_KEYWORDS = [
+  { "keywords": ["baby"],
+    "category" : "baby",
+  },
+  { "keywords": ["bakery"],
+    "category" : "bread",
+  },
+  { "keywords": ["canned", "pantry", "breakfast","biscuits","condiments", "confectionary", "gravy", "health"],
+    "category" : "pantry",
+  },
+  { "keywords": ["chilled","dairy, frozen"],
+    "category" : "fridge",
+  },
+  { "keywords": ["fruit", "vegetables"],
+    "category" : "fruit-veg",
+  },
+  { "keywords": ["meat", "deli", "seafood"],
+    "category" : "meat",
+  },
+
+]

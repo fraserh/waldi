@@ -58,7 +58,7 @@ body {
 }
 
 .content-container {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: auto;
   margin-bottom: 50px;
 }
@@ -158,17 +158,17 @@ body {
 
 .shopping-list-name {
   line-height: 90px;
-  font-size: 28px;
+  font-size: 24px;
 }
 
 .shopping-list-name.coles {
   text-align: center;
-  margin-left: 0px;
+  margin-left: -15%;
 }
 
 .shopping-list-name.woolies {
   text-align: center;
-  margin-right: 0px;
+  margin-right: -15%;
 }
 
 .shopping-list-logo.coles {
@@ -193,7 +193,7 @@ body {
 }
 
 .top-bar .logo {
-  font-family:"MYRIADPRO-SEMIBOLD";
+  font-family:"myriad-bold";
   line-height: 90px;
   font-size: 44px;
   margin-left: 30px;
@@ -265,7 +265,21 @@ body {
 
 @font-face {
   font-family: 'myriad-thin';
-  src: url('font/MYRIADPRO-COND.otf');
+  src: url('font/MYRIADPRO-COND.OTF');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'myriad-bold';
+  src: url('font/MYRIADPRO-SEMIBOLD.OTF');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('font/helvetica/HelveticaNeue.otf');
   font-weight: normal;
   font-style: normal;
 }

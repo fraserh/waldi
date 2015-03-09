@@ -1,6 +1,6 @@
-"""
-Generalised Web Scraper - Woolworths
-TODO: Make it more elegant/readable!
+""" Generalised Web Parser - Woolworths
+
+Parses a given html doc for container nodes, and the data within them.
 """
 
 from bs4 import BeautifulSoup
@@ -18,14 +18,6 @@ class WooliesPageParser(object):
   def __init__(self, html_doc):
     self.html_doc = html_doc
 
-  def write_to_db(self, item_list):
-    """Write Items to DB.
-    Takes a list of items to be written to the db.
-    """
-    with open("woolies_db.csv", "wt") as f:
-      for item in item_list:
-        f.write(item+'\n')
-
   def get_data(self):
     """Get Container Class Names.
     Get the relevant class names of the containers to be searched.
@@ -35,7 +27,9 @@ class WooliesPageParser(object):
     "single_prices" variable
     """
 
+    # Get a list of all container nodes.
     all_data = self.get_all_container_nodes()
+
     prices_per_kilo = []
     prices_per_unit = []
     unit_sizes = []
@@ -59,9 +53,8 @@ class WooliesPageParser(object):
       kilo_litre_each.append(self.extract_data(kilo_litre_each.pop(),constants.WOOLIES_PARAMS[4]))
 
     print "Creating list of items..."
-    for title,price_per_kle, kle, unit_size,price_per_unit in zip(titles,prices_per_kilo,kilo_litre_each, unit_sizes, prices_per_unit):
-      # Item row should include:
-      # id, store, title, ppu, unit, ppk, product_size, units_per_purchase
+    for title,price_per_kle, kle, unit_size,price_per_unit in \
+        zip(titles,prices_per_kilo,kilo_litre_each, unit_sizes, prices_per_unit):
       item_list.append(("%s, %s, %s, %s, %s, 1") % (
         title,
         price_per_kle,
