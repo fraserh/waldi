@@ -208,4 +208,5 @@ if __name__ == '__main__':
                              required_words)
 
   for match in matches:
-    print match[0] + ", " + match[1] + ", " + str(match[2])
+    if (match[2] > 0.5):
+      print match[0] + ", " + match[1] + ", " + str(match[2])

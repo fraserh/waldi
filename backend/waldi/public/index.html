@@ -46,7 +46,9 @@
         <div class="shopping-list-logo {{store}}"></div>
         <div class="shopping-list-name {{store}}">{{title}}</div>
         <div class="shopping-list-price-container {{store}}">
-          <div class="shopping-list-price-item {{store}}">$<span class="ppu-{{store}}">{{ppu}}</span>/ea</div>
+          <div class="shopping-list-price-item {{store}}">$<span class="ppu-{{store}}">
+            {{unit_price}}</span>/{{unit_volume}}
+          </div>
           <div class="shopping-list-price-kle">${{price_per_kle}}/{{kle}}</div>
         </div>
       </div>
