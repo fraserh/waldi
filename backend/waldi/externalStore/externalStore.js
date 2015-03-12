@@ -88,6 +88,7 @@ exports.autocomplete = function(partialTitle, n, callback) {
 // Matches
 exports.matches = function(title, n, callback) {
   client.zrevrange("match:" + title, 0, n, function(err, data) {
+    console.log(data);
     callback(err, data);
   });
 };

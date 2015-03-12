@@ -32,28 +32,19 @@ homepageHandler.prototype.initButtonListeners = function () {
 homepageHandler.prototype.initSearchListeners = function() {
   // Jquery's proxy fn is not agreeing with this event listener, so this is a quick workaround.
   var that = this;
-
+  that.typingTimeout = null;
+  $(".dropdown-more-results").click(function() {
+    
+  });
   $(document).keydown(function(e) {
     // If user doesn't type for 0.4s, load the prices!
-    that.userStillTyping = true;
-    setTimeout(function(){ that.userStillTyping = false }, 2500);
-    setTimeout(function(){ that.getPricesFromList($(".tt-input").val());
-    }, 2000) ;
-
-    $(".dropdown-more-results").click(function() {
-      
-    });
-    
+    clearTimeout(that.typingTimeout);
+    that.typingTimeout = setTimeout(that.getPricesFromList, 1000);
     if (! (e.keyCode==40 || e.keyCode==38 || e.keyCode==13)){
       return;
     }
     var title = $(".tt-cursor .dropdown-title").text();
     if (e.keyCode==13) {
-      // If they pressed entered in the searchbar.
-      // if (!$(".tt-cursor").length) {
-      //   that.getMoreResults($(".tt-input").val());
-      //   return;
-      // }
       var title = $(".tt-input").val();
       that.getProdMatch(title)
     }
@@ -65,16 +56,13 @@ homepageHandler.prototype.initSearchListeners = function() {
 
 homepageHandler.prototype.getPricesFromList = function() {
   var titles = [];
-  console.log(this.userStillTyping);
-  if (this.userStillTyping || !$(".dropdown-title").length){
+  var that = this;
+  if (!$(".dropdown-title").length){
     return;
   }
-  $(".dropdown-title").each(function(title) {
-    console.log(title)
-    titles.append(title.text());
+  $(".dropdown-title").each(function(index, title) {
+    titles.push($(this).text());
   });
-  console.log(titles)
-  var that = this;
   $.ajax({
     type: "POST",
     url: "/items",

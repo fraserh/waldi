@@ -32,6 +32,23 @@ body {
   background-color: #05284b;
 }
 
+.top-bar-options-container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.top-bar-option {
+  height: 80px;
+  line-height: 80px;
+  width: 20%;
+  float: left;
+  text-align: center;
+  font-size: 22px;
+  font-family: 'Helvetica Neue';
+  text-shadow: 1px 1px #000;
+  cursor: pointer;
+}
+
 .dropdown-more-results {
   width: 103%;
   margin-left: -2%;
@@ -63,6 +80,7 @@ body {
 .dropdown-title {
   margin-left: 15px;
   text-transform: capitalize;
+  text-overflow: ellipsis;
 }
 
 .content-bg {
