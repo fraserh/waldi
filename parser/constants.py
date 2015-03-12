@@ -1,7 +1,7 @@
 """
 Parser Constants
 """
-import parsecontrollers
+import parse_utils
 
 INVALID_ENTRY = "NA"
 
@@ -16,16 +16,16 @@ COLES_PARAMS = [
       },
     "extract_data": [
       {
-        "func":parsecontrollers.getInnerHTML,
+        "func":parse_utils.getInnerHTML,
         "params":[]
       },
       {
-        "func":parsecontrollers.prettifyString,
+        "func":parse_utils.prettifyString,
         "params":[]
       },
       {
-        "func": parsecontrollers.ignore_words,
-        "params": [parsecontrollers.COLES_IGNORE_LIST]
+        "func": parse_utils.ignore_words,
+        "params": [parse_utils.COLES_IGNORE_LIST]
       }
     ],
   },
@@ -37,19 +37,19 @@ COLES_PARAMS = [
       },
     "extract_data": [
       {
-        "func":parsecontrollers.getInnerHTML,
+        "func":parse_utils.getInnerHTML,
         "params":[]
       },
       {
-        "func":parsecontrollers.splitSplice,
+        "func":parse_utils.splitSplice,
         "params":["</span>",1]
       },
       {
-        "func":parsecontrollers.prettifyString,
+        "func":parse_utils.prettifyString,
         "params":[]
       },
       {
-        "func":parsecontrollers.regexBetweenTwoStrings,
+        "func":parse_utils.regexBetweenTwoStrings,
         "params":["$","per"]
       }
     ],
@@ -67,11 +67,11 @@ COLES_PARAMS = [
       },
     "extract_data": [
       {
-        "func":parsecontrollers.getInnerHTML,
+        "func":parse_utils.getInnerHTML,
         "params":[]
       },
       {
-        "func":parsecontrollers.each_or_kilo,
+        "func":parse_utils.each_or_kilo,
         "params":["perEa"]
       }
     ],
@@ -89,15 +89,15 @@ COLES_PARAMS = [
       },
     "extract_data": [
       {
-        "func":parsecontrollers.getInnerHTML,
+        "func":parse_utils.getInnerHTML,
         "params":[]
       },
       {
-        "func":parsecontrollers.prettifyString,
+        "func":parse_utils.prettifyString,
         "params":[]
       },
       {
-        "func": parsecontrollers.get_unit_coles,
+        "func": parse_utils.get_unit_coles,
         "params": []
       }
     ],
@@ -110,11 +110,11 @@ COLES_PARAMS = [
       },
     "extract_data": [
       {
-        "func":parsecontrollers.getInnerHTML,
+        "func":parse_utils.getInnerHTML,
         "params":[]
       },
       {
-        "func": parsecontrollers.splitSplice,
+        "func": parse_utils.splitSplice,
         "params": ["</small>",1]
       }
     ],
@@ -126,11 +126,11 @@ COLES_PARAMS = [
     "backup_processing": {
       "extract_data" :[
       {
-        "func": parsecontrollers.getInnerHTML,
+        "func": parse_utils.getInnerHTML,
         "params":[]
       },
       {
-        "func": parsecontrollers.coles_special_prices,
+        "func": parse_utils.coles_special_prices,
         "params":[]
       },
     ],}
@@ -152,19 +152,19 @@ WOOLIES_PARAMS = [
       },
     "extract_data": [
       {
-        "func":parsecontrollers.getInnerHTML,
+        "func":parse_utils.getInnerHTML,
         "params":[]
       },
       {
-        "func":parsecontrollers.splitSplice,
+        "func":parse_utils.splitSplice,
         "params":["<span",0]
       },
       {
-        "func":parsecontrollers.prettifyString,
+        "func":parse_utils.prettifyString,
         "params":[]
       },
       {
-        "func": parsecontrollers.ignore_words,
+        "func": parse_utils.ignore_words,
         "params": [""]
       }
     ],
@@ -177,15 +177,15 @@ WOOLIES_PARAMS = [
       },
     "extract_data": [
       {
-        "func":parsecontrollers.getInnerHTML,
+        "func":parse_utils.getInnerHTML,
         "params":[]
       },
       {
-        "func":parsecontrollers.prettifyString,
+        "func":parse_utils.prettifyString,
         "params":[]
       },
       {
-        "func":parsecontrollers.regexBetweenTwoStrings,
+        "func":parse_utils.regexBetweenTwoStrings,
         "params":["$"," / "]
       }
     ],
@@ -203,15 +203,15 @@ WOOLIES_PARAMS = [
       },
     "extract_data": [
       {
-        "func":parsecontrollers.getInnerHTML,
+        "func":parse_utils.getInnerHTML,
         "params":[]
       },
       {
-        "func":parsecontrollers.prettifyString,
+        "func":parse_utils.prettifyString,
         "params":[]
       },
       {
-        "func":parsecontrollers.regexBetweenTwoStrings,
+        "func":parse_utils.regexBetweenTwoStrings,
         "params":["$",""]
       }
     ],
@@ -229,15 +229,15 @@ WOOLIES_PARAMS = [
       },
     "extract_data": [
       {
-        "func":parsecontrollers.getInnerHTML,
+        "func":parse_utils.getInnerHTML,
         "params":[]
       },
       {
-        "func":parsecontrollers.prettifyString,
+        "func":parse_utils.prettifyString,
         "params":[]
       },
       {
-        "func":parsecontrollers.get_unit_size_woolies,
+        "func":parse_utils.get_unit_size_woolies,
         "params": []
       }
     ],
@@ -255,15 +255,15 @@ WOOLIES_PARAMS = [
       },
     "extract_data": [
       {
-        "func":parsecontrollers.getInnerHTML,
+        "func":parse_utils.getInnerHTML,
         "params":[]
       },
       {
-        "func":parsecontrollers.prettifyString,
+        "func":parse_utils.prettifyString,
         "params":[]
       },
       {
-        "func":parsecontrollers.get_unit_woolies,
+        "func":parse_utils.get_unit_woolies,
         "params":["/ ",""]
       }
     ],

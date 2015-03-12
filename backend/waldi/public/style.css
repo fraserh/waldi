@@ -16,6 +16,22 @@ body {
   width: 100%;
 }
 
+.bottom-shadow {
+  -moz-box-shadow: 0 4px 3px -4px black;
+  -webkit-box-shadow: 0 4px 3px -4px black;
+  box-shadow: 0 4px 3px -4px black;
+}
+
+.top-bar-options {
+  height: 90px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 998;
+  background-color: #05284b;
+}
+
 .dropdown-more-results {
   width: 103%;
   margin-left: -2%;
@@ -45,7 +61,8 @@ body {
 }
 
 .dropdown-title {
-  margin-left: 5%;
+  margin-left: 15px;
+  text-transform: capitalize;
 }
 
 .content-bg {
@@ -79,18 +96,17 @@ body {
   z-index: 9999;
   position: fixed;
   bottom: 2px;
-  width: 800px;
-  margin-left: 100px;
-  height: 70px;
+  width: 1100px;
+  height: 80px;
   font-family: "myriad-thin";
   font-size: 24px;
 }
 
 .shopping-list-total-cost {
-  width: 35%;
-  margin: 0 7.3%;
+  width: 30%;
+  margin: 0 1.5%;
   height: 100%;
-  line-height: 70px;
+  line-height: 80px;
   float: left;
   text-align: center;
   background-color: #fff;
@@ -208,6 +224,11 @@ body {
   cursor: pointer;
 }
 
+.tt-suggestion {
+  line-height: 50px;
+  height: 50px;
+}
+
 .top-bar {
   height: 90px;
   position: fixed;
@@ -220,13 +241,12 @@ body {
 
 .tt-cursor {
   background-color: #4a4663;
-  height: 40px;
-  line-height: 40px;
+  height: 50px;
+  line-height: 50px;
 }
 
 .tt-dropdown-menu {
-  width: 96%;
-  padding: 0 2% 0 2%;
+  width: 100%;
   text-align: left;
   color: #fff;
   background-color: #031a30;
@@ -259,6 +279,14 @@ body {
   left: 0;
   right: 0;
   margin: auto;
+}
+
+.searchresults-bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
 }
 
 /* Font imports */

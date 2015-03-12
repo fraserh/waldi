@@ -29,11 +29,17 @@ class Parse_HTML():
     woolies_files = ["pages/woolworths/woolworths/" + name for name in os.listdir("pages/woolworths/woolworths")]
 
     hashInt = 0
+    i = 0
 
     for page in coles_files:
+      print("%s out of %s coles files parsed" % (i, len(coles_files)))
       self.coles_page_handler(page)
+      i += 1
 
+    i = 0
     for page in woolies_files:
+      print("%s out of %s coles files parsed" % (i, len(woolies_files)))
+      i += 1
       category = re.match(r"pages/woolworths/woolworths/(.*)-[0-9]{1,3}\.html", page)
       if category:
         flag = False
@@ -76,7 +82,6 @@ class Parse_HTML():
     woolies_parser = WooliesPageParser(self.woolies_html_doc)
     woolies_items = woolies_parser.get_data()
 
-    print "Writing to woolworths db... " + category 
     self.write_to_db(woolies_items, "data/" + category + "_woolies_db.csv", category)
 
   def coles_parser_handler(self, category):

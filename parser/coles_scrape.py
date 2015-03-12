@@ -41,7 +41,6 @@ class ColesPageParser(object):
     item_list = []
 
     # Extract titles from nodes.
-    print "Parsing coles data from nodes..."
     for node in all_data:
       titles.append(self.parse_from_containers(constants.COLES_PARAMS[0], node))
       titles.append(self.extract_data(titles.pop(),constants.COLES_PARAMS[0]))
@@ -59,7 +58,6 @@ class ColesPageParser(object):
       if len(prices_per_unit[len(prices_per_unit)-1]) != 2:
         prices_per_unit.append([self.extract_data(prices_per_unit.pop(),constants.COLES_PARAMS[4]),1])
 
-    print "Creating list of items..."
     for title,prices_per_kilo, prices_per_unit, unit_size in zip(titles,prices_per_kilo, prices_per_unit, unit_sizes):
       item_list.append(("%s, %s, kg, %s, %s, %s") % (title,prices_per_kilo, prices_per_unit[0], unit_size, prices_per_unit[1]))
 

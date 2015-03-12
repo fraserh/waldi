@@ -4,7 +4,7 @@ Parses a given html doc for container nodes, and the data within them.
 """
 
 from bs4 import BeautifulSoup
-import parsecontrollers
+import parse_utils
 import constants
 import re
 import sys

@@ -17,5 +17,4 @@ CATEGORY_KEYWORDS = [
   { "keywords": ["meat", "deli", "seafood"],
     "category" : "meat",
   },
-
 ]
