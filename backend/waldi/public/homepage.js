@@ -4,10 +4,11 @@
 
 var homepageHandler = function() {
   
-  this.userStillTyping = true;
-
   // Boolean to decide if options bar is showing.
   this.optionsVisible = false;
+
+  // List of matches from the retrieved item.
+  this.matchList = null;
 
   // Setup the ajax call when user hard-searchs a product.
   this.initSearchListeners();
@@ -21,9 +22,11 @@ homepageHandler.prototype.initButtonListeners = function () {
   $(".menu-button-container").click(function(){
     if (!that.optionsVisible) {
       TweenLite.to($(".top-bar"), .3, {top:60});
+      TweenLite.to($(".top-bar-options-container"), .6, {opacity:1});
       that.optionsVisible = true;
     } else {
       TweenLite.to($(".top-bar"), .3, {top:0});
+      TweenLite.to($(".top-bar-options-container"), .2, {opacity:0});
       that.optionsVisible = false;
     }
   });
@@ -132,8 +135,8 @@ homepageHandler.prototype.matchCallback = function(e) {
 
 homepageHandler.prototype.handleMatchResponse = function(e) {
   // Should replace this with the actual method of best match.
-  var bestMatch = encodeURIComponent(e.pop());
-  console.log(e)
+  var bestMatch = encodeURIComponent(e.shift());
+  this.matchList = e;
   var that = this;
   $.ajax({
     url: "/item?title="+bestMatch,
@@ -153,13 +156,20 @@ homepageHandler.prototype.appendShoppingItem = function(colesItem, wooliesItem) 
   colesItem["store"] = "coles";
   wooliesItem = this.wooliesItem;
   wooliesItem["store"] = "woolies";
-  console.log(wooliesItem);
   var template = Handlebars.compile(source);
   newContainer = document.createElement('div')
   newContainer.className = "shopping-list-item-container";
   newContainer.innerHTML += (template(colesItem));
   newContainer.innerHTML += (template(wooliesItem));
   $(".content-container").append(newContainer);
+
+  // Temp hack to add dropdown
+  // TODO(Fraser): Add a proper func which determines which store should have the dropdown.
+  var dropdownButton = document.createElement('span');
+  dropdownButton.className = "shopping-list-dropdown-button";
+  dropdownButton.innerHTML = "more";
+  $(".shopping-list-name-container.woolies").append(dropdownButton);
+
   this.updateListCost();
 };
 

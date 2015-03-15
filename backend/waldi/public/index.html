@@ -47,7 +47,9 @@
     <script id="entry-template" type="text/x-handlebars-template">
       <div class="shopping-list-item-{{store}}-container item-container">
         <div class="shopping-list-logo {{store}}"></div>
-        <div class="shopping-list-name {{store}}">{{title}}</div>
+        <div class="shopping-list-name-container {{store}}">
+          <span class="shopping-list-title">{{title}}</span>
+        </div>
         <div class="shopping-list-price-container {{store}}">
           <div class="shopping-list-price-item {{store}}">$<span class="ppu-{{store}}">
             {{unit_price}}</span>/{{unit_volume}}

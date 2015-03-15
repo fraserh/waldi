@@ -35,6 +35,7 @@ body {
 .top-bar-options-container {
   max-width: 1200px;
   margin: auto;
+  opacity: 0;
 }
 
 .top-bar-option {
@@ -190,17 +191,35 @@ body {
   top: 0;
 }
 
-.shopping-list-name {
+.shopping-list-name-container {
   line-height: 90px;
-  font-size: 24px;
+  font-size: 22px;
+  text-transform: capitalize;
 }
 
-.shopping-list-name.coles {
+.shopping-list-dropdown-button {
+  background-color: #333;
+  width: 60px;
+  height: 30px;
+}
+
+.shopping-list-dropdown-container {
+  width: 300px;
+  position: absolute;
+  top: 25px;
+  height: 40px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.shopping-list-name-container.coles {
   text-align: center;
   margin-left: -15%;
 }
 
-.shopping-list-name.woolies {
+.shopping-list-name-container.woolies {
   text-align: center;
   margin-right: -15%;
 }
