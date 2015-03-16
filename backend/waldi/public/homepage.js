@@ -60,11 +60,14 @@ homepageHandler.prototype.initSearchListeners = function() {
 homepageHandler.prototype.getPricesFromList = function() {
   var titles = [];
   var that = this;
-  if (!$(".dropdown-title").length){
+   if (!$(".dropdown-title").length){
     return;
   }
   $(".dropdown-title").each(function(index, title) {
     titles.push($(this).text());
+    $(title).click(function(){
+      // Add match
+    });
   });
   $.ajax({
     type: "POST",
@@ -73,8 +76,7 @@ homepageHandler.prototype.getPricesFromList = function() {
     dataType: "json",
     data: JSON.stringify(titles),
     success: function (data, addToList) {
-      console.log(data)
-    }
+          }
   });
 };
 
@@ -90,13 +92,11 @@ homepageHandler.prototype.getMoreResults = function(prodTitle) {
 };
 
 homepageHandler.prototype.handleMoreResultsResponse = function(data) {
-  console.log(data);
-};
+  };
 
 homepageHandler.prototype.getProdMatch = function(prodTitle) {
   var query = encodeURIComponent(prodTitle);
-  console.log(query)
-  var that = this;
+    var that = this;
   $.ajax({
     url: "/match?title="+query,
     success: function (data, addToList) {
@@ -117,7 +117,7 @@ homepageHandler.prototype.getProductInfo = function(prodTitle, newItem) {
 };
 
 homepageHandler.prototype.handleItemResponse = function(e, newItem) {
-  this.wooliesItem = e;
+  this.colesItem = e;
   var selected = $(".tt-cursor .dropdown-price");
   if (!selected) {
     return;
@@ -128,7 +128,7 @@ homepageHandler.prototype.handleItemResponse = function(e, newItem) {
 };
 
 homepageHandler.prototype.matchCallback = function(e) {
-  this.colesItem = e;
+  this.wooliesItem = e;
   var title = $(".tt-input").val();
   this.getProductInfo(title, true)
 };
@@ -151,6 +151,7 @@ homepageHandler.prototype.handleMatchResponse = function(e) {
  * @param {Object} wooliesItem The object of the woolies product item.
 */
 homepageHandler.prototype.appendShoppingItem = function(colesItem, wooliesItem) {
+  var that = this;
   var source   = $("#entry-template").html();
   colesItem = this.colesItem;
   colesItem["store"] = "coles";
@@ -166,10 +167,23 @@ homepageHandler.prototype.appendShoppingItem = function(colesItem, wooliesItem) 
   // Temp hack to add dropdown
   // TODO(Fraser): Add a proper func which determines which store should have the dropdown.
   var dropdownButton = document.createElement('span');
+  var dropdownCon = document.createElement('div');
+  dropdownCon.className = "shopping-list-dropdown-container hidden";
   dropdownButton.className = "shopping-list-dropdown-button";
   dropdownButton.innerHTML = "more";
   $(".shopping-list-name-container.woolies").append(dropdownButton);
-
+  $(".shopping-list-name-container.woolies").append(dropdownCon);
+  $(this.matchList).each(function(i, item) {
+    var dropdownOpt = document.createElement('div');
+    dropdownOpt.className = "shopping-list-dropdown-option";
+    $(dropdownOpt).text(that.matchList.shift());
+    $(dropdownCon).append(dropdownOpt)
+  });
+  TweenLite.to(newContainer, .5, {opacity:1});
+  $(dropdownButton).click(function() {
+    $(dropdownCon).removeClass("hidden");
+    TweenLite.to(dropdownCon, .5, {opacity:1});
+  });
   this.updateListCost();
 };
 
@@ -181,15 +195,15 @@ homepageHandler.prototype.updateListCost = function() {
   var colesTotal = 0;
   var wooliesTotal = 0;
   var cheapestTotal = 0;
-  $(".item-container").each(function(item) {
-    var colesPrice = parseFloat($("ppu-coles", $(this)).text());
-    var wooliesPrice = parseFloat($("ppu-woolies", $(this)).text());
+  $(".shopping-list-item-container").each(function(item) {
+    var colesPrice = parseFloat($(".ppu-coles", $(this)).text());
+    var wooliesPrice = parseFloat($(".ppu-woolies", $(this)).text());
     if (colesPrice < wooliesPrice) {
-      cheapestTotal += colesPrice
-      $("ppu-coles", $(this)).addClass("cheaper");
+      cheapestTotal += colesPrice;
+      $(".shopping-list-price-container.coles", $(this)).addClass("cheaper");
     } else {
-      cheapestTotal += wooliesPrice
-      $("ppu-woolies", $(this)).addClass("cheaper");
+      cheapestTotal += wooliesPrice;
+      $(".shopping-list-price-container.woolies", $(this)).addClass("cheaper");
     }
   });
   $(".ppu-coles").each(function() {

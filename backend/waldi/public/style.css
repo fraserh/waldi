@@ -109,6 +109,7 @@ body {
   box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 1px 1px;
   font-family: 'myriad-thin';
   color: #000;
+  opacity: 0;
 }
 
 .total-cost-container {
@@ -153,7 +154,7 @@ body {
 }
 
 .shopping-list-price-container {
-  width: 120px;
+  width: 180px;
   height: 100%;
   position: absolute;
   top: 0;
@@ -174,13 +175,13 @@ body {
 
 .shopping-list-price-container.coles {
   right: 0;
-  margin-right: 25px;
+  padding-right: 25px;
   text-align: right;
 }
 
 .shopping-list-price-container.woolies {
   left: 0;
-  margin-left: 25px;
+  padding-left: 25px;
   text-align: left;
 }
 
@@ -204,7 +205,8 @@ body {
 }
 
 .shopping-list-dropdown-container {
-  width: 300px;
+  width: 260px;
+  padding-top: 40px;
   position: absolute;
   top: 25px;
   height: 40px;
@@ -212,11 +214,30 @@ body {
   right: 0;
   margin-left: auto;
   margin-right: auto;
+  opacity: 0;
+}
+
+.shopping-list-dropdown-option {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+  background-color: rgba(5, 40, 75, 0.6);
+  color: #fff;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
 }
 
 .shopping-list-name-container.coles {
   text-align: center;
   margin-left: -15%;
+}
+
+.shopping-list-item-container .shopping-list-price-container.cheaper {
+  background-color: rgba(5, 40, 75, 0.2);
 }
 
 .shopping-list-name-container.woolies {
