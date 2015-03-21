@@ -66,6 +66,10 @@ app.get('/search/autocomplete', item.autocomplete);
 // GET localhost/match?title=pink%20lady%20apples&size=20
 app.get('/match', item.match);
 
+// Get the list of titles to pre-populate autocomplete
+// GET localhost/prepopulate
+app.get('/prepopulate', item.prepopulate);
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

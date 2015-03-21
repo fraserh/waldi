@@ -56,7 +56,6 @@ exports.match = function(req, res) {
 };
 
 exports.items = function(req, res) {
-  console.log(req.body);
   if (req.body.items) {
     console.log(req.body.items);
     item.items(req.body.items, function(err, data) {
@@ -65,6 +64,39 @@ exports.items = function(req, res) {
   } else {
     invalidRequestError(res);
   }
+};
+
+exports.prepopulate = function(req, res) {
+  item.mostCommon(req.query.size || 1000, function(err, data) {
+    // Map our data of the form 
+    // {
+    //   "price_per_kle": "17.2",
+    //   "amount": "1",
+    //   "unit_volume": "0.4KG",
+    //   "unit_price": "6.88",
+    //   "kle": "kg",
+    //   "title": "aussie varieties dip 4 corners 400g"
+    // }
+    // 
+    // to 
+    // 
+    // {
+    //   "price": "25.00  ",
+    //   "prod": "free range satay chicken breast skewers 300g",
+    //   "id": 0
+    // }
+    var i = 0;
+
+    data = data.map(function(d) {
+      return {
+        price: d.price_per_kle,
+        prod: d.title,
+        id: i++
+      };
+    });
+
+    respondWithErrorOrData(res, err, data);
+  });
 };
 
 function respondWithErrorOrData(res, err, data) {
