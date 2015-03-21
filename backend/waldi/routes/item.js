@@ -57,7 +57,6 @@ exports.match = function(req, res) {
 
 exports.items = function(req, res) {
   if (req.body.items) {
-    console.log(req.body.items);
     item.items(req.body.items, function(err, data) {
       respondWithErrorOrData(res, err, data);
     });

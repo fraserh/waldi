@@ -8,7 +8,7 @@ function setupTypeahead() {
       limit: 10,
       hint: true,
       prefetch: {
-        url: 'titles.json',
+        url: '/prepopulate',
         filter: function(list) {
           return $.map(list, function(country) { return { 
             name: country["prod"]

@@ -51,8 +51,12 @@ exports.matches = matches = function(title, n, callback) {
 
 // Gets information about a group of items
 exports.items = function(items, callback) {
-  async.map(items, function(i, callback) {
-    matchTitle(i, callback);
+  items = JSON.parse(items);
+  async.map(items, function(i, innerCallback) {
+
+    matchTitle(i, function(err, data) {
+      innerCallback(err, data);
+    });
   }, function(err, results) {
     callback(err, results);
   });

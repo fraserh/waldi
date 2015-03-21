@@ -75,14 +75,51 @@ homepageHandler.prototype.getPricesFromList = function() {
       // Add match
     });
   });
+
+  var dataToPost = {
+    items: JSON.stringify(titles)
+  };
+
   $.ajax({
     type: "POST",
     url: "/items",
     contentType: "application/json; charset=utf-8",
     dataType: "json",
-    data: JSON.stringify(titles),
+    data: JSON.stringify(dataToPost),
     success: function (data, addToList) {
+
+      mergeDataWithDOM(data, getDOMElementsForSearchResults());
+
+      function getDOMElementsForSearchResults() {
+        var resultClass = 'tt-suggestion';
+        var results = $('.' + resultClass);
+        return results;
+      }
+
+      function mergeDataWithDOM(data, DOMElements) {
+        // n*m, because we can't really sort DOMElements.
+        // It'll only be 10 items in the DOM anyway, so really it's
+        // 10 * data.length
+        var titleClass = 'dropdown-title';
+        var priceClass = 'dropdown-price';
+
+        for (var i = 0; i < data.length; i++) {
+          var currentItem = data[i];
+
+          for (var j = 0; j < DOMElements.length; j++) {
+            var currentNode = DOMElements[j];
+
+            var title = currentNode.getElementsByClassName(titleClass)[0].textContent;
+            if (title === currentItem.title) {
+              // We have a match. Update the price DOM element with 
+              // this item's price.
+              currentNode.getElementsByClassName(priceClass)[0].textContent =
+              "$" + currentItem.price_per_kle + "/" + currentItem.kle;
+            }
           }
+        }
+      }
+    }
   });
 };
 
