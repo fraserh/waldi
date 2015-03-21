@@ -13,13 +13,17 @@ function setupTypeahead() {
           return $.map(list, function(country) { return { 
             name: country["prod"]
           }; });
-        }
-      }
-    });
+        },
+      remote: {
+        url: "/search/autocomplete?title=%QUERY",
+        filter: function(e) { console.log(e); }
+      }  
+    }
+  });
 
     products.initialize();
 
-    var suggestHTML = Handlebars.compile("<span class='dropdown-title'>{{name}}</span><span class='dropdown-price'>$/kg</span>");
+    var suggestHTML = Handlebars.compile("<span class='dropdown-title'>{{name}}</span><span class='dropdown-price'><i class='fa fa-circle-o-notch fa-spin'></i></span>");
 
     $('#prefetch .typeahead').typeahead({
         hint: true,

@@ -1,0 +1,92 @@
+body {
+  background-color: #05284b;
+  color: #fff;
+  font-family: "Helvetica Neue";
+}
+
+.section.second-slide {
+  background: url("../assets/img/food2.jpg");
+  background-size: cover;
+}
+
+#fullpage .intro-title-container {
+  position: absolute;
+  text-align: center;
+  width: 260px;
+  height: 200px;
+  line-height: 200px;
+  left: 50%;
+  top: 50%;
+  margin-top: -100px;
+  margin-left: -130px;
+  color: #fff;
+  font-size: 52px;
+  font-family: "Helvetica Neue";
+}
+
+.vertical-horizontal-align {
+  position: absolute;
+  text-align: center;
+  width: 260px;
+  left: 50%;
+  top: 50%;
+  margin-top: -100px;
+  margin-left: -130px;
+}
+
+.second-slide .info-container {
+  font-size: 26px;
+  width: 300px;
+  margin-left: -150px;
+  font-family: 'myriad-light';
+}
+
+#fullpage .fp-tableCell {
+  position: relative;
+}
+
+.menu-button-container {
+  position: fixed;
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  font-size: 30px;
+  font-family: "myriad-bold";
+  z-index: 99999;
+}
+
+.menu-button-container a {
+  text-decoration: none;
+  color: #fff;
+}
+
+/* Font imports */
+
+@font-face {
+  font-family: 'myriad-thin';
+  src: url('../font/MYRIADPRO-COND.OTF');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'myriad-bold';
+  src: url('../font/MYRIADPRO-SEMIBOLD.OTF');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('font/helvetica/HelveticaNeue.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'myriad-light';
+  src: url('../font/MyriadPro-Light.otf');
+  font-weight: normal;
+  font-style: normal;
+}

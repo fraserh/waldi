@@ -7,6 +7,7 @@
     <meta name="description" content="Making comparing grocery prices simple.">
     <meta name="keywords" content="waldi shopping compare groceries">
     <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
@@ -21,11 +22,20 @@
       </div>
       <div class="search-container">
       <div class="typeahead-wrapper" id="prefetch">
+        <div class="search-button"></div>
         <input class="typeahead searchbar" type="text" placeholder="Enter a product">
       </div>
     </div>
     </div>
-    <div class="top-bar-options">Whattt</div>
+    <div class="top-bar-options">
+      <div class="top-bar-options-container">
+        <div class="top-bar-option">Home</div>
+        <div class="top-bar-option">Categories</div>
+        <div class="top-bar-option">Tips</div>
+        <div class="top-bar-option">Recipes</div>
+        <div class="top-bar-option">About</div>
+      </div>
+    </div>
     <div class="content-bg">
       <div class="content-container">
         <div class="total-cost-container">
@@ -38,7 +48,9 @@
     <script id="entry-template" type="text/x-handlebars-template">
       <div class="shopping-list-item-{{store}}-container item-container">
         <div class="shopping-list-logo {{store}}"></div>
-        <div class="shopping-list-name {{store}}">{{title}}</div>
+        <div class="shopping-list-name-container {{store}}">
+          <span class="shopping-list-title">{{title}}</span>
+        </div>
         <div class="shopping-list-price-container {{store}}">
           <div class="shopping-list-price-item {{store}}">$<span class="ppu-{{store}}">
             {{unit_price}}</span>/{{unit_volume}}
@@ -46,6 +58,9 @@
           <div class="shopping-list-price-kle">${{price_per_kle}}/{{kle}}</div>
         </div>
       </div>
+    </script>
+    <script id="more-results-template" type="text/x-handlebars-template">
+      <div class="more-results-bg"></div>
     </script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
     <script src="jquery.js"></script>

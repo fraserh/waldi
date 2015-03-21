@@ -72,24 +72,24 @@ class Parse_HTML():
     Temp func to create fresh csv file to be appended to (eventually we should MySQL or similar)
     """
     # Delete prev tmp directory.
-    shutil.rmtree("data")
+    shutil.rmtree("../parsed_categories")
 
     # Recreate tmp directory.
-    os.mkdir("data")
+    os.mkdir("../parsed_categories")
 
   def woolies_parser_handler(self, category):
     # Parse the woolies page(s)self.
     woolies_parser = WooliesPageParser(self.woolies_html_doc)
     woolies_items = woolies_parser.get_data()
 
-    self.write_to_db(woolies_items, "data/" + category + "_woolies_db.csv", category)
+    self.write_to_db(woolies_items, "../parsed_categories/" + category + "_woolies_db.csv", category)
 
   def coles_parser_handler(self, category):
     # Parse the coles page(s)
     coles_parser = ColesPageParser(self.coles_html_doc)
     coles_items = coles_parser.get_data()
 
-    self.write_to_db(coles_items, "data/" + category + "_coles_db.csv", category)
+    self.write_to_db(coles_items, "../parsed_categories/" + category + "_coles_db.csv", category)
 
   def write_to_db(self, items, file_name, category):
     """Write Items to DB.

@@ -4,10 +4,11 @@
 
 var homepageHandler = function() {
   
-  this.userStillTyping = true;
-
   // Boolean to decide if options bar is showing.
   this.optionsVisible = false;
+
+  // List of matches from the retrieved item.
+  this.matchList = null;
 
   // Setup the ajax call when user hard-searchs a product.
   this.initSearchListeners();
@@ -21,9 +22,11 @@ homepageHandler.prototype.initButtonListeners = function () {
   $(".menu-button-container").click(function(){
     if (!that.optionsVisible) {
       TweenLite.to($(".top-bar"), .3, {top:60});
+      TweenLite.to($(".top-bar-options-container"), .6, {opacity:1});
       that.optionsVisible = true;
     } else {
       TweenLite.to($(".top-bar"), .3, {top:0});
+      TweenLite.to($(".top-bar-options-container"), .2, {opacity:0});
       that.optionsVisible = false;
     }
   });
@@ -32,28 +35,25 @@ homepageHandler.prototype.initButtonListeners = function () {
 homepageHandler.prototype.initSearchListeners = function() {
   // Jquery's proxy fn is not agreeing with this event listener, so this is a quick workaround.
   var that = this;
-
+  that.typingTimeout = null;
+  $(".dropdown-title").click(function() {
+    console.log("got here");
+  });
+  $(".search-button").click(function(){
+    that.getMoreResults($(".tt-input").val());
+  })
+  $(document).click(function(e){
+    console.log(e);
+  })
   $(document).keydown(function(e) {
     // If user doesn't type for 0.4s, load the prices!
-    that.userStillTyping = true;
-    setTimeout(function(){ that.userStillTyping = false }, 2500);
-    setTimeout(function(){ that.getPricesFromList($(".tt-input").val());
-    }, 2000) ;
-
-    $(".dropdown-more-results").click(function() {
-      
-    });
-    
+    clearTimeout(that.typingTimeout);
+    that.typingTimeout = setTimeout(that.getPricesFromList, 1000);
     if (! (e.keyCode==40 || e.keyCode==38 || e.keyCode==13)){
       return;
     }
     var title = $(".tt-cursor .dropdown-title").text();
     if (e.keyCode==13) {
-      // If they pressed entered in the searchbar.
-      // if (!$(".tt-cursor").length) {
-      //   that.getMoreResults($(".tt-input").val());
-      //   return;
-      // }
       var title = $(".tt-input").val();
       that.getProdMatch(title)
     }
@@ -65,16 +65,16 @@ homepageHandler.prototype.initSearchListeners = function() {
 
 homepageHandler.prototype.getPricesFromList = function() {
   var titles = [];
-  console.log(this.userStillTyping);
-  if (this.userStillTyping || !$(".dropdown-title").length){
+  var that = this;
+   if (!$(".dropdown-title").length){
     return;
   }
-  $(".dropdown-title").each(function(title) {
-    console.log(title)
-    titles.append(title.text());
+  $(".dropdown-title").each(function(index, title) {
+    titles.push($(this).text());
+    $(title).click(function(){
+      // Add match
+    });
   });
-  console.log(titles)
-  var that = this;
   $.ajax({
     type: "POST",
     url: "/items",
@@ -82,8 +82,7 @@ homepageHandler.prototype.getPricesFromList = function() {
     dataType: "json",
     data: JSON.stringify(titles),
     success: function (data, addToList) {
-      console.log(data)
-    }
+          }
   });
 };
 
@@ -99,13 +98,12 @@ homepageHandler.prototype.getMoreResults = function(prodTitle) {
 };
 
 homepageHandler.prototype.handleMoreResultsResponse = function(data) {
-  console.log(data);
+  console.log(data)
 };
 
 homepageHandler.prototype.getProdMatch = function(prodTitle) {
   var query = encodeURIComponent(prodTitle);
-  console.log(query)
-  var that = this;
+    var that = this;
   $.ajax({
     url: "/match?title="+query,
     success: function (data, addToList) {
@@ -126,7 +124,7 @@ homepageHandler.prototype.getProductInfo = function(prodTitle, newItem) {
 };
 
 homepageHandler.prototype.handleItemResponse = function(e, newItem) {
-  this.wooliesItem = e;
+  this.colesItem = e;
   var selected = $(".tt-cursor .dropdown-price");
   if (!selected) {
     return;
@@ -137,15 +135,15 @@ homepageHandler.prototype.handleItemResponse = function(e, newItem) {
 };
 
 homepageHandler.prototype.matchCallback = function(e) {
-  this.colesItem = e;
+  this.wooliesItem = e;
   var title = $(".tt-input").val();
   this.getProductInfo(title, true)
 };
 
 homepageHandler.prototype.handleMatchResponse = function(e) {
   // Should replace this with the actual method of best match.
-  var bestMatch = encodeURIComponent(e.pop());
-  console.log(e)
+  var bestMatch = encodeURIComponent(e.shift());
+  this.matchList = e;
   var that = this;
   $.ajax({
     url: "/item?title="+bestMatch,
@@ -160,18 +158,45 @@ homepageHandler.prototype.handleMatchResponse = function(e) {
  * @param {Object} wooliesItem The object of the woolies product item.
 */
 homepageHandler.prototype.appendShoppingItem = function(colesItem, wooliesItem) {
+  var that = this;
   var source   = $("#entry-template").html();
   colesItem = this.colesItem;
   colesItem["store"] = "coles";
   wooliesItem = this.wooliesItem;
   wooliesItem["store"] = "woolies";
-  console.log(wooliesItem);
   var template = Handlebars.compile(source);
   newContainer = document.createElement('div')
   newContainer.className = "shopping-list-item-container";
   newContainer.innerHTML += (template(colesItem));
   newContainer.innerHTML += (template(wooliesItem));
+  newContainer.innerHTML += '<div class="shopping-list-item-delete"><i class="fa fa-times"></i></div>';
   $(".content-container").append(newContainer);
+
+  // Temp hack to add dropdown
+  // TODO(Fraser): Add a proper func which determines which store should have the dropdown.
+  var dropdownButton = document.createElement('span');
+  var dropdownCon = document.createElement('div');
+  dropdownCon.className = "shopping-list-dropdown-container hidden";
+  dropdownButton.className = "shopping-list-dropdown-button";
+  dropdownButton.innerHTML = "<i class='fa fa-chevron-down'></i>";
+  $(".shopping-list-name-container.woolies", newContainer).append(dropdownButton);
+  $(".shopping-list-name-container.woolies", newContainer).append(dropdownCon);
+  $(this.matchList).each(function(i, item) {
+    var dropdownOpt = document.createElement('div');
+    dropdownOpt.className = "shopping-list-dropdown-option";
+    $(dropdownOpt).text(that.matchList.shift());
+    $(dropdownCon).append(dropdownOpt)
+  });
+  TweenLite.to(newContainer, .5, {opacity:1});
+  $(dropdownButton).click(function() {
+    $(dropdownCon).removeClass("hidden");
+    TweenLite.to(dropdownCon, .5, {opacity:1});
+  });
+  (function(){
+    $(".shopping-list-item-delete", newContainer).click(function() {
+      $(newContainer).remove();
+    });
+  });
   this.updateListCost();
 };
 
@@ -183,15 +208,15 @@ homepageHandler.prototype.updateListCost = function() {
   var colesTotal = 0;
   var wooliesTotal = 0;
   var cheapestTotal = 0;
-  $(".item-container").each(function(item) {
-    var colesPrice = parseFloat($("ppu-coles", $(this)).text());
-    var wooliesPrice = parseFloat($("ppu-woolies", $(this)).text());
+  $(".shopping-list-item-container").each(function(item) {
+    var colesPrice = parseFloat($(".ppu-coles", $(this)).text());
+    var wooliesPrice = parseFloat($(".ppu-woolies", $(this)).text());
     if (colesPrice < wooliesPrice) {
-      cheapestTotal += colesPrice
-      $("ppu-coles", $(this)).addClass("cheaper");
+      cheapestTotal += colesPrice;
+      $(".shopping-list-price-container.coles", $(this)).addClass("cheaper");
     } else {
-      cheapestTotal += wooliesPrice
-      $("ppu-woolies", $(this)).addClass("cheaper");
+      cheapestTotal += wooliesPrice;
+      $(".shopping-list-price-container.woolies", $(this)).addClass("cheaper");
     }
   });
   $(".ppu-coles").each(function() {
