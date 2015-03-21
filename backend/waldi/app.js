@@ -38,6 +38,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+app.get('/intro', routes.intro);
 // app.get('/users', user.list);
 
 // Most common items

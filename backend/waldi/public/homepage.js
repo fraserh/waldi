@@ -36,9 +36,15 @@ homepageHandler.prototype.initSearchListeners = function() {
   // Jquery's proxy fn is not agreeing with this event listener, so this is a quick workaround.
   var that = this;
   that.typingTimeout = null;
-  $(".dropdown-more-results").click(function() {
-    
+  $(".dropdown-title").click(function() {
+    console.log("got here");
   });
+  $(".search-button").click(function(){
+    that.getMoreResults($(".tt-input").val());
+  })
+  $(document).click(function(e){
+    console.log(e);
+  })
   $(document).keydown(function(e) {
     // If user doesn't type for 0.4s, load the prices!
     clearTimeout(that.typingTimeout);
@@ -92,7 +98,8 @@ homepageHandler.prototype.getMoreResults = function(prodTitle) {
 };
 
 homepageHandler.prototype.handleMoreResultsResponse = function(data) {
-  };
+  console.log(data)
+};
 
 homepageHandler.prototype.getProdMatch = function(prodTitle) {
   var query = encodeURIComponent(prodTitle);
@@ -162,6 +169,7 @@ homepageHandler.prototype.appendShoppingItem = function(colesItem, wooliesItem) 
   newContainer.className = "shopping-list-item-container";
   newContainer.innerHTML += (template(colesItem));
   newContainer.innerHTML += (template(wooliesItem));
+  newContainer.innerHTML += '<div class="shopping-list-item-delete"><i class="fa fa-times"></i></div>';
   $(".content-container").append(newContainer);
 
   // Temp hack to add dropdown
@@ -170,9 +178,9 @@ homepageHandler.prototype.appendShoppingItem = function(colesItem, wooliesItem) 
   var dropdownCon = document.createElement('div');
   dropdownCon.className = "shopping-list-dropdown-container hidden";
   dropdownButton.className = "shopping-list-dropdown-button";
-  dropdownButton.innerHTML = "more";
-  $(".shopping-list-name-container.woolies").append(dropdownButton);
-  $(".shopping-list-name-container.woolies").append(dropdownCon);
+  dropdownButton.innerHTML = "<i class='fa fa-chevron-down'></i>";
+  $(".shopping-list-name-container.woolies", newContainer).append(dropdownButton);
+  $(".shopping-list-name-container.woolies", newContainer).append(dropdownCon);
   $(this.matchList).each(function(i, item) {
     var dropdownOpt = document.createElement('div');
     dropdownOpt.className = "shopping-list-dropdown-option";
@@ -183,6 +191,11 @@ homepageHandler.prototype.appendShoppingItem = function(colesItem, wooliesItem) 
   $(dropdownButton).click(function() {
     $(dropdownCon).removeClass("hidden");
     TweenLite.to(dropdownCon, .5, {opacity:1});
+  });
+  (function(){
+    $(".shopping-list-item-delete", newContainer).click(function() {
+      $(newContainer).remove();
+    });
   });
   this.updateListCost();
 };

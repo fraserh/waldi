@@ -7,6 +7,7 @@
     <meta name="description" content="Making comparing grocery prices simple.">
     <meta name="keywords" content="waldi shopping compare groceries">
     <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
@@ -21,6 +22,7 @@
       </div>
       <div class="search-container">
       <div class="typeahead-wrapper" id="prefetch">
+        <div class="search-button"></div>
         <input class="typeahead searchbar" type="text" placeholder="Enter a product">
       </div>
     </div>
@@ -34,7 +36,6 @@
         <div class="top-bar-option">About</div>
       </div>
     </div>
-    
     <div class="content-bg">
       <div class="content-container">
         <div class="total-cost-container">
@@ -57,6 +58,9 @@
           <div class="shopping-list-price-kle">${{price_per_kle}}/{{kle}}</div>
         </div>
       </div>
+    </script>
+    <script id="more-results-template" type="text/x-handlebars-template">
+      <div class="more-results-bg"></div>
     </script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
     <script src="jquery.js"></script>
