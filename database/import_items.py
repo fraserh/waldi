@@ -56,6 +56,7 @@ def main():
   filename = sys.argv[1]
   with open(filename, 'rb') as csvfile:
     for row in csv.reader(csvfile, skipinitialspace=True):
+      print row
       print line_to_redis(row)
 
 if __name__ == '__main__':
