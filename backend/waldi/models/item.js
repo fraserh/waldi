@@ -62,6 +62,12 @@ exports.items = function(items, callback) {
   });
 };
 
+// Updates an two items' match rating by incrementing
+exports.updateMatchRating = function(anchor, match, callback) {
+  var incrementBy = 0.1;
+  externalStore.incrementMatchRating(anchor, match, incrementBy, callback);
+};
+
 // Provides autocomplete suggestions given a partial title
 exports.autocomplete = function(partialTitle, n, callback) {
   externalStore.autocomplete(partialTitle, n, callback);

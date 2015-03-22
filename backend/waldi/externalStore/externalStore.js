@@ -87,10 +87,22 @@ exports.autocomplete = function(partialTitle, n, callback) {
 // Matches
 exports.matches = function(title, n, callback) {
   client.zrevrange("match:" + title, 0, n, function(err, data) {
-    console.log(title)
-    console.log(n)
-    console.log(data);
     callback(err, data);
+  });
+};
+
+exports.incrementMatchRating = function(anchor, match, incrementBy, callback) {
+  // Get the current match rating
+  console.log(anchor, match, incrementBy);
+  client.zscore("match:" + anchor, match, function(err, rating) {
+    console.log(err, rating);
+
+    if (err || !rating) return callback(err, rating);
+    var newRating = parseFloat(rating) + incrementBy;
+    console.log(newRating);
+    client.zadd("match:" + anchor, newRating, match, function(err, data) {
+      return callback(err, data);
+    });
   });
 };
 

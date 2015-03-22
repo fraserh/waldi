@@ -70,6 +70,10 @@ app.get('/match', item.match);
 // GET localhost/prepopulate
 app.get('/prepopulate', item.prepopulate);
 
+// Tweak the match rating between two items
+// PUT localhost/match?anchor=sausages&match=beef%20sausages
+app.put('/match', item.updateMatchRating);
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

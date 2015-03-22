@@ -98,6 +98,18 @@ exports.prepopulate = function(req, res) {
   });
 };
 
+exports.updateMatchRating = function(req, res) {
+  if (req.query.anchor && req.query.match) {
+    item.updateMatchRating(req.query.anchor, req.query.match,
+      function(err, data) {
+        if (!err) data = { code: 200, message: "Item updated" };
+        respondWithErrorOrData(res, err, data);
+    });
+  } else {
+    invalidRequestError(res);
+  }
+};
+
 function respondWithErrorOrData(res, err, data) {
   if (err || !data) {
     res.send(404, {
