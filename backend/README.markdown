@@ -32,3 +32,11 @@ Alphabetical auto-complete suggestion
 Matches (must provide exact matching title)
 
     GET '/match?title=apricots'
+
+Prepopulate the autocomplete
+
+    GET /prepopulate
+
+Increment a match's score (`apricot`'s match with `apricot jam` is to be incremented)
+
+    PUT /match?anchor=apricot&match=apricot%20jam
