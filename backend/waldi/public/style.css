@@ -48,6 +48,11 @@ body {
   font-family: 'Helvetica Neue';
   text-shadow: 1px 1px #000;
   cursor: pointer;
+  transition: all 0.3s;
+}
+
+.top-bar-option:hover {
+  color: #999;
 }
 
 .dropdown-more-results {
@@ -93,8 +98,49 @@ body {
   margin-top: 100px;
 }
 
+.more-results-content-wrapper {
+  max-width: 1000px;
+  height: 90%;
+  background-color: #fff;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 150px;
+  overflow-y: auto; 
+}
+
+.more-results-title {
+  width: 75%;
+  height: 80%;
+  overflow-y: auto; 
+  float: left;
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
+  text-transform: capitalize;
+  margin-left: 10px;
+  box-sizing: border-box;
+  color: #000;
+  font-family: "Helvetica Neue";
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+.more-results-title:hover {
+  color: #666;
+}
+
+.more-results-price {
+  color: #000;
+  height: 50px;
+  line-height: 50px;
+  float: left;
+  width: 19%;
+  text-align: center;
+  font-size: 16px;
+}
+
 .content-container {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: auto;
   margin-bottom: 50px;
 }
@@ -176,17 +222,37 @@ body {
   top: 0;
 }
 
+.shopping-list-cheapest-indicator {
+  width: 120px;
+  height: 64px;
+  position: absolute;
+  top: 2px;
+}
+
+.shopping-list-cheapest-indicator.coles {
+  right: 5px;
+}
+
+.shopping-list-cheapest-indicator.woolies {
+  left: 5px;
+}
+
+.cheaper .shopping-list-cheapest-indicator {
+  border: solid 2px;
+  border-color: rgba(5, 40, 75, 1);
+}
+
 .shopping-list-price-kle {
   height: 40px;
-  line-height: 50px;
-  font-size: 20px;
+  line-height: 35px;
+  font-size: 16px;
   color: rgba(0, 0, 0, 0.6);
 }
 
 .shopping-list-price-item {
   height: 20px;
-  padding-top: 8px;
-  font-size: 26px;
+  padding-top: 12px;
+  font-size: 20px;
 }
 
 .shopping-list-price-container.coles {
@@ -223,7 +289,7 @@ body {
 }
 
 .shopping-list-dropdown-container {
-  width: 260px;
+  width: 280px;
   padding-top: 40px;
   position: absolute;
   top: 25px;
@@ -233,16 +299,24 @@ body {
   margin-left: auto;
   margin-right: auto;
   opacity: 0;
+  cursor: pointer;
 }
 
 .shopping-list-dropdown-option {
   width: 100%;
   height: 40px;
   line-height: 40px;
-  font-size: 18px;
-  background-color: rgba(5, 40, 75, 0.6);
+  font-size: 14px;
+  font-weight: 400;
+  background-color: rgba(5, 40, 75, 0.95);
   color: #fff;
   cursor: pointer;
+  transition: all 0.6s;
+  font-family: "myriad-light";
+}
+
+.shopping-list-dropdown-option:hover {
+  background-color: #4a4663;
 }
 
 .hidden {
@@ -409,6 +483,13 @@ body {
 @font-face {
   font-family: 'Helvetica Neue';
   src: url('font/helvetica/HelveticaNeue.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'myriad-light';
+  src: url('font/MyriadPro-Light.otf');
   font-weight: normal;
   font-style: normal;
 }

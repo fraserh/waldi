@@ -3,6 +3,9 @@
 */
 
 var homepageHandler = function() {
+
+  // A stack of divs which when a user presses esc, should be removed from DOM.
+  this.escapableDivs = [];
   
   // Boolean to decide if options bar is showing.
   this.optionsVisible = false;
@@ -31,24 +34,29 @@ homepageHandler.prototype.initButtonListeners = function () {
     }
   });
 };
+
+homepageHandler.prototype.escapeNextModule = function() {
+  $(this.escapableDivs.pop()).remove();
+};
   
 homepageHandler.prototype.initSearchListeners = function() {
   // Jquery's proxy fn is not agreeing with this event listener, so this is a quick workaround.
   var that = this;
   that.typingTimeout = null;
+
   $(".dropdown-title").click(function() {
     console.log("got here");
   });
   $(".search-button").click(function(){
     that.getMoreResults($(".tt-input").val());
   })
-  $(document).click(function(e){
-    console.log(e);
-  })
   $(document).keydown(function(e) {
     // If user doesn't type for 0.4s, load the prices!
     clearTimeout(that.typingTimeout);
     that.typingTimeout = setTimeout(that.getPricesFromList, 1000);
+    if (e.keyCode == 27) {
+      that.escapeNextModule();
+    }
     if (! (e.keyCode==40 || e.keyCode==38 || e.keyCode==13)){
       return;
     }
@@ -60,6 +68,15 @@ homepageHandler.prototype.initSearchListeners = function() {
     if (title) {
       that.getProductInfo(title);
     }
+  });
+
+  $('.searchbar').on('focus', function (e) {
+    $(this)
+      .one('mouseup', function () {
+        $(this).select();
+        return false;
+      })
+      .select();
   });
 };
 
@@ -110,7 +127,7 @@ homepageHandler.prototype.getPricesFromList = function() {
             var currentNode = DOMElements[j];
 
             var title = currentNode.getElementsByClassName(titleClass)[0].textContent;
-            if (title === currentItem.title) {
+            if (currentItem.title && title === currentItem.title) {
               // We have a match. Update the price DOM element with 
               // this item's price.
               currentNode.getElementsByClassName(priceClass)[0].textContent =
@@ -135,7 +152,20 @@ homepageHandler.prototype.getMoreResults = function(prodTitle) {
 };
 
 homepageHandler.prototype.handleMoreResultsResponse = function(data) {
-  console.log(data)
+  var source   = $("#more-results-template").html();
+  var newContainer = Handlebars.compile(source);
+  source = $("#more-results-item-template").html();
+  $("body").append(newContainer);
+  var container = $(".more-results-content-wrapper");
+  var template = Handlebars.compile(source);
+  $.each(data, function(index, item) {
+    container.append(template({title:item}));
+  });
+  this.escapableDivs.push($(".more-results-bg"));
+  $(".more-results-bg").click(function() {
+    $(this).remove();
+    this.escapableDivs.pop();
+  })
 };
 
 homepageHandler.prototype.getProdMatch = function(prodTitle) {
@@ -226,14 +256,15 @@ homepageHandler.prototype.appendShoppingItem = function(colesItem, wooliesItem) 
   });
   TweenLite.to(newContainer, .5, {opacity:1});
   $(dropdownButton).click(function() {
-    $(dropdownCon).removeClass("hidden");
+    $(dropdownCon).toggleClass("hidden");
     TweenLite.to(dropdownCon, .5, {opacity:1});
   });
   (function(){
     $(".shopping-list-item-delete", newContainer).click(function() {
+      console.log(newContainer)
       $(newContainer).remove();
     });
-  });
+  })();
   this.updateListCost();
 };
 
@@ -250,10 +281,10 @@ homepageHandler.prototype.updateListCost = function() {
     var wooliesPrice = parseFloat($(".ppu-woolies", $(this)).text());
     if (colesPrice < wooliesPrice) {
       cheapestTotal += colesPrice;
-      $(".shopping-list-price-container.coles", $(this)).addClass("cheaper");
+      $(".shopping-list-item-coles-container", $(this)).addClass("cheaper");
     } else {
       cheapestTotal += wooliesPrice;
-      $(".shopping-list-price-container.woolies", $(this)).addClass("cheaper");
+      $(".shopping-list-item-woolies-container", $(this)).addClass("cheaper");
     }
   });
   $(".ppu-coles").each(function() {

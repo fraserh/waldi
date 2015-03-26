@@ -47,6 +47,7 @@
     </div>
     <script id="entry-template" type="text/x-handlebars-template">
       <div class="shopping-list-item-{{store}}-container item-container">
+        <div class = "shopping-list-cheapest-indicator {{store}}"></div>
         <div class="shopping-list-logo {{store}}"></div>
         <div class="shopping-list-name-container {{store}}">
           <span class="shopping-list-title">{{title}}</span>
@@ -60,16 +61,22 @@
       </div>
     </script>
     <script id="more-results-template" type="text/x-handlebars-template">
-      <div class="more-results-bg"></div>
+      <div class="more-results-bg">
+        <div class="more-results-content-wrapper"></div>
+      </div>
+    </script>
+    <script id="more-results-item-template" type="text/x-handlebars-template">
+      <div class="more-results-title">{{title}}</div>
+      <div class="more-results-price"><i class='fa fa-circle-o-notch fa-spin'></i></div>
     </script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
     <script src="jquery.js"></script>
     <script src="hb.js"></script>
     <script src="typeahead.bundle.min.js"></script>
-    <script src="examples.js"></script>
     <script src="homepage.js"></script>
     <script type="text/javascript">
       var handler = new homepageHandler();
     </script>
+    <script src="examples.js"></script>
   </body>
 </html>

@@ -11,14 +11,23 @@ function setupTypeahead() {
         url: '/prepopulate',
         filter: function(list) {
           return $.map(list, function(country) { return { 
-            name: country["prod"]
-          }; });
-        },
+              name: country["prod"]
+            };
+          });
+        }
+      },
       remote: {
-        url: "/search/autocomplete?title=%QUERY",
-        filter: function(e) { console.log(e); }
-      }  
-    }
+        url: '/search/autocomplete?title=%QUERY',
+        filter: function (taglist) {
+            // Map the remote source JSON array to a JavaScript object array
+            var i = 0;
+            return $.map(taglist, function (tag) {
+                return {
+                  name: tag
+                }
+            });
+          }
+      } 
   });
 
     products.initialize();
@@ -29,6 +38,7 @@ function setupTypeahead() {
         hint: true,
         minLength:2,
         highlight: true,
+        updater: function(item) {console.log(item)}
       },{
       source: products.ttAdapter(),
       name: 'titles',
@@ -37,5 +47,7 @@ function setupTypeahead() {
         suggestion: suggestHTML,
         footer: "<div class='dropdown-more-results'>More Results...</div>"
       }
+    }).on('typeahead:selected', function(object, data) {
+      
     });
 }

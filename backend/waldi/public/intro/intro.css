@@ -9,19 +9,35 @@ body {
   background-size: cover;
 }
 
+.section.first-slide {
+  background: url("../assets/img/food1.jpg");
+  background-size: cover;
+}
+
 #fullpage .intro-title-container {
   position: absolute;
   text-align: center;
-  width: 260px;
   height: 200px;
   line-height: 200px;
-  left: 50%;
+  padding: 20px 0;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
   top: 50%;
   margin-top: -100px;
-  margin-left: -130px;
   color: #fff;
-  font-size: 52px;
-  font-family: "Helvetica Neue";
+  font-size: 7.5rem;
+  font-family: 'Libre Baskerville', serif;
+  
+}
+
+#fullpage .intro-title {
+  border-top: solid 1px;
+  border-bottom: solid 1px;
+  border-color: rgba(255, 255, 255, 0.26);
+  display: inline-block;
+  padding: 0 80px;
 }
 
 .vertical-horizontal-align {
