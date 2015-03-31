@@ -37,7 +37,11 @@ def prettifyString(node, foo):
   """
   Removes all whitespace and html space chars
   """
-  return re.sub('\s+',' ', node).lower().strip().replace("&nbsp;","").replace("&amp;","and")
+  if "," in node:
+    print "Found the little fucker"
+    if "," in re.sub('\s+',' ', node).lower().strip().replace("&nbsp;","").replace("&amp;","and").replace(",", ""):
+      print "holy fuck, get out"
+  return re.sub('\s+',' ', node).lower().strip().replace("&nbsp;","").replace("&amp;","and").replace(",", "")
 
 def ignore_words(node, params):
   params = params[0]

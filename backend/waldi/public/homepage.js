@@ -86,6 +86,11 @@ homepageHandler.prototype.getPricesFromList = function() {
    if (!$(".dropdown-title").length){
     return;
   }
+  // $.each($(".tt-suggestion"), function(index, node) {
+  //   // node.click(function() {
+  //   //   console.log(this);
+  //   // })
+  // });
   $(".dropdown-title").each(function(index, title) {
     titles.push($(this).text());
     $(title).click(function(){
@@ -220,6 +225,24 @@ homepageHandler.prototype.handleMatchResponse = function(e) {
   });
 };
 
+homepageHandler.prototype.replaceProductMatch = function(newProduct, containerNode) {
+  var query = encodeURIComponent(newProduct);
+  var that = this;
+  $.ajax({
+    url: "/item?title="+query,
+    success: function (data) {
+      console.log(data);
+      console.log(containerNode);
+      console.log($(".ppu"));
+      $(".shopping-list-item-unit-volume", containerNode).text(data["unit_volume"]);
+      $(".ppu", containerNode).text(parseFloat(data["unit_price"]).toFixed(2));
+      $(".shopping-list-price-kle", containerNode).text("$" + parseFloat(data["price_per_kle"]).toFixed(2) 
+          + "/" + data["kle"]);
+      that.updateListCost();
+    }
+  });
+}
+
 /*** Append item to shopping list 
  * @param {Object} colesItem The object of the coles product item.
  * @param {Object} wooliesItem The object of the woolies product item.
@@ -246,22 +269,28 @@ homepageHandler.prototype.appendShoppingItem = function(colesItem, wooliesItem) 
   dropdownCon.className = "shopping-list-dropdown-container hidden";
   dropdownButton.className = "shopping-list-dropdown-button";
   dropdownButton.innerHTML = "<i class='fa fa-chevron-down'></i>";
-  $(".shopping-list-name-container.woolies", newContainer).append(dropdownButton);
-  $(".shopping-list-name-container.woolies", newContainer).append(dropdownCon);
+  var matchOptionContainer = $(".shopping-list-name-container.woolies", newContainer);
+  matchOptionContainer.append(dropdownButton);
+  matchOptionContainer.append(dropdownCon);
   $(this.matchList).each(function(i, item) {
     var dropdownOpt = document.createElement('div');
     dropdownOpt.className = "shopping-list-dropdown-option";
     $(dropdownOpt).text(that.matchList.shift());
     $(dropdownCon).append(dropdownOpt)
+    $(dropdownOpt).click(function() {
+      that.replaceProductMatch($(dropdownOpt).text(), $(".shopping-list-item-woolies-container"));
+      var prodTitle = $(dropdownOpt).text();
+      $(dropdownOpt).text($(".shopping-list-title", matchOptionContainer).text());
+      $(".shopping-list-title", matchOptionContainer).text(prodTitle);
+      $(dropdownCon).toggleClass("hidden");
+    })
   });
   TweenLite.to(newContainer, .5, {opacity:1});
   $(dropdownButton).click(function() {
     $(dropdownCon).toggleClass("hidden");
-    TweenLite.to(dropdownCon, .5, {opacity:1});
   });
   (function(){
     $(".shopping-list-item-delete", newContainer).click(function() {
-      console.log(newContainer)
       $(newContainer).remove();
     });
   })();
@@ -277,20 +306,22 @@ homepageHandler.prototype.updateListCost = function() {
   var wooliesTotal = 0;
   var cheapestTotal = 0;
   $(".shopping-list-item-container").each(function(item) {
-    var colesPrice = parseFloat($(".ppu-coles", $(this)).text());
-    var wooliesPrice = parseFloat($(".ppu-woolies", $(this)).text());
+    var colesPrice = parseFloat($(".ppu.coles", $(this)).text());
+    var wooliesPrice = parseFloat($(".ppu.woolies", $(this)).text());
     if (colesPrice < wooliesPrice) {
       cheapestTotal += colesPrice;
       $(".shopping-list-item-coles-container", $(this)).addClass("cheaper");
+      $(".shopping-list-item-woolies-container", $(this)).removeClass("cheaper");
     } else {
       cheapestTotal += wooliesPrice;
       $(".shopping-list-item-woolies-container", $(this)).addClass("cheaper");
+      $(".shopping-list-item-coles-container", $(this)).removeClass("cheaper");
     }
   });
-  $(".ppu-coles").each(function() {
+  $(".ppu.coles").each(function() {
     colesTotal += parseFloat($(this).text());
   });
-  $(".ppu-woolies").each(function() {
+  $(".ppu.woolies").each(function() {
     wooliesTotal += parseFloat($(this).text());
   });
   $("#total-cost-coles")[0].innerHTML = "$"+colesTotal.toFixed(2);

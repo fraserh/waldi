@@ -84,23 +84,23 @@ pure produce company dip avocado and olive, 22.5, 0.1KG, 4.49, 0.2KG, 1
 pure produce company dip beetroot and fresh dill, 22.5, 0.1KG, 4.49, 0.2KG, 1
 pure produce company dip bruschetta and fetta, 22.5, 0.1KG, 4.49, 0.2KG, 1
 pure produce company dip bruschetta mix, 22.5, 0.1KG, 4.49, 0.2KG, 1
-pure produce company dip capsicum, chives and parmasan, 22.5, 0.1KG, 4.49, 0.2KG, 1
+pure produce company dip capsicum chives and parmasan, 22.5, 0.1KG, 4.49, 0.2KG, 1
 pure produce company dip eggplant and fresh parsely, 22.5, 0.1KG, 4.49, 0.2KG, 1
 pure produce company dip honey soy artichoke, 22.5, 0.1KG, 4.49, 0.2KG, 1
 pure produce company dip sweet chilli tuna, 22.5, 0.1KG, 4.49, 0.2KG, 1
 pure produce company dip tarama with kalamatta, 22.5, 0.1KG, 4.49, 0.2KG, 1
 red rock deli basil pesto mozzarella and cashew, 24.0, 0.1KG, 3.60, 0.15KG, 1
-red rock deli dip beetroot, feta and cashew, 24.0, 0.1KG, 3.60, 0.15KG, 1
+red rock deli dip beetroot feta and cashew, 24.0, 0.1KG, 3.60, 0.15KG, 1
 red rock deli dip chilli and lemongrass, 24.0, 0.1KG, 3.60, 0.15KG, 1
 red rock deli dip eggplant and cashews, 24.0, 0.1KG, 3.60, 0.15KG, 1
-red rock deli dip mango, lime and cashews, 24.0, 0.1KG, 3.60, 0.15KG, 1
+red rock deli dip mango lime and cashews, 24.0, 0.1KG, 3.60, 0.15KG, 1
 red rock deli dip morrocan sweet potato, 24.0, 0.1KG, 3.60, 0.15KG, 1
 red rock deli dip spicy capsicum and cashews, 24.0, 0.1KG, 3.60, 0.15KG, 1
-red rock deli dip roasted red capsicum, pecorino, cashews and basil, 24.0, 0.1KG, 3.60, 0.15KG, 1
+red rock deli dip roasted red capsicum pecorino cashews and basil, 24.0, 0.1KG, 3.60, 0.15KG, 1
 ronda pate duck and mushroom and crkd pepper, 33.27, 1kg, 4.99, 0.15KG, 1
 ronda pate mini french pepper, 26.67, 1kg, 4.00, 0.15KG, 1
 ronda pate mini maison, 26.67, 1kg, 4.00, 0.15KG, 1
-sss dip hummus, coriander, cumin and mild chilli, 16.7, 0.1KG, 3.75, 0.225KG, 1
+sss dip hummus coriander cumin and mild chilli, 16.7, 0.1KG, 3.75, 0.225KG, 1
 sss dips hommus, 16.7, 0.1KG, 3.75, 0.225KG, 1
 tasmanian pate cracked pepper and orange brandy, 36.08, 1kg, 4.69, 0.13KG, 1
 tasmanian pate smoked salmon and cracked pepper, 36.08, 1kg, 4.69, 0.13KG, 1
@@ -224,7 +224,7 @@ latina ravioli roast chicken and garlic, 17.2, 0.1KG, 6.45, 0.375KG, 1
 latina ravioli roast chicken and garlic, 8.0, 0.1KG, 5.00, 0.625KG, 1
 latina tortellini veal, 8.0, 0.1KG, 5.00, 0.625KG, 1
 latina tortellini veal mixed, 17.2, 0.1KG, 6.45, 0.375KG, 1
-latina fresh capeletti mushroom, onion and feta, 23.2, 0.1KG, 6.50, 0.28KG, 1
+latina fresh capeletti mushroom onion and feta, 23.2, 0.1KG, 6.50, 0.28KG, 1
 latina fresh capelletti prosciutto ricotta and basil, 23.2, 0.1KG, 6.50, 0.28KG, 1
 latina fresh linguine chilli and garlic, 20.2, 0.1KG, 6.07, 0.3KG, 1
 latina fresh pappardelle basil and cracked pepper, 20.2, 0.1KG, 6.07, 0.3KG, 1
@@ -460,7 +460,7 @@ italian steam ready meals porcini mushroom linguine, 20.0, 0.1KG, 7.99, 0.4KG, 1
 leggos ricotta and roast vegetables tortillini, 15.8, 0.1KG, 5.70, 0.36KG, 1
 pasta master beef lasagne, 10.38, 1kg, 13.49, 1.3kg, 1
 pasta master lasagne beef 97% fat free, 12.49, 1kg, 12.49, 1kg, 1
-picasso tomato, olive, capers and chilli sauce, 19.8, 0.1KG, 6.34, 0.32KG, 1
+picasso tomato olive capers and chilli sauce, 19.8, 0.1KG, 6.34, 0.32KG, 1
 pitango risotto chicken garlic, 17.2, 0.1KG, 8.59, 0.5KG, 1
 pitango risotto pumpkin leek, 17.2, 0.1KG, 8.59, 0.5KG, 1
 spice and passion jasmine rice, 10.0, 0.1KG, 2.99, 0.3KG, 1
@@ -504,7 +504,7 @@ woolworths select lamb rogan josh and rice, 20.0, 0.1KG, 6.99, 0.35KG, 1
 woolworths select lasagne beef, 9.2, 0.1KG, 14.79, 1.6kg, 1
 woolworths select lasagne beef quick cook, 6.00, 1kg, 12.00, 2kg, 1
 woolworths select lasagne beef quick cook, 13.98, 1kg, 6.99, 0.5KG, 1
-woolworths select mango, chicken and rice, 20.0, 0.1KG, 6.99, 0.35KG, 1
+woolworths select mango chicken and rice, 20.0, 0.1KG, 6.99, 0.35KG, 1
 woolworths select meal bbq combo pack, 17.6, 0.1KG, 14.99, 0.85KG, 1
 woolworths select meal beef with bourbon glaze, 18.3, 0.1KG, 10.99, 0.6KG, 1
 woolworths select pumpkin parmesan risotto, 13.3, 0.1KG, 3.99, 0.3KG, 1

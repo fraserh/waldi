@@ -286,11 +286,13 @@ body {
   width: 60px;
   height: 30px;
   cursor: pointer;
+  position: relative;
+  z-index: 5; 
 }
 
 .shopping-list-dropdown-container {
   width: 280px;
-  padding-top: 40px;
+  margin-top: 40px;
   position: absolute;
   top: 25px;
   height: 40px;
@@ -298,8 +300,9 @@ body {
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  opacity: 0;
+  opacity: 1;
   cursor: pointer;
+  transition: all 0.4s;
 }
 
 .shopping-list-dropdown-option {
@@ -313,6 +316,9 @@ body {
   cursor: pointer;
   transition: all 0.6s;
   font-family: "myriad-light";
+  -webkit-box-shadow: 0px 3px 14px 0px rgba(0,0,0,0.31);
+  -moz-box-shadow: 0px 3px 14px 0px rgba(0,0,0,0.31);
+  box-shadow: 0px 3px 14px 0px rgba(0,0,0,0.31);
 }
 
 .shopping-list-dropdown-option:hover {
@@ -321,6 +327,7 @@ body {
 
 .hidden {
   display: none;
+  opacity: 0;
 }
 
 .search-button {

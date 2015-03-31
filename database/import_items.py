@@ -52,8 +52,11 @@ def add_to_autocomplete(title):
     r.zadd(collectionName, 0, word)
   r.zadd(collectionName, 0, title + "*")
 
-def main():
-  filename = sys.argv[1]
+def main(files):
+  if files:
+    filename = files
+  else:
+    filename = sys.argv[1]
   with open(filename, 'rb') as csvfile:
     for row in csv.reader(csvfile, skipinitialspace=True):
       print row
@@ -61,4 +64,4 @@ def main():
 
 if __name__ == '__main__':
   validate_args(sys.argv)
-  main()
+  main(None)

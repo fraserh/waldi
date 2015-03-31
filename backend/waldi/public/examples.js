@@ -21,6 +21,7 @@ function setupTypeahead() {
         filter: function (taglist) {
             // Map the remote source JSON array to a JavaScript object array
             var i = 0;
+            console.log(taglist)
             return $.map(taglist, function (tag) {
                 return {
                   name: tag
@@ -48,6 +49,6 @@ function setupTypeahead() {
         footer: "<div class='dropdown-more-results'>More Results...</div>"
       }
     }).on('typeahead:selected', function(object, data) {
-      
+      handler.getProdMatch(data["name"])
     });
 }

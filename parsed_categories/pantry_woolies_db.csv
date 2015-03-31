@@ -182,7 +182,7 @@ pringles share pack roast chicken, 13.3, 0.1KG, 1.99, 0.15KG, 1
 pringles share pack salt and vinegar, 13.3, 0.1KG, 1.99, 0.15KG, 1
 pringles share pack sour cream and onion, 13.3, 0.1KG, 1.99, 0.15KG, 1
 pringles share pack texas bbq, 13.3, 0.1KG, 1.99, 0.15KG, 1
-red rock deli share pack chicken, lemon and thyme, 15.2, 0.1KG, 2.50, NA, 1
+red rock deli share pack chicken lemon and thyme, 15.2, 0.1KG, 2.50, NA, 1
 red rock deli share pack honey soy chicken, 15.2, 0.1KG, 2.50, 0.165KG, 1
 red rock deli share pack lime and black pepper, 15.2, 0.1KG, 2.50, 0.165KG, 1
 red rock deli share pack sea salt, 15.2, 0.1KG, 2.50, 0.165KG, 1
@@ -521,7 +521,7 @@ uncle tobys space bites honey, 26.9, 0.1KG, 4.30, 0.16KG, 1
 woolworths select fruit wibbles apple and grape, 33.0, 0.1KG, 4.29, 0.022KG, 1
 woolworths select fruit wibbles apple and strawberry, 33.0, 0.1KG, 4.29, 0.022KG, 1
 woolworths select little families caramel choc chip, 12.8, 0.1KG, 3.21, 0.25KG, 1
-be natural bar four currant, berry, oats, 29.0, 0.1KG, 4.41, 0.152KG, 1
+be natural bar four currant berry oats, 29.0, 0.1KG, 4.41, 0.152KG, 1
 be natural bars dark chocolate, 26.2, 0.1KG, 5.51, 0.21KG, 1
 be natural nut bars almond cranberry, 34.6, 0.1KG, 5.54, 0.16KG, 1
 be natural nut delight bars, 34.6, 0.1KG, 5.54, 0.16KG, 1
@@ -536,8 +536,8 @@ carman's gourmet protein bars dark choc and cranberry, 29.6, 0.1KG, 5.91, 0.2KG,
 carman's indulgent variety bars, 24.9, 0.1KG, 10.46, 0.42KG, 1
 carman's muesli bars variety 12 pack, 19.4, 0.1KG, 10.46, 0.54KG, 1
 carman's nut bar almond hazelnut vanilla, 32.5, 0.1KG, 5.68, 0.175KG, 1
-carman's nut bars almond, cashew and cranberry, 32.5, 0.1KG, 5.68, 0.175KG, 1
-carman's nut bars macadamia, coconut and apricot, 32.5, 0.1KG, 5.68, 0.175KG, 1
+carman's nut bars almond cashew and cranberry, 32.5, 0.1KG, 5.68, 0.175KG, 1
+carman's nut bars macadamia coconut and apricot, 32.5, 0.1KG, 5.68, 0.175KG, 1
 carman's original breakfast bars, 20.9, 0.1KG, 5.64, 0.27KG, 1
 carman's roasted nut bars dark choc cranberry blueberry, 35.5, 0.1KG, 5.68, 0.16KG, 1
 carman's roasted nut bars dark choc espresso, 35.5, 0.1KG, 5.68, 0.16KG, 1
@@ -902,7 +902,7 @@ woolworths gold gourmet coconut and macadamia muesli, 15.0, 0.1KG, 7.51, 0.5KG, 
 woolworths gold gourmet oven baked premium nut muesli, 15.0, 0.1KG, 7.51, 0.5KG, 1
 woolworths gold muesli clusters macadamia and orange, 15.0, 0.1KG, 7.51, 0.5KG, 1
 woolworths select berry bircher muesli, 7.7, 0.1KG, 4.99, 0.65KG, 1
-woolworths select muesli apricot, date and almond, 5.1, 0.1KG, 3.85, 0.75KG, 1
+woolworths select muesli apricot date and almond, 5.1, 0.1KG, 3.85, 0.75KG, 1
 woolworths select muesli low fat, 5.1, 0.1KG, 3.85, 0.75KG, 1
 woolworths select muesli summer fruit, 5.1, 0.1KG, 3.85, 0.75KG, 1
 woolworths select muesli toasted honey and cinnamon, 5.1, 0.1KG, 3.85, 0.75KG, 1
@@ -922,7 +922,7 @@ macro organic oats unstabilised rolled, 6.4, 0.1KG, 4.83, 0.75KG, 1
 uncle tobys oats brown sugar and cinnamon sachets, 12.8, 0.1KG, 5.38, 0.42KG, 1
 uncle tobys oats creamy vanilla sachet, 12.8, 0.1KG, 5.38, 0.42KG, 1
 uncle tobys oats cup creamy honey, 44.0, 0.1KG, 2.20, 0.05KG, 1
-uncle tobys oats fig, sultana and maple, 19.1, 0.1KG, 5.36, 0.28KG, 1
+uncle tobys oats fig sultana and maple, 19.1, 0.1KG, 5.36, 0.28KG, 1
 uncle tobys oats mixed, 19.1, 0.1KG, 5.36, 0.28KG, 1
 uncle tobys oats multigrain sachet variety, 15.4, 0.1KG, 5.38, 0.35KG, 1
 uncle tobys oats oandg honey fig and macadamia, 16.9, 0.1KG, 6.44, 0.38KG, 1
@@ -2198,7 +2198,7 @@ campbells canned soup split pea and ham, 4.8, 0.1KG, 2.03, 0.42KG, 1
 campbells canned soup tomato condensed, 4.8, 0.1KG, 2.03, 0.42KG, 1
 campbells cafe canned soup angus beef and red wine, 8.3, 0.1KG, 4.18, 0.505KG, 1
 campbells cafe canned soup braised lamb and vegetables, 8.3, 0.1KG, 4.18, 0.505KG, 1
-campbells cafe canned soup chicken, mushroom and wild rice, 8.4, 0.1KG, 4.18, 0.495KG, 1
+campbells cafe canned soup chicken mushroom and wild rice, 8.4, 0.1KG, 4.18, 0.495KG, 1
 campbells cafe canned soup creamy lamb korma, 8.3, 0.1KG, 4.18, 0.505KG, 1
 campbells cafe canned soup creamy pumpkin with ravioli, 8.3, 0.1KG, 4.18, 0.505KG, 1
 campbells cafe canned soup peppered steak and mushroom, 8.3, 0.1KG, 4.18, 0.505KG, 1
@@ -2385,7 +2385,7 @@ heinz soup of the day soup pouch mushroom with a hint of thyme, 10.0, 0.1KG, 4.3
 heinz soup of the day soup pouch old fashioned chicken, 10.0, 0.1KG, 4.30, 0.43KG, 1
 heinz soup of the day soup pouch spiced winter vegetables, 10.0, 0.1KG, 4.30, 0.43KG, 1
 heinz soup of the day soup pouch spicy pumpkin, 10.0, 0.1KG, 4.30, 0.43KG, 1
-heinz soup of the day soup pouch tomato, vegetable and lentil, 10.0, 0.1KG, 4.30, 0.43KG, 1
+heinz soup of the day soup pouch tomato vegetable and lentil, 10.0, 0.1KG, 4.30, 0.43KG, 1
 la zuppa soup pouch creamy chicken and vegetable, 8.7, 0.1KG, 4.71, 0.54KG, 1
 la zuppa soup pouch roasted pumpkin, 8.7, 0.1KG, 4.71, 0.54KG, 1
 la zuppa soup pouch rustic vegetable, 8.7, 0.1KG, 4.71, 0.54KG, 1
@@ -2401,7 +2401,7 @@ heinz soup of the day soup pouch mushroom with a hint of thyme, 10.0, 0.1KG, 4.3
 heinz soup of the day soup pouch old fashioned chicken, 10.0, 0.1KG, 4.30, 0.43KG, 1
 heinz soup of the day soup pouch spiced winter vegetables, 10.0, 0.1KG, 4.30, 0.43KG, 1
 heinz soup of the day soup pouch spicy pumpkin, 10.0, 0.1KG, 4.30, 0.43KG, 1
-heinz soup of the day soup pouch tomato, vegetable and lentil, 10.0, 0.1KG, 4.30, 0.43KG, 1
+heinz soup of the day soup pouch tomato vegetable and lentil, 10.0, 0.1KG, 4.30, 0.43KG, 1
 la zuppa soup pouch creamy chicken and vegetable, 8.7, 0.1KG, 4.71, 0.54KG, 1
 la zuppa soup pouch roasted pumpkin, 8.7, 0.1KG, 4.71, 0.54KG, 1
 la zuppa soup pouch rustic vegetable, 8.7, 0.1KG, 4.71, 0.54KG, 1
@@ -2417,7 +2417,7 @@ heinz soup of the day soup pouch mushroom with a hint of thyme, 10.0, 0.1KG, 4.3
 heinz soup of the day soup pouch old fashioned chicken, 10.0, 0.1KG, 4.30, 0.43KG, 1
 heinz soup of the day soup pouch spiced winter vegetables, 10.0, 0.1KG, 4.30, 0.43KG, 1
 heinz soup of the day soup pouch spicy pumpkin, 10.0, 0.1KG, 4.30, 0.43KG, 1
-heinz soup of the day soup pouch tomato, vegetable and lentil, 10.0, 0.1KG, 4.30, 0.43KG, 1
+heinz soup of the day soup pouch tomato vegetable and lentil, 10.0, 0.1KG, 4.30, 0.43KG, 1
 la zuppa soup pouch creamy chicken and vegetable, 8.7, 0.1KG, 4.71, 0.54KG, 1
 la zuppa soup pouch roasted pumpkin, 8.7, 0.1KG, 4.71, 0.54KG, 1
 la zuppa soup pouch rustic vegetable, 8.7, 0.1KG, 4.71, 0.54KG, 1
@@ -3003,7 +3003,7 @@ woolworths select rosemary leaves, 0.78, 0.01KG, 1.40, 0.018KG, 1
 woolworths select thyme leaves, 2.11, 0.01KG, 2.53, 0.012KG, 1
 hoyts lemon pepper, 0.45, 0.01KG, 2.26, 0.05KG, 1
 masterfoods lemon pepper, 0.31, 0.01KG, 5.21, 0.17KG, 1
-masterfoods perfect for roast lamb with lemon, thyme and rosemary, 1.37, 0.01KG, 2.74, 0.02KG, 1
+masterfoods perfect for roast lamb with lemon thyme and rosemary, 1.37, 0.01KG, 2.74, 0.02KG, 1
 woolworths select mint flakes, 2.39, 0.01KG, 1.67, 0.007KG, 1
 hoyts mixed herbs, 0.62, 0.01KG, 1.56, 0.025KG, 1
 masterfoods mixed herbs dried, 2.13, 0.01KG, 2.13, 0.01KG, 1
@@ -3039,7 +3039,7 @@ masterfoods paprika, 0.56, 0.01KG, 6.44, 0.115KG, 1
 masterfoods paprika ground, 0.76, 0.01KG, 2.67, 0.035KG, 1
 masterfoods paprika smoked, 0.93, 0.01KG, 3.54, 0.038KG, 1
 jamie oliver stuffing mix sundried tomato and hot chilli, 0.32, 0.01KG, 3.49, 0.11KG, 1
-jamie oliver stuffing mix wild sage, red onion, chestnut, 0.32, 0.01KG, 3.49, 0.11KG, 1
+jamie oliver stuffing mix wild sage red onion chestnut, 0.32, 0.01KG, 3.49, 0.11KG, 1
 tandaco stuffing mix, 0.12, 0.01KG, 2.47, 0.2KG, 1
 white wings stuffing mix hamburger helper, 0.30, 0.01KG, 3.28, 0.11KG, 1
 pressed purity almond oil cold pressed, 2.24, 0.1L, 5.59, 0.25L, 1
@@ -3076,7 +3076,7 @@ woolworths select pepper black whole, 0.37, 0.01KG, 3.71, 0.1KG, 1
 woolworths select pepper cayenne, 1.04, 0.01KG, 3.12, 0.03KG, 1
 masterfoods piri piri, 0.87, 0.01KG, 3.21, 0.037KG, 1
 hoyts rosemary, 0.56, 0.01KG, 1.39, 0.025KG, 1
-hoyts saffron, 1,514.00, 0.01KG, 15.14, 100mg, 1
+hoyts saffron, 1514.00, 0.01KG, 15.14, 100mg, 1
 hoyts saffron powder, 1.14, 0.01KG, 1.71, 0.015KG, 1
 masterfoods saffron, 152.40, 0.01KG, 7.62, 0.005KG, 1
 health rite seasoning vegetable salt, 0.11, 0.01KG, 2.78, 0.25KG, 1
@@ -3142,11 +3142,11 @@ kikkoman marinade honey soy, 1.36, 0.1L, 3.39, 0.25L, 1
 kikkoman marinade teriyaki, 1.36, 0.1L, 3.39, 0.25L, 1
 lee kum kee marinade teriyaki beef, 21.5, 0.1KG, 2.15, 0.1KG, 1
 masterfoods marinade honey bbq, 8.6, 0.1KG, 3.21, 0.375KG, 1
-masterfoods marinade mustard, honey and herb, 6.9, 0.1KG, 2.60, 0.375KG, 1
+masterfoods marinade mustard honey and herb, 6.9, 0.1KG, 2.60, 0.375KG, 1
 masterfoods marinade red wine and garlic, 6.9, 0.1KG, 2.60, 0.375KG, 1
 masterfoods marinade satay, 6.9, 0.1KG, 2.60, 0.375KG, 1
 masterfoods marinade smokey bbq, 6.9, 0.1KG, 2.60, 0.375KG, 1
-masterfoods marinade soy, honey and garlic, 6.9, 0.1KG, 2.60, 0.375KG, 1
+masterfoods marinade soy honey and garlic, 6.9, 0.1KG, 2.60, 0.375KG, 1
 masterfoods marinade sweet plum, 6.9, 0.1KG, 2.60, 0.375KG, 1
 nandos marinade peri peri hot, 12.5, 0.1KG, 3.25, 0.26KG, 1
 nandos marinade peri peri lemon and herb, 12.0, 0.1KG, 3.25, 0.27KG, 1
@@ -3202,7 +3202,7 @@ kan tong stir fry sauce black bean, 5.9, 0.1KG, 3.00, 0.51KG, 1
 kan tong stir fry sauce butter chicken, 6.2, 0.1KG, 3.00, 0.485KG, 1
 kan tong stir fry sauce chinese barbecue, 6.2, 0.1KG, 3.00, 0.52KG, 1
 kan tong stir fry sauce honey teriyaki, 5.9, 0.1KG, 3.00, 0.51KG, 1
-kan tong stir fry sauce honey, sesame and garlic, 5.8, 0.1KG, 3.00, 0.52KG, 1
+kan tong stir fry sauce honey sesame and garlic, 5.8, 0.1KG, 3.00, 0.52KG, 1
 kan tong stir fry sauce peanut satay, 5.9, 0.1KG, 3.00, 0.505KG, 1
 kan tong stir fry sauce pineapple sweet and sour, 5.8, 0.1KG, 3.00, 0.515KG, 1
 kan tong stir fry sauce sizzling mongolian, 5.8, 0.1KG, 3.00, 0.52KG, 1
@@ -3224,9 +3224,9 @@ maggi creations stir fry sauce satay chicken, 24.0, 0.1KG, 3.60, 0.15KG, 1
 maggi creations stir fry sauce sweetchilli ginger lemongrass, 24.0, 0.1KG, 3.60, 0.15KG, 1
 maggi creations stir fry sauce teryaki and sesame chicken, 24.0, 0.1KG, 3.60, 0.15KG, 1
 maggi stir fry creations stir fry sauce chinese bbq pork, 24.0, 0.1KG, 3.60, 0.15KG, 1
-maggi stir fry creations stir fry sauce sweet chilli, garlic and..., 24.0, 0.1KG, 3.60, 0.15KG, 1
+maggi stir fry creations stir fry sauce sweet chilli garlic and..., 24.0, 0.1KG, 3.60, 0.15KG, 1
 masterfoods stir fry sauce chinese beef, 13.4, 0.1KG, 2.35, 0.175KG, 1
-masterfoods stir fry sauce honey, garlic and soy, 13.4, 0.1KG, 2.35, 0.175KG, 1
+masterfoods stir fry sauce honey garlic and soy, 13.4, 0.1KG, 2.35, 0.175KG, 1
 masterfoods stir fry sauce satay chicken, 13.4, 0.1KG, 2.35, 0.175KG, 1
 masterfoods stir fry sauce teriyaki chicken, 13.4, 0.1KG, 2.35, 0.175KG, 1
 masterfoods stir fry sauce thai green curry, 13.4, 0.1KG, 2.35, 0.175KG, 1
@@ -3456,7 +3456,7 @@ masterfoods casserole italian chicken, 13.4, 0.1KG, 2.35, 0.175KG, 1
 masterfoods master mix chilli con carne, 57.3, 0.1KG, 2.29, 0.04KG, 1
 masterfoods oven easy creamy chicken and leek, 15.4, 0.1KG, 2.46, 0.16KG, 1
 masterfoods oven easy garlic oregano lemon chicken, 15.4, 0.1KG, 2.46, 0.16KG, 1
-masterfoods perfect for chicken with paprika, onion and garlic, 1.37, 0.01KG, 2.74, 0.02KG, 1
+masterfoods perfect for chicken with paprika onion and garlic, 1.37, 0.01KG, 2.74, 0.02KG, 1
 masterfoods perfect for roast chicken with sage thyme and roast ..., 1.37, 0.01KG, 2.74, 0.02KG, 1
 masterfoods recipe base apricot chicken, 13.4, 0.1KG, 2.35, 0.175KG, 1
 masterfoods recipe base beef stroganoff, 13.4, 0.1KG, 2.35, 0.175KG, 1
@@ -3548,7 +3548,7 @@ saxa salt cooking, 0.01, 0.01KG, 2.14, 2kg, 1
 saxa salt cooking, 0.02, 0.01KG, 1.99, 1kg, 1
 saxa salt cooking iodised, 0.02, 0.01KG, 1.99, 1kg, 1
 jamie oliver salt grinder smoked chilli, 1.07, 0.01KG, 5.36, 0.05KG, 1
-jamie oliver salt grinder thyme, lemon and bay salt, 0.77, 0.01KG, 5.36, 0.07KG, 1
+jamie oliver salt grinder thyme lemon and bay salt, 0.77, 0.01KG, 5.36, 0.07KG, 1
 natural salt grinder coarse sea crystals, 0.61, 0.01KG, 5.48, 0.09KG, 1
 saxa sea salt grinder black cyprus, 1.13, 0.01KG, 5.64, 0.05KG, 1
 saxa sea salt grinder blue persian, 0.59, 0.01KG, 5.64, 0.095KG, 1
@@ -4244,8 +4244,8 @@ codral relief decongestant, 15.36, 1ea, 15.36, 20pk, 1
 codral relief mucus cough and cold, 6.18, 0.1L, 12.35, 0.2L, 1
 dimetapp saline nasal drops infants, 39.37, 0.1L, 11.81, 0.03L, 1
 dimetapp saline nasal drops kids, 39.37, 0.1L, 11.81, 0.03L, 1
-ease a cold cough syrups cough, cold and flu liquid, 15.49, 0.1L, 18.59, 0.12L, 1
-ease a cold lozenge cough, cold and flu, 0.31, 1ea, 7.51, 24pk, 1
+ease a cold cough syrups cough cold and flu liquid, 15.49, 0.1L, 18.59, 0.12L, 1
+ease a cold lozenge cough cold and flu, 0.31, 1ea, 7.51, 24pk, 1
 natures way slim right powder vanilla, 18.6, 0.1KG, 6.99, 0.375KG, 1
 oh yeah bar choc caramel, 71.3, 0.1KG, 3.21, 0.045KG, 1
 rapid loss shake mix banana, 36.0, 0.1KG, 26.99, 0.75KG, 1
@@ -4427,7 +4427,7 @@ nicorette quit smoking gum classic reg strength 2mg, 41.55, $41.55 / 100ea, 31.1
 nicorette quit smoking gum extra strength 4mg, 41.55, $41.55 / 100ea, 31.16, 75pk, 1
 nicorette quit smoking gum icy mint 2mg, 0.59, 1ea, 8.82, 15pk, 1
 ease a cold lozenges cold and congestion, 0.34, 1ea, 5.36, 16, 1
-ease a cold tablets cough, cold and flu, 0.82, 1ea, 19.66, 24pk, 1
+ease a cold tablets cough cold and flu, 0.82, 1ea, 19.66, 24pk, 1
 ease a cold tablets day and night, 61.97, $61.97 / 100ea, 18.59, 30pk, 1
 ease a cold tablets kids cold and flu burstlets, 0.69, 1ea, 16.44, 24pk, 1
 eureka oil eucalyptus solution, 2.47, 0.1L, 12.35, 0.5L, 1
@@ -4558,12 +4558,12 @@ blackmores b complex tablets, 48.52, $48.52 / 100ea, 15.04, 31pk, 1
 blackmores bio c tablets 1000mg, 31.21, $31.21 / 100ea, 19.35, 62pk, 1
 blackmores bio zinc skin health tablets, 23.04, $23.04 / 100ea, 19.35, 84pk, 1
 blackmores bone health total calcium magnesium and d3, 23.38, $23.38 / 100ea, 46.76, 200pk, 1
-blackmores cold and flue relief echinacea, ace and zinc tablets, 36.73, $36.73 / 100ea, 22.04, 60pk, 1
+blackmores cold and flue relief echinacea ace and zinc tablets, 36.73, $36.73 / 100ea, 22.04, 60pk, 1
 blackmores cold relief bio c chewable 500mg, 12.04, $12.04 / 100ea, 15.05, 125pk, 1
 blackmores cramps bio magnesium tablets, 24.73, $24.73 / 100ea, 24.73, 100pk, 1
 blackmores executive b stress formula tablets, 44.14, $44.14 / 100ea, 12.36, 28pk, 1
 blackmores eye health macu-vision, 14.33, $14.33 / 100ea, 21.49, 150pk, 1
-blackmores for women nails, hair and skin tablets, 27.77, $27.77 / 100ea, 16.66, 60pk, 1
+blackmores for women nails hair and skin tablets, 27.77, $27.77 / 100ea, 16.66, 60pk, 1
 blackmores healthy joints joint formula, 34.40, $34.40 / 100ea, 41.28, 120pk, 1
 blackmores healthy joints lyprinol, 68.78, $68.78 / 100ea, 34.39, 50pk, 1
 blackmores immunity defense vitamin c garlic and horseradish, 23.88, $23.88 / 100ea, 21.49, 90pk, 1
@@ -4579,11 +4579,11 @@ caltrate 1000iu bone and muscle health tablets, 18.22, $18.22 / 100ea, 18.22, 10
 caltrate 1000iu vitamin d tablets, 17.90, $17.90 / 100ea, 10.74, 60pk, 1
 caltrate 500iu bone health tablets, 18.22, $18.22 / 100ea, 18.22, 100pk, 1
 cenovis b complex tablets, 6.01, $6.01 / 100ea, 6.61, 110, 1
-cenovis cold and immunity echinacea, garlic, zinc and c, 25.08, $25.08 / 100ea, 15.05, 60pk, 1
+cenovis cold and immunity echinacea garlic zinc and c, 25.08, $25.08 / 100ea, 15.05, 60pk, 1
 cenovis cranberry 10000 capsules, 31.63, $31.63 / 100ea, 9.49, 30, 1
 cenovis easy sleep valerian 200mg capsules, 39.37, $39.37 / 100ea, 11.81, 30, 1
 cenovis echinacea 5000mg capsules, 25.08, $25.08 / 100ea, 15.05, 60, 1
-cenovis echinacea, garlic, zinc and c tablets value pack, 21.49, $21.49 / 100ea, 26.86, 125, 1
+cenovis echinacea garlic zinc and c tablets value pack, 21.49, $21.49 / 100ea, 26.86, 125, 1
 cenovis garlic and horseradish + c complex capsules, 13.43, $13.43 / 100ea, 16.11, 120, 1
 cenovis ginko biloba 2000 tablets value pack, 16.13, $16.13 / 100ea, 16.13, 100, 1
 cenovis magnesium value pack tablets, 6.00, $6.00 / 100ea, 12.00, 200, 1
@@ -4612,12 +4612,12 @@ herron vita-minis for kids raspberry, 11.81, $11.81 / 100ea, 11.81, 100pk, 1
 macro chewable vitamin c 500mg, 12.53, $12.53 / 100ea, 15.04, 120pk, 1
 macro fish oil 1500mg, 9.67, $9.67 / 100ea, 19.34, 200pk, 1
 macro glucosamine 1500mg one a day, 25.07, $25.07 / 100ea, 22.56, 90pk, 1
-macro hair, skin and nails, 21.48, $21.48 / 100ea, 12.89, 60pk, 1
+macro hair skin and nails, 21.48, $21.48 / 100ea, 12.89, 60pk, 1
 macro magnesium formula daily, 18.26, $18.26 / 100ea, 18.26, 100pk, 1
 macro probiotic daily, 71.63, $71.63 / 100ea, 21.49, 30pk, 1
 macro wild krill oil 500mg, 34.98, $34.98 / 100ea, 17.49, 50pk, 1
 matamucil satchets smooth orange, 0.36, 1ea, 10.74, 30pk, 1
-nature's own calcium, magnesium and vitamin d3 tablets, 12.75, $12.75 / 100ea, 15.30, 120, 1
+nature's own calcium magnesium and vitamin d3 tablets, 12.75, $12.75 / 100ea, 15.30, 120, 1
 nature's own cold sore relief tablets, 21.98, $21.98 / 100ea, 10.99, 50pk, 1
 nature's own complete sleep advanced tablets, 86.97, $86.97 / 100ea, 26.09, 30, 1
 nature's own complete sleep capsules, 102.43, $102.43 / 100ea, 30.73, 30, 1
@@ -4826,7 +4826,7 @@ aussie bodies protein revival chocolate 99% fat free, 1.06, 0.1L, 3.97, 0.375L, 
 aussie bodies protein revival coffee 99% fat free, 1.06, 0.1L, 3.97, 0.375L, 1
 bodytrim cookie choc-chip, 85.8, 0.1KG, 4.29, 0.05KG, 1
 bodytrim cookie double choc, 85.8, 0.1KG, 4.29, 0.05KG, 1
-bounce natural energy ball cacao, mint and protein ball, 84.3, 0.1KG, 3.54, 0.042KG, 1
+bounce natural energy ball cacao mint and protein ball, 84.3, 0.1KG, 3.54, 0.042KG, 1
 bounce natural energy ball coconut macadamia protein, 88.5, 0.1KG, 3.54, 0.04KG, 1
 bsc body shaping protein swiss chocolate, 58.0, 0.1KG, 21.75, 0.375KG, 1
 bsc body shaping protein vanilla coconut, 58.0, 0.1KG, 21.75, 0.375KG, 1
