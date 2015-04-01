@@ -103,13 +103,16 @@ def match_ratings(first_list, second_list, cache_dict):
   ratings = []
 
   i = 0
+  match_count = 0
+  match_flag = 0
   length = len(first_list)
   cache_hits = 0
 
   for anchor in first_list:
-    if i % 10 == 0:
+    if i % 50 == 0:
       sys.stderr.write("%d of %d\n" % (i, length))
     i += 1
+    match_flag = 0
     anchor_key = strip_leading_trailing_whitespace(anchor)
     for tail in second_list:
       tail_key = strip_leading_trailing_whitespace(tail)
@@ -119,9 +122,12 @@ def match_ratings(first_list, second_list, cache_dict):
         similarity = cache_dict[cache_key(anchor_key, tail_key)]
       else:
         similarity = string_similarity(anchor, tail)
-
+      if (similarity>0.5 and not match_flag):
+        match_count += 1
+        match_flag = 1
       ratings.append((anchor, tail, similarity))
 
+  print("%s out of %s possible matches (%% %s" % (match_count, len(second_list), (float(match_count)/float(len(second_list))) *100))
   sys.stderr.write(stats(length, cache_hits))
 
   return ratings
