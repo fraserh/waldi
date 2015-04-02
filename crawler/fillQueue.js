@@ -24,10 +24,10 @@ if (store === 'coles') {
 function fillColes() {
   var colesIndexer = new ColesIndexer();
   var colesURLs = colesIndexer.index();
-  var colesTube = 'coles';
+  var colesTube = 'default';
 
   fillQueue(colesTube, colesURLs, function() {
-    console.log('Coles queue filled.');
+    console.log('Coles queue filled with', colesURLs.length, 'URLs.');
     process.exit();
   });
 }
@@ -38,7 +38,7 @@ function fillWoolworths() {
   var woolworthsTube = 'woolworths';
   
   fillQueue(woolworthsTube, woolworthsURLs, function() {
-    console.log('Woolworths queue filled.');
+    console.log('Woolworths queue filled with', woolworthsURLs.length, 'URLs.');
     process.exit();
   });
 }
@@ -46,6 +46,7 @@ function fillWoolworths() {
 function fillQueue(tube, URLs, callback) {
   client.use(tube).onSuccess(function(data) {
     for (var i = 0; i < URLs.length; i++) {
+      console.log('put ', URLs[i], 'into', tube);
       client.put(URLs[i]);
     }
 
