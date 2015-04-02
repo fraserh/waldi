@@ -25,7 +25,8 @@ def match_all():
   with open("../matcher/results.txt", "at") as f:
     for match in matches:
       if (match[2]>0.5):
-        f.write(match[0] + ", " + match[1] + ", " + str(match[2])+'\n')
+        rank = ster(match[2])
+        f.write(match[0] + ", " + match[1] + ", " + rank +'\n')
 
 if __name__ == '__main__':
   match_all()
