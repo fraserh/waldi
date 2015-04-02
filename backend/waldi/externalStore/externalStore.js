@@ -57,29 +57,47 @@ exports.matchTitle = function(title, callback) {
 
 // Autocomplete suggestions
 // http://oldblog.antirez.com/post/autocomplete-with-redis.html
+// https://github.com/jedp/redis-completer/blob/master/completer.js
 exports.autocomplete = function(partialTitle, n, callback) {
   var collectionName = "autocomplete";
   var trailingMarker = "*";
+
+  /*
+  Not entirely sure what rangeLength should be. antirez has a comment
+  on his snippet '# This is not random, try to get replies < MTU size'.
+  I guess we can play with it if performance is an issue.
+   */
+  var longestTitle = 100; // seems very arbitrary
+  var rangeLength = n * longestTitle;
+
+
+  var results = [];
+
   client.zrank(collectionName, partialTitle, function(err, index) {
     if (err) return callback(err);
 
-    client.zrange(collectionName, index + 1, -1, function(err, items) {
-      if (err) return callback(err);
+    client.zrange(collectionName, index, index + rangeLength - 1, function(err, items) {
+      // Fill up the results array with n matches
+      while (results.length <= n) {
+        if (!items || items.length === 0) {
+          break;
+        }
 
-      // Now grab out the items ending in *
-      items = items.filter(function(i) {
-        return (i.slice(-1) == trailingMarker);
-      });
+        for (var i = 0; i < items.length; i++) {
+          var item = items[i];
+          var minimumLength = Math.min(item.length, partialTitle.length);
+          
+          if (item.slice(0, minimumLength) !== partialTitle.slice(0, minimumLength)) {
+            return callback(null, results);
+          }
 
-      // Get only the first n items
-      items = items.slice(0, n);
+          if (item[item.length - 1] === '*' && results.length <= n) {
+            results.push(item.slice(0, -1));
+          }
+        }
+      }
 
-      // Remove their trailing *s
-      items = items.map(function(i) {
-        return i.substr(0, i.length - 1);
-      });
-
-      callback(err, items);
+      return callback(null, results);
     });
   });
 };

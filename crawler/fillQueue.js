@@ -28,6 +28,7 @@ function fillColes() {
 
   fillQueue(colesTube, colesURLs, function() {
     console.log('Coles queue filled.');
+    process.exit();
   });
 }
 
@@ -38,6 +39,7 @@ function fillWoolworths() {
   
   fillQueue(woolworthsTube, woolworthsURLs, function() {
     console.log('Woolworths queue filled.');
+    process.exit();
   });
 }
 

@@ -1,12 +1,8 @@
 if [ -z "$1" ]
   then
-  echo "usage: ./runner.sh [file]"
+  echo "usage: ./runner.sh (coles|woolworths)"
   exit
 fi
 
-while true
-do
-  node $1
-  gtimeout 60 killall node && node $1
-done
-
+node fillQueue.js $1
+./zombieCrawl.sh "$1.js"
