@@ -1,5 +1,5 @@
 # Database Importer
-* Currently using Redis
+* Currently using Redis, but switching to SQL soon (see notes at end)
 
 ## Import Items
 ```
@@ -52,3 +52,9 @@ For example,
 3 star beef mince, beef mince heart smart, 1.42857142857
 3 star beef mince, macro grass fed premium mince beef, 0.95652173913
 ```
+
+# SQL notes
+CREATE DATABASE waldi
+sql_schema.sql defines the schema
+GRANT ALL PRIVILEGES ON waldi.* To 'waldi'@'hostname' IDENTIFIED BY 'password';
+
