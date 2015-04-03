@@ -86,13 +86,15 @@ exports.prepopulate = function(req, res) {
     // }
     var i = 0;
 
-    data = data.map(function(d) {
-      return {
-        price: d.price_per_kle,
-        prod: d.title,
-        id: i++
-      };
-    });
+    if (data) {
+      data = data.map(function(d) {
+        return {
+          price: d.price_per_kle,
+          prod: d.title,
+          id: i++
+        };
+      });
+    }
 
     respondWithErrorOrData(res, err, data);
   });

@@ -55,6 +55,8 @@ For example,
 
 # SQL notes
 CREATE DATABASE waldi
-sql_schema.sql defines the schema
-GRANT ALL PRIVILEGES ON waldi.* To 'waldi'@'hostname' IDENTIFIED BY 'password';
-
+GRANT ALL PRIVILEGES ON waldi.* To 'waldi'@'localhost' IDENTIFIED BY 'password';
+sudo /usr/local/mysql/bin/mysql OR sudo mysql OR ...
+mysql> use waldi;
+mysql> source sql_schema.sql
+python sql_importer.py 
