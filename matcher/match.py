@@ -101,16 +101,24 @@ def strip_leading_trailing_whitespace(s):
 
 def match_ratings(first_list, second_list, cache_dict):
   ratings = []
+  unmatched = []
+  second_matrix = [0] * len(second_list)
 
   i = 0
   match_count = 0
   match_flag = 0
+  second_count = 0
   length = len(first_list)
   cache_hits = 0
 
   for anchor in first_list:
     if i % 50 == 0:
       sys.stderr.write("%d of %d\n" % (i, length))
+      second_count = 0
+      for item in second_matrix:
+        if item:
+          second_count +=1
+      print("%s out of %s from second list, %%%s done" % (second_count, len(second_list), (float(second_count)/float(len(second_list))*100)))
     i += 1
     match_flag = 0
     anchor_key = strip_leading_trailing_whitespace(anchor)
@@ -122,12 +130,18 @@ def match_ratings(first_list, second_list, cache_dict):
         similarity = cache_dict[cache_key(anchor_key, tail_key)]
       else:
         similarity = string_similarity(anchor, tail)
-      if (similarity>0.5 and not match_flag):
-        match_count += 1
-        match_flag = 1
+      if similarity > 0.5:
+        if not match_flag:
+          match_count += 1
+          match_flag = 1
+        second_matrix[second_list.index(tail)] = 1
       ratings.append((anchor, tail, similarity))
-
-  print("%s out of %s possible matches (%% %s" % (match_count, len(second_list), (float(match_count)/float(len(second_list))) *100))
+    if not match_flag:
+      unmatched.append(anchor)
+  
+  print("%s out of %s from second list" % (second_count, len(second_list)))
+  print len(unmatched)
+  print("%s out of %s possible matches (%% %s" % (match_count, len(first_list), (float(match_count)/float(len(first_list))) *100))
   sys.stderr.write(stats(length, cache_hits))
 
   return ratings

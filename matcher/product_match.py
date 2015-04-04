@@ -30,7 +30,7 @@ def remove_words(ignored_words, input_list):
   for item in input_list:
     original = item
     for word in ignored_words:    
-      item = item.replace(word, "")
+      item = item.replace(word, " ")
 
     output_list.append((original, item))
   
@@ -38,7 +38,7 @@ def remove_words(ignored_words, input_list):
 
 def remove_from_word(original, to_remove):
   # Also strips leading and trailing whitespace
-  original = original.replace(to_remove, "")
+  original = original.replace(to_remove, " ")
   original = original.lstrip().rstrip()
   return original
 

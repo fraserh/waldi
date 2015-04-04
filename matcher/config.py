@@ -17,4 +17,31 @@ CATEGORY_KEYWORDS = [
   { "keywords": ["chilled","dairy, frozen"],
     "category" : "fridge",
   },
-] 
+]
+
+CATEGORY_IGNORE_WORDS = {
+  "all": [
+    "imported",
+    "thawed",
+    "pieces",
+    "piece",
+    "fresh",
+    "organic",
+    "and",
+    "australian",
+    "per",
+    "macro",
+    "heart smart",
+    "woolworths",
+    "created with jamie",
+    "coles",
+  ],
+  "bread" : [],
+  "meat": [
+    "inghams",
+  ],
+  "baby": [],
+  "fruit-veg": [],
+  "pantry": [],
+  "fridge": [],
+}

@@ -1,15 +1,19 @@
 from product_match import *
+from multiprocessing import Process, Queue
+import config
 
 CATEGORIES_TO_MATCH = [
-  "bread",
+  "meat",
   "fruit-veg",
-  "meat"
+  "bread"
 ]
 
 def match_all():
   required_words = file_to_list("required-words")
-  ignored_words = file_to_list("ignored-words.text")
+  ignored_words = config.CATEGORY_IGNORE_WORDS["all"]#file_to_list("ignored-words.text")
   matches = []
+  q1 = Queue()
+  q2 = Queue()
   for cat in CATEGORIES_TO_MATCH:
     print "Matching " + cat
     first_list = file_to_list("../parsed_categories/" + cat + "_coles_db.csv")
@@ -20,13 +24,14 @@ def match_all():
       ignored_words, 
       required_words
     ))
-
+  print len(matches)
   open('../matcher/results.txt', 'w').close()  
   with open("../matcher/results.txt", "at") as f:
     for match in matches:
-      if (match[2]>0.5):
-        rank = ster(match[2])
-        f.write(match[0] + ", " + match[1] + ", " + rank +'\n')
+      for item in match:
+        if (item[2]>0.5):
+          f.write("%s, %s, %s\n" % (item[0],item[1],str(item[2])))
+
 
 if __name__ == '__main__':
   match_all()
