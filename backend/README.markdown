@@ -9,7 +9,7 @@ Fuzzy search for an item
 
 Exact match for an item
 
-    GET '/search/item?title=zucchini'
+    GET '/item?title=zucchini'
 
 Exact match for a set of items
 

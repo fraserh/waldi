@@ -17,7 +17,6 @@ CREATE TABLE `category` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `store` INT UNSIGNED NOT NULL,
   `title` VARCHAR(200) NOT NULL,
-  `number_of_items` INT UNSIGNED NOT NULL,
   `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -30,6 +29,7 @@ CREATE TABLE `match`(
   `item_one` INT UNSIGNED,
   `item_two` INT UNSIGNED,
   `rating` FLOAT,
+  `user_increment` INT,
   `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
@@ -40,14 +40,16 @@ CREATE TABLE `item` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `store` INT UNSIGNED NOT NULL,
   `title` VARCHAR(500) NOT NULL,
-  `price_per_unit` FLOAT,
-  `price_per_kg` FLOAT,
-  `unit_size` INT UNSIGNED,
-  `units_per_purchase` INT UNSIGNED,
+  `price_per_kle` FLOAT,
+  `kle` VARCHAR(10),
+  `unit_price` FLOAT,
+  `unit_volume` VARCHAR(10),
+  `amount` FLOAT,
   `url` VARCHAR(500),
   `category` INT UNSIGNED,
   `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `uses` INT UNSIGNED,
   PRIMARY KEY (`id`),
   FOREIGN KEY(`store`) REFERENCES `store`(`id`),
   FOREIGN KEY(`category`) REFERENCES `category`(`id`)
@@ -66,7 +68,7 @@ CREATE INDEX item_in_category
 ON `item`(`category`);
 
 CREATE UNIQUE INDEX category_with_title
-ON `category`(`title`);
+ON `category`(`title`,`store`);
 
 CREATE INDEX category_in_store
 ON `category`(`store`);
